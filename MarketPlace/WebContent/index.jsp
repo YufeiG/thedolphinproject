@@ -1,4 +1,4 @@
-<%@ page import="Controller.DatabaseController" %>
+<%@ page import="controller.DatabaseController" %>
 <%
     
     DatabaseController con = new DatabaseController();

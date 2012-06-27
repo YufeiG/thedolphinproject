@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -20,7 +20,7 @@ public class DatabaseController {
 			//Class.forName(driver);
 
 			Class.forName("com.mysql.jdbc.Driver");
-			mConnection = DriverManager.getConnection(url + db, "root", "tina");
+			mConnection = DriverManager.getConnection(url + db, "root", "dongfang");
 
 			return mConnection;
 
@@ -40,13 +40,13 @@ public class DatabaseController {
 		
 		try{
 			Statement st = mConnection.createStatement();
-			String query = "SELECT id FROM item";
+			String query = "SELECT iditem FROM item";
 			st.execute(query);
 			
 			ResultSet rs = st.getResultSet();
 			
 			while(rs.next()){
-				htmlCode += "<p>" + rs.getInt("id") + "</p>";
+				htmlCode += "<p>" + rs.getInt("iditem") + "</p>";
 			}
 			
 		}
