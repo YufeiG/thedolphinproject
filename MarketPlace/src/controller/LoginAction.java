@@ -10,6 +10,7 @@ public class LoginAction extends HttpServlet{
 	 */
 	private static final long serialVersionUID = 7380668445206437625L;
 
+	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 		      throws java.io.IOException {
 			String username = req.getParameter("username");
@@ -20,6 +21,7 @@ public class LoginAction extends HttpServlet{
 		    res.getWriter().write("Hello World!");
 		  }
 		 
+	@Override
 		  public void doGet(HttpServletRequest req, HttpServletResponse res)
 		      throws java.io.IOException {
 		    doPost(req, res);
