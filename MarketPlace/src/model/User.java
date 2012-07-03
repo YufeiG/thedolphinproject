@@ -12,6 +12,19 @@ public class User {
 	private String phoneNumber;
 	private Date dateCreated;
 	
+	public User(long userid, String username, String password,
+			String firstName, String lastName, String email,
+			String phoneNumber, Date dateCreated) {
+		super();
+		this.userid = userid;
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+		this.dateCreated = dateCreated;
+	}
 	public long getUserid() {
 		return userid;
 	}

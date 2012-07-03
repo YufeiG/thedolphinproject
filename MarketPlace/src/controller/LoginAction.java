@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import authenticationService.AuthenticationService;
+
 public class LoginAction extends HttpServlet{
 	/**
 	 * 
@@ -17,8 +19,11 @@ public class LoginAction extends HttpServlet{
 		String password = req.getParameter("password");
 		System.err.println("username: " + username);
 		System.err.println("password: " + password);
+		
+		AuthenticationService as = new AuthenticationService();
+		
 		res.setContentType("text/html");
-		res.getWriter().write("Hello World!");
+		res.getWriter().write(as.authenticate(username, password) + "");
 	}
 
 	@Override

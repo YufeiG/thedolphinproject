@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class loginDAO {
+public class FileDAO extends AbstractDAO{
 		Connection mConnection;
 
 		public Connection ConnectToDatabase()
