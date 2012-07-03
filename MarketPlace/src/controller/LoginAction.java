@@ -12,19 +12,19 @@ public class LoginAction extends HttpServlet{
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
-		      throws java.io.IOException {
-			String username = req.getParameter("username");
-			String password = req.getParameter("password");
-			System.err.println("username: " + username);
-			System.err.println("password: " + password);
-			res.setContentType("text/html");
-		    res.getWriter().write("Hello World!");
-		  }
-		 
+			throws java.io.IOException {
+		String username = req.getParameter("username");
+		String password = req.getParameter("password");
+		System.err.println("username: " + username);
+		System.err.println("password: " + password);
+		res.setContentType("text/html");
+		res.getWriter().write("Hello World!");
+	}
+
 	@Override
-		  public void doGet(HttpServletRequest req, HttpServletResponse res)
-		      throws java.io.IOException {
-		    doPost(req, res);
-		  }
+	public void doGet(HttpServletRequest req, HttpServletResponse res)
+			throws java.io.IOException {
+		doPost(req, res);
+	}
 
 }
