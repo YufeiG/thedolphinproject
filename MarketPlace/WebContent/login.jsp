@@ -18,7 +18,7 @@
 		$("#username").val("new user");
 		
 		var username = $("#username").val();
-		//var password = $("#password").val();
+		var password = $("#password").val();
 		/*
 		$.post("/login.jsp", { username: username, password: password },function(data){
 		    alert("Data Loaded: " + data);
@@ -26,7 +26,7 @@
 		*/
 		
 			
-		$.post("LoginAction",{ username: "John", password: "2pm" },
+		$.post("LoginAction",{ username: username, password: password },
 		  function(data){
 		    alert("Data Loaded: " + data);
 		  }
