@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<p>TINA!</p>
+<p>LIZ!</p>
 <%=s%>
 
 </body>
