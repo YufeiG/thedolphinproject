@@ -10,7 +10,7 @@ public class AuthenticationService {
 
 	public boolean authenticate(String username, String password){
 		AbstractDAOFactory factory = new MySQLDAOFactory();
-		AbstractDAO dao = factory.getDAO("USER");
+		AbstractDAO dao = factory.getUserDAO();
 
 		UserDAO userdao = (UserDAO) dao;
 		User user = userdao.getUser(username);
@@ -20,6 +20,5 @@ public class AuthenticationService {
 		else{
 			return false;
 		}
-	
 	}
 }

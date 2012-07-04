@@ -2,18 +2,16 @@ package dao;
 
 public class MySQLDAOFactory implements AbstractDAOFactory{
 	
-	public AbstractDAO getDAO(String daoType){
-		if(daoType.equals("USER")){
-			return new UserDAO();
-		}
-		else if (daoType.equals("FILE")){
-			return new FileDAO();
-		}
-		else if(daoType.equals("ITEM")){
-			return new ItemDAO();
-		}
+	public FileDAO getFileDAO(){
+		return new FileDAO();
+	}
+	
+	public ItemDAO getItemDAO(){
+		return new ItemDAO();
+	}
+	
+	public UserDAO getUserDAO(){
+		return new UserDAO();
+	}
 		
-		
-		return null;
-	}	
 }
