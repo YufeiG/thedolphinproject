@@ -69,7 +69,7 @@
 			
 		$.post("UserAction",{ action: "create", username: username, password: password, firstname: firstName, lastname: lastName, phone: phone, email: quest+"@uwaterloo.ca" },
 		  function(data){
-		    alert("Account created: " + data);
+		    alert("Account result: " + data);
 		  }
 		);
 	});

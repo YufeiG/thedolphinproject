@@ -15,5 +15,13 @@
     <servlet-name>LoginAction</servlet-name>
     <url-pattern>/LoginAction</url-pattern>
   </servlet-mapping>
+    <servlet>
+    <servlet-name>UserAction</servlet-name>
+    <servlet-class>controller.UserAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserAction</servlet-name>
+    <url-pattern>/UserAction</url-pattern>
+  </servlet-mapping>
   
 </web-app>

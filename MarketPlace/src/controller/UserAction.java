@@ -22,8 +22,7 @@ public class UserAction extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws java.io.IOException {
 		String action = req.getParameter("action");
-		
-		if(action == "create")
+		if(action.equals("create"))
 		{
 			String username = req.getParameter("username");
 			String password = req.getParameter("password");
