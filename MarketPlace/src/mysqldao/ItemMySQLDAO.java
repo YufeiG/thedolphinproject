@@ -9,35 +9,13 @@ import dao.AbstractDAO;
 import dao.ItemDAO;
 
 public class ItemMySQLDAO extends AbstractDAO implements ItemDAO{
-		Connection mConnection;
-
-		public Connection ConnectToDatabase()
-		{
-
-			String url = "jdbc:mysql://localhost:3306/";
-			String db = "marketplace";
-			String driver = "com.mysql.jdbc.Driver";
-			try
-			{
-				//Class.forName(driver);
-
-				Class.forName("com.mysql.jdbc.Driver");
-				mConnection = DriverManager.getConnection(url + db, "root", "dongfang");
-
-				return mConnection;
-
-			} catch (Exception e)
-			{
-				e.printStackTrace();
-			}
-
-			return null;
-
+		
+		public ItemMySQLDAO(){
+			mConnection = createConnection();
 		}
-
+		
 		public String query(){
 
-			ConnectToDatabase();
 			String htmlCode = "";
 			
 			try{

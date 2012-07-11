@@ -20,7 +20,7 @@ public class DatabaseController {
 			//Class.forName(driver);
 
 			Class.forName("com.mysql.jdbc.Driver");
-			mConnection = DriverManager.getConnection(url + db, "root", "dongfang");
+			mConnection = DriverManager.getConnection(url + db, "root", "tina");
 
 			return mConnection;
 
