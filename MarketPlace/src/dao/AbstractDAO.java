@@ -8,8 +8,19 @@ import java.sql.Statement;
 
 public abstract class AbstractDAO {
 	protected static Connection mConnection;
+	
+	public void disconnect() {
+		try
+		{
+			mConnection.close();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
 
-	public static Connection createConnection(){
+	public Connection createConnection(){
 
 		String url = "jdbc:mysql://localhost:3306/";
 		String db = "marketplace";
