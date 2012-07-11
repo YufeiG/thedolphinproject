@@ -25,6 +25,7 @@ public class User {
 		this.phoneNumber = phoneNumber;
 		this.dateCreated = dateCreated;
 	}
+	
 	public long getUserid() {
 		return userid;
 	}
