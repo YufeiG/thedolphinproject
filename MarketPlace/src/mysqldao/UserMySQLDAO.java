@@ -11,6 +11,7 @@ import dao.UserDAO;
 import model.User;
 
 public class UserMySQLDAO extends AbstractDAO implements UserDAO{
+
 	public UserMySQLDAO() {
 		createConnection();
 	}
@@ -85,17 +86,19 @@ public class UserMySQLDAO extends AbstractDAO implements UserDAO{
 	}
 	
 	public boolean editUser(User user) {
+		// to do
 		return false;
 	
 	}
 	
 	public boolean doesAccountExist(String username) {
 		User user = getUser(username);
-		if (user) return true;
+		if (user != null) return true;
 		else return false;
 	}
 	
 	public boolean isPasswordCorrect(String password) {
+		// to do
 		return false;
 	}
 }

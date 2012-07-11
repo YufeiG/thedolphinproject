@@ -3,8 +3,6 @@ package dao;
 import java.sql.DriverManager;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 public abstract class AbstractDAO {
 	protected static Connection mConnection;
@@ -29,7 +27,7 @@ public abstract class AbstractDAO {
 		{
 			//Class.forName(driver);
 
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName(driver);
 			mConnection = DriverManager.getConnection(url + db, "root", "yufei");
 
 			return mConnection;
