@@ -20,7 +20,7 @@
             <a href="login.jsp">Log In</a>
         </div>
 		<div id="search">
-            Search Bar
+            Search Bar bah
         </div>
         <div id="indexLeftColumn">
              Categories
