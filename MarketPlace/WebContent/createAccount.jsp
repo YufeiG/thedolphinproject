@@ -16,6 +16,29 @@
 	$("#submit").click(function(){
 		var username = $("#username").val();
 		var password = $("#password").val();
+		var password2 = $("#password2").val();
+		var firstName = $("#first").val();
+		var lastName = $("#last").val();
+		
+		if(username == ""){
+			alert("Error: User Name cannot be empty");
+			return;
+		}
+		
+		if(firstName == ""){
+			alert("Error: First Name cannot be empty");
+			return;
+		}
+		
+		if(lastName == ""){
+			alert("Error: Last Name cannot be empty");
+			return;
+		}
+		
+		if(password2 == "" || password == "") {
+			alert("Error: Password cannot be empty");
+			return;
+		}
 		
 		if($("#password2").val() != password) {
 			alert("Error: The typed passwords don't match.");
@@ -25,7 +48,7 @@
 		}
 		
 			
-		$.post("LoginAction",{ username: username, password: password },
+		$.post("UserAction",{ username: username, password: password, firstname: firstName, lastname: lastName },
 		  function(data){
 		    alert("Account created: " + data);
 		  }
@@ -34,10 +57,13 @@
 	});
 </script>
 <form>
-Username: <input id="username" type="text" name="username" /><br />
+Username: <input id="username" type="text" name="username" />@uwaterloo.ca<br />
 Password: <input id ="password" type="password" name="pwd" /><br />
 Retype Password: <input id ="password2" type="password" name="pwd2" /> <br/>
-Submit: <button id = "submit" type="button">Create Account</button>
+First Name: <input id ="first" type="text" name="first" /> <br/>
+Last Name: <input id ="last" type="text" name="last" /> <br/>
+
+<button id = "submit" type="button">Create Account</button>
 </form> 
 </body>
 </html>
