@@ -4,6 +4,11 @@ public class Tag {
 	long id;
 	String name;
 
+	public Tag(long id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+
 	public long getId() {
 		return id;
 	}

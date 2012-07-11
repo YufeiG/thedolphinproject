@@ -10,5 +10,5 @@ public interface UserDAO {
 	public boolean deleteUser(String username);
 	public boolean editUser(User user);
 	public boolean doesAccountExist(String username);
-	public boolean isPasswordCorrect(String password);
+	public boolean isPasswordCorrect(String username, String password);
 }

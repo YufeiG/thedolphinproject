@@ -1,24 +1,28 @@
 package model;
 
-import java.util.Date;
+import java.sql.Blob;
 
 public class File {
 	private long fileid;
-	private Byte[] file;
+	private Blob file;
 	private int useType;
-	private Date dateCreated;
 
-
+	public File(long fileid, Blob file, int useType) {
+		this.fileid = fileid;
+		this.file = file;
+		this.useType = useType;
+	}
+	
 	public long getFileid() {
 		return fileid;
 	}
 	public void setFileid(long fileid) {
 		this.fileid = fileid;
 	}
-	public Byte[] getFile() {
+	public Blob getFile() {
 		return file;
 	}
-	public void setFile(Byte[] file) {
+	public void setFile(Blob file) {
 		this.file = file;
 	}
 	public int getUseType() {
@@ -27,12 +31,4 @@ public class File {
 	public void setUseType(int useType) {
 		this.useType = useType;
 	}
-	public Date getDateCreated() {
-		return dateCreated;
-	}
-	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
-	}
-
-
 } 

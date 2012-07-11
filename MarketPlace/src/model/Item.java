@@ -17,6 +17,24 @@ public class Item {
 	private Date timePosted;
 	private Date lastModified;
 	
+	public Item(long itemid, String name, int category, long userid,
+			String description, boolean sold, Date availStart, Date availEnd,
+			double priceLow, double priceHigh, int popularity, Date timePosted,
+			Date lastModified) {
+		this.itemid = itemid;
+		this.name = name;
+		this.category = category;
+		this.userid = userid;
+		this.description = description;
+		this.sold = sold;
+		this.availStart = availStart;
+		this.availEnd = availEnd;
+		this.priceLow = priceLow;
+		this.priceHigh = priceHigh;
+		this.popularity = popularity;
+		this.timePosted = timePosted;
+		this.lastModified = lastModified;
+	}
 	
 	public long getItemid() {
 		return itemid;
