@@ -9,7 +9,9 @@ import dao.AbstractDAOFactory;
 public class AuthenticationService {
 
 	public boolean authenticate(String username, String password){
+		
 		AbstractDAOFactory factory = new MySQLDAOFactory();
+		
 		AbstractDAO dao = factory.getUserDAO();
 
 		UserMySQLDAO userdao = (UserMySQLDAO) dao;

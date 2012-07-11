@@ -15,5 +15,9 @@ public class MySQLDAOFactory implements AbstractDAOFactory{
 	public UserMySQLDAO getUserDAO(){
 		return new UserMySQLDAO();
 	}
+	
+	public TagMySQLDAO getTagDAO(){
+		return new TagMySQLDAO();
+	}
 		
 }
