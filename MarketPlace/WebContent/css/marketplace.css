@@ -1,0 +1,39 @@
+@CHARSET "ISO-8859-1";
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 850px;
+    text-align: center;
+    margin: 20px auto;
+}
+
+#main { background: #eee }
+
+#header {
+    height: 150px;
+    background: #aaa;
+}
+
+#search {
+    height: 100px;
+    background: #aaa;
+}
+
+#footer {
+    height: 60px;
+    clear: left;
+    background: #aaa;
+}
+
+#indexLeftColumn {
+    height: 400px;
+    width: 150px;
+    float: left;
+    background: #ccc;
+}
+
+#indexRightColumn {
+    height: 400px;
+    width: 500px;
+    float: left;
+    background: #eee;
+}
