@@ -35,7 +35,7 @@ public class UserMySQLDAO extends AbstractDAO implements UserDAO{
 			}
 
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 
 		return user;
@@ -60,7 +60,7 @@ public class UserMySQLDAO extends AbstractDAO implements UserDAO{
 			}
 
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 
 		return userList;
@@ -68,35 +68,24 @@ public class UserMySQLDAO extends AbstractDAO implements UserDAO{
 	}
 	
 	public boolean deleteUser(String username) {
-		try {
+		try 
+		{
 			if (!doesAccountExist(username))
 				return false;
 			
 			Statement st = mConnection.createStatement();
 			String query = "DELETE FROM users WHERE username = '" + username + "'";
 			st.execute(query);
-
-			ResultSet rs = st.getResultSet();
-
-			if (rs.next()) {
-				user = new User(rs.getLong("uid"), rs
-						.getString("username"), rs.getString("password"), rs
-						.getString("first_name"), rs.getString("last_name"), rs
-						.getString("email"), rs.getString("phone_num"), rs
-						.getDate("date_created"));
-
-			}
-
+			return true;
+			
 		} catch (Exception e) {
-
+			e.printStackTrace();
+			return false;
 		}
-
-		return user;
-		
 	}
 	
-	public boolean editUser(User newuser) {
-	
+	public boolean editUser(User user) {
+		return false;
 	
 	}
 	
@@ -107,6 +96,6 @@ public class UserMySQLDAO extends AbstractDAO implements UserDAO{
 	}
 	
 	public boolean isPasswordCorrect(String password) {
-		
+		return false;
 	}
 }
