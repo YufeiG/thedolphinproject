@@ -9,13 +9,32 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="css/marketplace.css">
 <title>Market Place</title>
 
 </head>
 <body>
 
-<p>LIZ!</p>
-<%=s%>
+	<div id="main">
+        <div id="header">
+            <a href="login.jsp">Log In</a>
+        </div>
+		<div id="search">
+            Search Bar
+        </div>
+        <div id="indexLeftColumn">
+             Categories
+        </div>
+
+        <div id="indexRightColumn">
+            Results
+        </div>
+
+        <div id="footer">
+            Copyright(c)2012 UWAvengers
+        </div>
+    </div>
+
 
 </body>
 </html>

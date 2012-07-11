@@ -14,8 +14,8 @@
 	alert("Document Ready!");
 	
 	$("#submit").click(function(){
-		alert("Clicked on Submit!");
-		$("#username").val("new user");
+		alert("Logging in...");
+		//$("#username").val("new user");
 		
 		var username = $("#username").val();
 		var password = $("#password").val();
