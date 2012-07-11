@@ -3,13 +3,22 @@ package dao;
 import java.sql.DriverManager;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 public abstract class AbstractDAO {
 	protected static Connection mConnection;
+	
+	public void disconnect() {
+		try
+		{
+			mConnection.close();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
 
-	public static Connection createConnection(){
+	public Connection createConnection(){
 
 		String url = "jdbc:mysql://localhost:3306/";
 		String db = "marketplace";
@@ -18,7 +27,7 @@ public abstract class AbstractDAO {
 		{
 			//Class.forName(driver);
 
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName(driver);
 			mConnection = DriverManager.getConnection(url + db, "root", "yufei");
 
 			return mConnection;

@@ -11,6 +11,7 @@ import dao.UserDAO;
 import model.User;
 
 public class UserMySQLDAO extends AbstractDAO implements UserDAO{
+
 	public UserMySQLDAO() {
 		createConnection();
 	}
@@ -20,7 +21,7 @@ public class UserMySQLDAO extends AbstractDAO implements UserDAO{
 		User user = null;
 		try {
 			Statement st = mConnection.createStatement();
-			String query = "SELECT * FROM users WHERE username = " + username;
+			String query = "SELECT * FROM users WHERE username = '" + username + "'";
 			st.execute(query);
 
 			ResultSet rs = st.getResultSet();
@@ -35,7 +36,7 @@ public class UserMySQLDAO extends AbstractDAO implements UserDAO{
 			}
 
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 
 		return user;
@@ -57,15 +58,47 @@ public class UserMySQLDAO extends AbstractDAO implements UserDAO{
 						.getString("first_name"), rs.getString("last_name"), rs
 						.getString("email"), rs.getString("phone_num"), rs
 						.getDate("date_created")));
-
 			}
 
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 
 		return userList;
 
 	}
-
+	
+	public boolean deleteUser(String username) {
+		try 
+		{
+			if (!doesAccountExist(username))
+				return false;
+			
+			Statement st = mConnection.createStatement();
+			String query = "DELETE FROM users WHERE username = '" + username + "'";
+			st.execute(query);
+			return true;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean editUser(User user) {
+		// to do
+		return false;
+	
+	}
+	
+	public boolean doesAccountExist(String username) {
+		User user = getUser(username);
+		if (user != null) return true;
+		else return false;
+	}
+	
+	public boolean isPasswordCorrect(String password) {
+		// to do
+		return false;
+	}
 }

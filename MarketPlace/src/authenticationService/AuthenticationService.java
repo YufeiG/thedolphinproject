@@ -26,4 +26,8 @@ public class AuthenticationService {
 			return false;
 		}
 	}
+	
+	public boolean logout(User u){
+		return false;
+	}
 }
