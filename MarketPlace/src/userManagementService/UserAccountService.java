@@ -20,4 +20,16 @@ public class UserAccountService {
 		return false;
 	}
 	
+	public boolean editAccount(User u){
+		return false;
+	}
+	
+	public boolean deleteAccount(User u){
+		return false;
+	}
+	
+	public boolean banAccount(User u){
+		return false;
+	}
+	
 }
