@@ -18,9 +18,11 @@
 	<div id="main">
         <div id="header">
             <a href="login.jsp">Log In</a>
+            |
+            <a href="createAccount.jsp">Create Account</a>
         </div>
 		<div id="search">
-            Search Bar
+            Search Bar bah
         </div>
         <div id="indexLeftColumn">
              Categories

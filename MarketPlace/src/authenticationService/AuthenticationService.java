@@ -8,14 +8,17 @@ import dao.AbstractDAOFactory;
 
 public class AuthenticationService {
 
-	public boolean authenticate(String username, String password){
-		
+	UserMySQLDAO userDAO;
+	
+	
+	public AuthenticationService(){
 		AbstractDAOFactory factory = new MySQLDAOFactory();
-		
 		AbstractDAO dao = factory.getUserDAO();
-
-		UserMySQLDAO userdao = (UserMySQLDAO) dao;
-		User user = userdao.getUser(username);
+		userDAO = (UserMySQLDAO) dao;
+	}
+	
+	public boolean authenticate(String username, String password){
+		User user = userDAO.getUser(username);
 		if(password.equals(user.getPassword())){
 			return true;
 		}
