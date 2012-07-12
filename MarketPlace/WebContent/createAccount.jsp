@@ -8,8 +8,31 @@
 <script type="text/javascript"
             src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <title>Create Account</title>
+
 </head>
 <body>
+
+<form>
+<table class="input_table">
+<tr><td>Username:</td><td> <input id="username" type="text" name="username" /></td></tr>
+<tr><td>Password:</td><td><input id ="password" type="password" name="pwd" /></td></tr>
+<tr><td>Retype Password: </td><td><input id ="password2" type="password" name="pwd2" /> <br/>
+</td></tr>
+<tr><td>First Name:</td><td><input id ="first" type="text" name="first" /> <br/>
+</td></tr>
+<tr><td>Last Name: </td><td><input id ="last" type="text" name="last" /> <br/>
+</td></tr>
+<tr><td>Quest ID (for verification):</td><td><input id ="quest" type="text" name="quest" />@uwaterloo.ca<br/>
+</td></tr>
+<tr><td>Retype Quest ID:</td><td><input id ="quest2" type="text" name="quest2" />@uwaterloo.ca<br/>
+</td></tr>
+<tr><td>Phone (optional):</td><td>
+<input id ="phone" type="text" name="phone" /><br/>
+
+</td></tr>
+</table>
+<button id = "submit" type="button">Create Account</button>
+</form>
 <script type="text/javascript">
 	$(document).ready(function() {
 	
@@ -37,19 +60,15 @@
 			return;
 		}
 		
+		if(lastName == ""){
+			alert("Error: Last Name cannot be empty");
+			return;
+		}
+		
 		if(password2 == "" || password == "") {
 			alert("Error: Password cannot be empty");
 			return;
 		}
-		
-		
-		if(password2 != password) {
-			alert("Error: The typed passwords don't match.");
-			$("#password").val("");
-			$("#password2").val("");
-			return;
-		}
-		
 		
 		if(quest == "" || quest2 == ""){
 			alert("Error: Quest ID cannot be empty. Only UW students can use the marketplace. You need this to verify your account. You can change this email after you verify your account.");
@@ -62,7 +81,14 @@
 			$("#quest2").val("");
 			return;
 		}
-
+		
+		if(password2 != password) {
+			alert("Error: The typed passwords don't match.");
+			$("#password").val("");
+			$("#password2").val("");
+			return;
+		}
+		
 			
 		$.post("UserAction",{ action: "create", username: username, password: password, firstname: firstName, lastname: lastName, phone: phone, email: quest+"@uwaterloo.ca" },
 		  function(data){
@@ -71,17 +97,6 @@
 		);
 	});
 	});
-</script>
-<form>
-Username: <input id="username" type="text" name="username" /><br />
-Password: <input id ="password" type="password" name="pwd" /><br />
-Retype Password: <input id ="password2" type="password" name="pwd2" /> <br/>
-First Name: <input id ="first" type="text" name="first" /> <br/>
-Last Name: <input id ="last" type="text" name="last" /> <br/>
-Quest ID (for verification):<input id ="quest" type="text" name="quest" />@uwaterloo.ca<br/>
-Retype Quest ID:<input id ="quest2" type="text" name="quest2" />@uwaterloo.ca<br/>
-Phone (optional):<input id ="phone" type="text" name="phone" /><br/>
-<button id = "submit" type="button">Create Account</button>
-</form> 
+</script> 
 </body>
 </html>
