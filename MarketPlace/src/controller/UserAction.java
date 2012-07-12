@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.User;
 
 import userManagementService.UserManagementService;
+import userManagementService.UserManagementServiceImpl;
 
 public class UserAction extends HttpServlet {
 
@@ -31,12 +32,13 @@ public class UserAction extends HttpServlet {
 			String email = req.getParameter("email");
 			String phone = req.getParameter("phone");
 			
+			System.err.println("Creating account: " + username+" "+password+" "+firstname+" "+lastname+" "+email+" "+phone);
 			
 			User user = new User(0, username, password,
 					firstname, lastname, email,
 					phone,  new Date());
 			
-			UserManagementService service = new UserManagementService();
+			UserManagementService service = new UserManagementServiceImpl();
 			if(!service.createAccount(user))
 			{
 				System.err.println("Account not created for username: " + username);
