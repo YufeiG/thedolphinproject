@@ -1,7 +1,7 @@
 package mysqldao;
 
 import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,105 +15,73 @@ public class UserMySQLDAO extends AbstractDAO implements UserDAO{
 	public UserMySQLDAO() {
 		createConnection();
 	}
+	
+	private boolean usernameExists(String name) throws SQLException {
+		ResultSet rs = execSql("SELECT * FROM users WHERE username='" + name + "'");
+		if (rs.next()) return true;
+		else return false;
+	}
 
-	public boolean createAccount(User user) {
+	public boolean createAccount(User user) throws SQLException {
+		if (usernameExists(user.getUsername())) return false;
+		
+		execSql("INSERT INTO users (username, password, firstname, lastname, " +
+				"email, phone_num, date_created VALUES (" + 
+				user.getUsername() + "," +
+				user.getPassword() + "," +
+				user.getFirstName() + "," +
+				user.getLastName() + "," +
+				user.getEmail() + "," +
+				user.getPhoneNumber() + ", CURDATE())");
+		
 		return false;
 	}
 	
-	public User getUser(String username) {
+	public User getUser(long userid) throws SQLException {
 
 		User user = null;
-		try {
-			ResultSet rs = execSql("SELECT * FROM users WHERE username = '" + username + "'");
-
-			if (rs.next()) {
-				user = new User(rs.getLong("uid"), rs
-						.getString("username"), rs.getString("password"), rs
-						.getString("first_name"), rs.getString("last_name"), rs
-						.getString("email"), rs.getString("phone_num"), rs
-						.getDate("date_created"));
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
+		ResultSet rs = execSql("SELECT * FROM users WHERE userid = '" + userid + "'");
+		if (rs.next()) {
+		user = new User(rs.getLong("userid"), rs
+				.getString("username"), rs.getString("password"), rs
+				.getString("first_name"), rs.getString("last_name"), rs
+				.getString("email"), rs.getString("phone_num"), rs
+				.getDate("date_created"));
 		}
 
 		return user;
 		
 	}
 	
-	public List<User> getUserList() {
+	public List<User> getUserList() throws SQLException {
 		List<User> userList = new ArrayList<User>();
-		try {
-			ResultSet rs = execSql("SELECT * FROM users");
+		ResultSet rs = execSql("SELECT * FROM users");
 
-			while (rs.next()) {
-				userList.add(new User(rs.getLong("uid"), rs
-						.getString("username"), rs.getString("password"), rs
-						.getString("first_name"), rs.getString("last_name"), rs
-						.getString("email"), rs.getString("phone_num"), rs
-						.getDate("date_created")));
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
+		while (rs.next()) {
+			userList.add(new User(rs.getLong("userid"), rs
+					.getString("username"), rs.getString("password"), rs
+					.getString("first_name"), rs.getString("last_name"), rs
+					.getString("email"), rs.getString("phone_num"), rs
+					.getDate("date_created")));
 		}
-
 		return userList;
 
 	}
 	
-	public boolean deleteUser(String username) {
-		try 
-		{
-			if (!doesAccountExist(username))
-				return false;
-			
-			execSql("DELETE FROM users WHERE username = '" + username + "'");
-			return true;
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
+	public boolean deleteUser(long userid) throws SQLException {
+		execSql("DELETE FROM users WHERE userid = '" + userid + "'");
+		return true;
 	}
 	
-	public boolean editUser(User user) {
-		try
-		{
-			execSql("UPDATE users" +
-					"SET password=" + user.getPassword() +
-					", firstname=" + user.getFirstName() +
-					", lastname=" + user.getLastName() +
-					", email" + user.getEmail() +
-					", phone_num=" + user.getPhoneNumber() +
-					"WHERE username=" + user.getUsername());
-			return true;
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		return false;
-	}
-	
-	public boolean doesAccountExist(String username) {
-		User user = getUser(username);
-		if (user != null) return true;
-		else return false;
-	}
-	
-	public boolean isPasswordCorrect(String username, String password) {
-		try {
-			ResultSet rs = execSql("SELECT password FROM users WHERE username = '" + username + "'");
-
-			if (rs.next() && password == rs.getString("password"))
-				return true;
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return false;
+	public boolean editUser(User user) throws SQLException {
+		execSql("UPDATE users" +
+				"SET username=" + user.getUsername() +
+				", password=" + user.getPassword() +
+				", firstname=" + user.getFirstName() +
+				", lastname=" + user.getLastName() +
+				", email" + user.getEmail() +
+				", phone_num=" + user.getPhoneNumber() +
+				"WHERE username=" + user.getUsername());
+		return true;
 	}
 }

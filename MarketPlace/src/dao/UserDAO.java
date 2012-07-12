@@ -1,14 +1,14 @@
 package dao;
 
 import model.User;
+
+import java.sql.SQLException;
 import java.util.List;
 
 public interface UserDAO {
-	public boolean createAccount(User user);
-	public User getUser(String username);
-	public List<User> getUserList();
-	public boolean deleteUser(String username);
-	public boolean editUser(User user);
-	public boolean doesAccountExist(String username);
-	public boolean isPasswordCorrect(String username, String password);
+	public boolean createAccount(User user) throws SQLException;
+	public User getUser(long username) throws SQLException;
+	public List<User> getUserList() throws SQLException;
+	public boolean deleteUser(long username) throws SQLException;
+	public boolean editUser(User user) throws SQLException;
 }
