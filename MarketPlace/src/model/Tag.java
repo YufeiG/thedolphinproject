@@ -3,6 +3,7 @@ package model;
 public class Tag {
 	long id;
 	String name;
+	
 
 	public Tag(long id, String name) {
 		this.id = id;

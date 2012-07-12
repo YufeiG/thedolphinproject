@@ -6,30 +6,15 @@ import model.User;
 import mysqldao.MySQLDAOFactory;
 import mysqldao.UserMySQLDAO;
 
-public class UserAccountService {
-
-	UserMySQLDAO userDAO;
+public interface UserAccountService {
 	
-	public UserAccountService(){
-		AbstractDAOFactory factory = new MySQLDAOFactory();
-		AbstractDAO dao = factory.getUserDAO();
-		userDAO = (UserMySQLDAO) dao;
-	}
+	public boolean createAccount(User user);
 	
-	public boolean createAccount(User u){
-		return false;
-	}
+	public boolean editAccount(User user);
 	
-	public boolean editAccount(User u){
-		return false;
-	}
+	public boolean deleteAccount(String username);
 	
-	public boolean deleteAccount(User u){
-		return false;
-	}
-	
-	public boolean banAccount(User u){
-		return false;
-	}
+	//ban user
+	public boolean banAccount(User user);
 	
 }

@@ -1,28 +1,23 @@
 package userManagementService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import model.Item;
 import model.User;
+import mysqldao.ItemMySQLDAO;
+import mysqldao.MySQLDAOFactory;
+import mysqldao.UserMySQLDAO;
+import dao.AbstractDAO;
+import dao.AbstractDAOFactory;
 
-public class WatchListUserService {
+public interface WatchListUserService {
 	
+	public List<Item> getWatchListItems(User u);
 	
-	public List<Item> getWatchListItems(User u){
-		return new ArrayList<Item>();
-	}
+	public boolean exportList(User u);
 	
-	public boolean exportList(User u){
-		return false;
-	}
+	public boolean deleteFromWatchList(Item i, User u);
 	
-	public boolean deleteFromWatchList(Item i, User u){
-		return false;
-	}
-	
-	public boolean addToWatchList(Item i, User u){
-		return false;
-	}
+	public boolean addToWatchList(Item i, User u);
 	
 }

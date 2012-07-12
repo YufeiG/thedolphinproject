@@ -12,9 +12,9 @@ public class UserManagementService {
 	WatchListUserService watchListUserService;
 	
 	public UserManagementService(){
-		userAccountService = new UserAccountService();
-		wishListUserService = new WishListUserService();
-		watchListUserService = new WatchListUserService();
+		userAccountService = new UserAccountServiceImpl();
+		wishListUserService = new WishListUserServiceImpl();
+		watchListUserService = new WatchListUserServiceImpl();
 	}
 	
 	public List<Item> getWatchList(User u){
@@ -37,27 +37,27 @@ public class UserManagementService {
 		return userAccountService.createAccount(u);
 	}
 	
-	public boolean editAccount(User u){
-		return userAccountService.editAccount(u);
+	public boolean editAccount(User user){
+		return userAccountService.editAccount(user);
 	}
 	
-	public boolean deleteAccount(User u){
-		return userAccountService.deleteAccount(u);
+	public boolean deleteAccount(String username){
+		return userAccountService.deleteAccount(username);
 	}
 	
-	public boolean banAccount(User u){
-		return userAccountService.banAccount(u);
+	public boolean banAccount(User user){
+		return userAccountService.banAccount(user);
 	}
 	
-	public List<Tag> getWishList(User u){
-		return wishListUserService.getItemsInWishList(u, "");
+	public List<Tag> getWishList(User user){
+		return wishListUserService.getItemsInWishList(user, "");
 	}
 	
-	public boolean addToWishList(Tag t, User u){
-		return wishListUserService.addToWishList(t, u);
+	public boolean addToWishList(Tag t, User user){
+		return wishListUserService.addToWishList(t, user);
 	}
 	
-	public boolean deleteFromWishList(Tag t, User u){
-		return wishListUserService.deleteFromWishList(t, u);
+	public boolean deleteFromWishList(Tag t, User user){
+		return wishListUserService.deleteFromWishList(t, user);
 	}
 }

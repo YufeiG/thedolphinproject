@@ -6,14 +6,9 @@ import java.util.List;
 import model.Item;
 import model.User;
 
-public class RecommendationService {
-	RecommendationAlgorithm algorithm;
+public interface RecommendationService {
 	
-	public List<Item> generateRecommendations(User u){
-		return algorithm.generateRecommendations(u);
-	}
+	public List<Item> generateRecommendations(User u);
 	
-	public boolean selectRecommendationsAlgorithm(){
-		return false;
-	}
+	public boolean selectRecommendationsAlgorithm();
 }

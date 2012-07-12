@@ -1,25 +1,18 @@
 package listingService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import model.Item;
 import model.Tag;
 
-public class ListingService {
-	public boolean createItem(Item i){
-		return false;
-	}
+public interface ListingService {
+
 	
-	public List<Item> findItems(List<Tag> list, String category){
-		return new ArrayList<Item>();
-	}
+	public boolean createItem(Item i);
 	
-	public boolean editItem(Item i){
-		return false;
-	}
+	public List<Item> findItems(List<Tag> list, int category, int sortBy);
 	
-	public boolean deleteItem(Item i){
-		return false;
-	}
+	public boolean editItem(Item i);
+	
+	public boolean deleteItem(Item i);
 }
