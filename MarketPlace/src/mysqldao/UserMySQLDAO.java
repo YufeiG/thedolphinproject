@@ -20,15 +20,11 @@ public class UserMySQLDAO extends AbstractDAO implements UserDAO{
 		return false;
 	}
 	
-	public User getUser(String username){
+	public User getUser(String username) {
 
 		User user = null;
 		try {
-			Statement st = mConnection.createStatement();
-			String query = "SELECT * FROM users WHERE username = '" + username + "'";
-			st.execute(query);
-
-			ResultSet rs = st.getResultSet();
+			ResultSet rs = execSql("SELECT * FROM users WHERE username = '" + username + "'");
 
 			if (rs.next()) {
 				user = new User(rs.getLong("uid"), rs
@@ -36,7 +32,6 @@ public class UserMySQLDAO extends AbstractDAO implements UserDAO{
 						.getString("first_name"), rs.getString("last_name"), rs
 						.getString("email"), rs.getString("phone_num"), rs
 						.getDate("date_created"));
-
 			}
 
 		} catch (Exception e) {
@@ -50,11 +45,7 @@ public class UserMySQLDAO extends AbstractDAO implements UserDAO{
 	public List<User> getUserList() {
 		List<User> userList = new ArrayList<User>();
 		try {
-			Statement st = mConnection.createStatement();
-			String query = "SELECT * FROM users";
-			st.execute(query);
-
-			ResultSet rs = st.getResultSet();
+			ResultSet rs = execSql("SELECT * FROM users");
 
 			while (rs.next()) {
 				userList.add(new User(rs.getLong("uid"), rs
@@ -78,9 +69,7 @@ public class UserMySQLDAO extends AbstractDAO implements UserDAO{
 			if (!doesAccountExist(username))
 				return false;
 			
-			Statement st = mConnection.createStatement();
-			String query = "DELETE FROM users WHERE username = '" + username + "'";
-			st.execute(query);
+			execSql("DELETE FROM users WHERE username = '" + username + "'");
 			return true;
 			
 		} catch (Exception e) {
@@ -90,9 +79,22 @@ public class UserMySQLDAO extends AbstractDAO implements UserDAO{
 	}
 	
 	public boolean editUser(User user) {
-		// TODO
+		try
+		{
+			execSql("UPDATE users" +
+					"SET password=" + user.getPassword() +
+					", firstname=" + user.getFirstName() +
+					", lastname=" + user.getLastName() +
+					", email" + user.getEmail() +
+					", phone_num=" + user.getPhoneNumber() +
+					"WHERE username=" + user.getUsername());
+			return true;
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 		return false;
-	
 	}
 	
 	public boolean doesAccountExist(String username) {
@@ -102,20 +104,11 @@ public class UserMySQLDAO extends AbstractDAO implements UserDAO{
 	}
 	
 	public boolean isPasswordCorrect(String username, String password) {
-		
-		User user = null;
-		
 		try {
-			Statement st = mConnection.createStatement();
-			String query = "SELECT password FROM users WHERE username = '" + username + "'";
-			st.execute(query);
+			ResultSet rs = execSql("SELECT password FROM users WHERE username = '" + username + "'");
 
-			ResultSet rs = st.getResultSet();
-			String rPassword = "";
-			if (rs.next()) {
-				if (rPassword == rs.getString("password"))
-					return true;
-			}
+			if (rs.next() && password == rs.getString("password"))
+				return true;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
