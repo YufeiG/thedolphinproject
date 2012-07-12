@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ include file="header.jsp" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -36,15 +37,19 @@
 			return;
 		}
 		
-		if(lastName == ""){
-			alert("Error: Last Name cannot be empty");
-			return;
-		}
-		
 		if(password2 == "" || password == "") {
 			alert("Error: Password cannot be empty");
 			return;
 		}
+		
+		
+		if(password2 != password) {
+			alert("Error: The typed passwords don't match.");
+			$("#password").val("");
+			$("#password2").val("");
+			return;
+		}
+		
 		
 		if(quest == "" || quest2 == ""){
 			alert("Error: Quest ID cannot be empty. Only UW students can use the marketplace. You need this to verify your account. You can change this email after you verify your account.");
@@ -57,14 +62,7 @@
 			$("#quest2").val("");
 			return;
 		}
-		
-		if(password2 != password) {
-			alert("Error: The typed passwords don't match.");
-			$("#password").val("");
-			$("#password2").val("");
-			return;
-		}
-		
+
 			
 		$.post("UserAction",{ action: "create", username: username, password: password, firstname: firstName, lastname: lastName, phone: phone, email: quest+"@uwaterloo.ca" },
 		  function(data){
