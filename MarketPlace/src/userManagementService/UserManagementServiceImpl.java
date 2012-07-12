@@ -1,5 +1,6 @@
 package userManagementService;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import model.Item;
@@ -33,16 +34,16 @@ public class UserManagementServiceImpl implements UserManagementService {
 		return watchListUserService.exportList(u);
 	}
 	
-	public boolean createAccount(User u){
+	public boolean createAccount(User u) throws SQLException {
 		return userAccountService.createAccount(u);
 	}
 	
-	public boolean editAccount(User user){
+	public boolean editAccount(User user) throws SQLException {
 		return userAccountService.editAccount(user);
 	}
 	
-	public boolean deleteAccount(String username){
-		return userAccountService.deleteAccount(username);
+	public boolean deleteAccount(long userid) throws SQLException {
+		return userAccountService.deleteAccount(userid);
 	}
 	
 	public boolean banAccount(User user){

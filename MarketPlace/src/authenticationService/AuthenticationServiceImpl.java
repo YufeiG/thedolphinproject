@@ -1,5 +1,7 @@
 package authenticationService;
 
+import java.sql.SQLException;
+
 import model.User;
 import mysqldao.MySQLDAOFactory;
 import mysqldao.UserMySQLDAO;
@@ -17,7 +19,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 		userDAO = (UserMySQLDAO) dao;
 	}
 	
-	public long authenticate(String username, String password){
+	public long authenticate(String username, String password) throws SQLException {
 		User user = userDAO.getUser(username);
 		if(password.equals(user.getPassword())){
 			return user.getUserid();
