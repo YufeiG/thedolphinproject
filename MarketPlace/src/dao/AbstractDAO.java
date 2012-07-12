@@ -2,6 +2,7 @@ package dao;
 
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import java.sql.Connection;
@@ -44,15 +45,9 @@ public abstract class AbstractDAO {
 
 	}
 	
-	protected ResultSet execSql(String query) {
-		try {
-			Statement st = mConnection.createStatement();
-			st.execute(query);
-			return st.getResultSet();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+	protected ResultSet execSql(String query) throws SQLException {
+		Statement st = mConnection.createStatement();
+		st.execute(query);
+		return st.getResultSet();
 	}
 }
