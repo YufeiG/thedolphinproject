@@ -36,15 +36,19 @@
 			return;
 		}
 		
-		if(lastName == ""){
-			alert("Error: Last Name cannot be empty");
-			return;
-		}
-		
 		if(password2 == "" || password == "") {
 			alert("Error: Password cannot be empty");
 			return;
 		}
+		
+		
+		if(password2 != password) {
+			alert("Error: The typed passwords don't match.");
+			$("#password").val("");
+			$("#password2").val("");
+			return;
+		}
+		
 		
 		if(quest == "" || quest2 == ""){
 			alert("Error: Quest ID cannot be empty. Only UW students can use the marketplace. You need this to verify your account. You can change this email after you verify your account.");
@@ -57,14 +61,7 @@
 			$("#quest2").val("");
 			return;
 		}
-		
-		if(password2 != password) {
-			alert("Error: The typed passwords don't match.");
-			$("#password").val("");
-			$("#password2").val("");
-			return;
-		}
-		
+
 			
 		$.post("UserAction",{ action: "create", username: username, password: password, firstname: firstName, lastname: lastName, phone: phone, email: quest+"@uwaterloo.ca" },
 		  function(data){
