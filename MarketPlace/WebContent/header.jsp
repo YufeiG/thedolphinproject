@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
 
   <link href="http://themeforest.net/images/favicons/themeforest.ico" rel="shortcut icon">
-  <title>Site Templates - Bellissima eCommerce HTML Template | ThemeForest</title>
+  <title>UWMarketplace Header</title>
 
 
   <meta name="csrf-param" content="authenticity_token">
@@ -24,7 +24,7 @@
 
 <body data-twttr-rendered="true" id="" class="" itemscope="" itemtype="http://schema.org/CreativeWork">
 
-  <header>
+  <header style="height:100px">
   <div class="container">
 
   <a href="http://themeforest.net/" class="marketplace"><img alt="ThemeForest" src="1818400_files/logo-dark.png" title="ThemeForest"></a>
@@ -69,12 +69,12 @@
           </li>
     </ul>
   </div>
--->
+
   <div class="account-wrapper">
     <ul id="user-account-nav">
-        <li><a href="http://themeforest.net/signup"><span>Create Account</span></a></li>
+        <li><a href="createAccount.jsp"><span>Create Account</span></a></li>
         <li>
-          <a href="http://themeforest.net/signin">Sign In</a>
+          <a href="login.jsp">Sign In</a>
         </li>
     </ul>
   </div>
@@ -147,6 +147,8 @@
   </ul>
 
   </div> <!-- end .container -->
+  <input id="term" type="text" value="" placeholder="Start Searching..." name="term" autocomplete="off" style="float:right" size="30">
+<button class="image-button search no-margin" type="submit" style="float:right">Search</button>
 </header> <!-- end role main header -->
 
 </html>
