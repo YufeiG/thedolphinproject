@@ -20,6 +20,8 @@
             <a href="login.jsp">Log In</a>
             |
             <a href="createAccount.jsp">Create Account</a>
+            |
+            <a href="createItem.jsp">New Item</a>
         </div>
 		<div id="search">
             Search Bar bah

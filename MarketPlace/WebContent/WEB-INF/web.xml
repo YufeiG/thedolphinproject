@@ -15,13 +15,37 @@
     <servlet-name>LoginAction</servlet-name>
     <url-pattern>/LoginAction</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>UserAction</servlet-name>
     <servlet-class>controller.UserAction</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>UserAction</servlet-name>
     <url-pattern>/UserAction</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <servlet-name>SearchAction</servlet-name>
+    <servlet-class>controller.SearchAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SearchAction</servlet-name>
+    <url-pattern>/SearchAction</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <servlet-name>ItemAction</servlet-name>
+    <servlet-class>controller.ItemAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ItemAction</servlet-name>
+    <url-pattern>/ItemAction</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <servlet-name>RecommendationAction</servlet-name>
+    <servlet-class>controller.RecommendationAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RecommendationAction</servlet-name>
+    <url-pattern>/RecommendationAction</url-pattern>
   </servlet-mapping>
   
 </web-app>

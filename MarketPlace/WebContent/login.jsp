@@ -11,10 +11,8 @@
 <body>
 <script type="text/javascript">
 	$(document).ready(function() {
-	alert("Document Ready!");
 	
 	$("#submit").click(function(){
-		alert("Logging in...");
 		//$("#username").val("new user");
 		
 		var username = $("#username").val();
@@ -36,8 +34,8 @@
 </script>
 <form>
 Username: <input id="username" type="text" name="username" /><br />
-Password: <input id ="password" type="password" name="pwd" />
-Submit: <button id = "submit" type="button">submit</button>
+Password: <input id ="password" type="password" name="pwd" /><br/>
+<button id = "submit" type="button">submit</button>
 </form> 
 </body>
 </html>
