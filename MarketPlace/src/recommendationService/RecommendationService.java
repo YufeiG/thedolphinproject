@@ -10,5 +10,5 @@ public interface RecommendationService {
 	
 	public List<Item> generateRecommendations(User u);
 	
-	public boolean selectRecommendationsAlgorithm();
+	public boolean selectRecommendationsAlgorithm(int select);
 }

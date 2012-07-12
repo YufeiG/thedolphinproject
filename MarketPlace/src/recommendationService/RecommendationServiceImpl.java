@@ -13,7 +13,16 @@ public class RecommendationServiceImpl implements RecommendationService{
 		return algorithm.generateRecommendations(u);
 	}
 	
-	public boolean selectRecommendationsAlgorithm(){
+	public boolean selectRecommendationsAlgorithm(int select){
+		switch (select) {
+		case 1:
+			algorithm = new MostRecentPriorityAlgorithm();
+			return true;
+		case 2:
+			algorithm = new QuantityPriorityAlgorithm();
+			return true;
+		}
+		
 		return false;
 	}
 }
