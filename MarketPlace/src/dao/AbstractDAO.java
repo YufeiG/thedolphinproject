@@ -1,5 +1,7 @@
 package dao;
 
+import global.MarketplaceConfig;
+
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,7 +33,7 @@ public abstract class AbstractDAO {
 			//Class.forName(driver);
 
 			Class.forName(driver);
-			mConnection = DriverManager.getConnection(url + db, "root", "yufei");
+			mConnection = DriverManager.getConnection(url + db, "root", MarketplaceConfig.Instance().DB_PW);
 
 			return mConnection;
 

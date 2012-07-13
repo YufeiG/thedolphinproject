@@ -4,7 +4,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-
+import global.MarketplaceConfig;
 
 public class DatabaseController {
 	Connection mConnection;
@@ -20,7 +20,7 @@ public class DatabaseController {
 			//Class.forName(driver);
 
 			Class.forName("com.mysql.jdbc.Driver");
-			mConnection = DriverManager.getConnection(url + db, "root", "yufei");
+			mConnection = DriverManager.getConnection(url + db, "root", MarketplaceConfig.Instance().DB_PW);
 
 			return mConnection;
 
