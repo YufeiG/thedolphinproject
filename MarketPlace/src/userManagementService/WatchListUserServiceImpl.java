@@ -24,7 +24,7 @@ public class WatchListUserServiceImpl implements WatchListUserService{
 		return null;
 	}
 	
-	public boolean exportList(User u){
+	public boolean exportList(User u, int typeOfReport){
 		return false;
 	}
 	

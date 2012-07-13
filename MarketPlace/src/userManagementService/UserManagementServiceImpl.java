@@ -30,8 +30,8 @@ public class UserManagementServiceImpl implements UserManagementService {
 		return watchListUserService.deleteFromWatchList(i, u);
 	}
 	
-	public boolean exportWatchList(User u){
-		return watchListUserService.exportList(u);
+	public boolean exportWatchList(User u, int typeOfReport){
+		return watchListUserService.exportList(u, typeOfReport);
 	}
 	
 	public boolean createAccount(User u) throws SQLException {

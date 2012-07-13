@@ -15,7 +15,7 @@ public interface UserManagementService {
 	
 	public boolean deleteFromWatchList(Item i, User u);
 	
-	public boolean exportWatchList(User u);
+	public boolean exportWatchList(User u, int typeOfReport);
 	
 	public boolean createAccount(User u) throws SQLException ;
 	

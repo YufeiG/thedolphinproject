@@ -14,7 +14,7 @@ public interface WatchListUserService {
 	
 	public List<Item> getWatchListItems(User u);
 	
-	public boolean exportList(User u);
+	public boolean exportList(User u, int typeOfReport);
 	
 	public boolean deleteFromWatchList(Item i, User u);
 	
