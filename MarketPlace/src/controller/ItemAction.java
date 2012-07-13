@@ -57,13 +57,19 @@ public class ItemAction extends HttpServlet {
 					date1Parsed, date2Parsed, 0.0, 1.0, 0, new Date(), new Date());
 			
 			ListingService service = new ListingServiceImpl();
+			res.setContentType("text/html");
+			
+
+				
 			if(!service.createItem(item))
 			{
 				System.err.println("Item not created : " + title);
+				res.getWriter().write("false");
 			}
 			else
 			{
 				System.err.println("Item created for : " + title);
+				res.getWriter().write("true");
 			}
 			
 			

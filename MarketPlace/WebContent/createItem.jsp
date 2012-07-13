@@ -66,7 +66,12 @@
 				date1: date1, date2: date2, price1: price1, price2: price2,
 				userid: 0, category: "cathere" },
 			  function(data){
-			    alert("Account result: " + data);
+			    if(data == "false"){
+			    	alert("Item not created");
+			    }
+			    else{
+			    	
+			    }
 			  }
 			);
 		});
