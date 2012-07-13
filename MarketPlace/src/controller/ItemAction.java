@@ -31,6 +31,9 @@ public class ItemAction extends HttpServlet {
 			String price2 = req.getParameter("price2");
 			String user = req.getParameter("user");
 			String cat = req.getParameter("category");
+			String userIDString = req.getParameter("userid");
+			long userID = Long.parseLong(userIDString);
+			
 			
 			Item item = new Item(0, title, 0, 0.0, description, false,
 					date1, date2, 0.0, 1.0, 0, new Date(), new Date());

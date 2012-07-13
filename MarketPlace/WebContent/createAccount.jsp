@@ -92,7 +92,9 @@
 			
 		$.post("UserAction",{ action: "create", username: username, password: password, firstname: firstName, lastname: lastName, phone: phone, email: quest+"@uwaterloo.ca" },
 		  function(data){
-		    alert("Account result: " + data);
+			if(data == false){
+		   	 alert("Username already exists");
+			}
 		  }
 		);
 	});

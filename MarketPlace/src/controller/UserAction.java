@@ -39,16 +39,19 @@ public class UserAction extends HttpServlet {
 					phone,  new Date());
 			
 			UserManagementService service = new UserManagementServiceImpl();
+			
+			res.setContentType("text/html");
+					
 			if(!service.createAccount(user))
 			{
+				res.getWriter().write("false");
 				System.err.println("Account not created for username: " + username);
 			}
 			else
 			{
+				res.getWriter().write("true");
 				System.err.println("Account created for username: " + username);
 			}
-			
-			
 			
 			
 		}

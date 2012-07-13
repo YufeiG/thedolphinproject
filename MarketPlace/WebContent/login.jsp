@@ -28,7 +28,17 @@
 			
 		$.post("LoginAction",{ username: username, password: password },
 		  function(data){
-		    alert("Data Loaded: " + data);
+		    if(data == "false")
+		    {
+		    	alert("Wrong username or password!");
+		    }
+		    else if(!isNaN(data)){
+		    	// save userid in cookies	
+		    }
+		    else{
+		    	alert("Error!");
+		    	//display error page
+		    }
 		  }
 		);
 	});

@@ -27,8 +27,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 			User user;
 			
 			user = userDAO.getUser(username);
-			System.err.println("password "+password);
-			if(password.equals(user.getPassword())){
+			if(user!=null && password.equals(user.getPassword())){
 				return user.getUserid();
 			}
 			else{
