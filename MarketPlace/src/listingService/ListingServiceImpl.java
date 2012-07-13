@@ -28,9 +28,17 @@ public class ListingServiceImpl implements ListingService{
 		return false;
 	}
 	
+<<<<<<< HEAD
 	public List<Item> findItems(List<Tag> list,  MarketplaceConfig.Category category, MarketplaceConfig.SortType sortBy){
+=======
+	public List<Item> findItems(List<Tag> list, int category, MarketplaceConfig.SortType sortBy){
+>>>>>>> branch 'master' of https://github.com/YufeiG/thedolphinproject.git
 		SearchProcessing processing;
 		
+<<<<<<< HEAD
+=======
+		
+>>>>>>> branch 'master' of https://github.com/YufeiG/thedolphinproject.git
 		if(sortBy == MarketplaceConfig.SortType.POPULARITY){
 			processing = new PopularitySearchProcessing();
 		}
