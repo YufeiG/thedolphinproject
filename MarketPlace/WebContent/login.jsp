@@ -19,12 +19,6 @@
 		
 		var username = $("#username").val();
 		var password = $("#password").val();
-		/*
-		$.post("/login.jsp", { username: username, password: password },function(data){
-		    alert("Data Loaded: " + data);
-		  } );
-		*/
-		
 			
 		$.post("LoginAction",{ username: username, password: password },
 		  function(data){
@@ -34,9 +28,10 @@
 		    }
 		    else if(!isNaN(data)){
 		    	// save userid in cookies	
+		    	alert("You have successfully logged in. Sessions are not working yet, but your userid is "+ data);
 		    }
 		    else{
-		    	alert("Error!");
+		    	alert("Error! Probably an SQLException or a typo somewhere.");
 		    	//display error page
 		    }
 		  }

@@ -1,5 +1,6 @@
 package controller;
 
+import java.sql.SQLException;
 import java.util.Date;
 
 import javax.servlet.http.HttpServlet;
@@ -23,6 +24,14 @@ public class UserAction extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws java.io.IOException {
 		String action = req.getParameter("action");
+		res.setContentType("text/html");
+		
+		if(action == null)
+		{
+			res.getWriter().write("true");
+			return;
+			
+		}
 		if(action.equals("create"))
 		{
 			String username = req.getParameter("username");
@@ -40,17 +49,23 @@ public class UserAction extends HttpServlet {
 			
 			UserManagementService service = new UserManagementServiceImpl();
 			
-			res.setContentType("text/html");
+			
 					
-			if(!service.createAccount(user))
-			{
-				res.getWriter().write("false");
-				System.err.println("Account not created for username: " + username);
-			}
-			else
-			{
-				res.getWriter().write("true");
-				System.err.println("Account created for username: " + username);
+			try {
+				if(!service.createAccount(user))
+				{
+					res.getWriter().write("false");
+					System.err.println("Account not created for username: " + username);
+				}
+				else
+				{
+					res.getWriter().write("true");
+					System.err.println("Account created for username: " + username);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				System.err.println("Error");
+				res.getWriter().write("error");
 			}
 			
 			

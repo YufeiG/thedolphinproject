@@ -67,10 +67,10 @@
 				userid: 0, category: "cathere" },
 			  function(data){
 			    if(data == "false"){
-			    	alert("Item not created");
+			    	alert("Item not created. There was an error.");
 			    }
 			    else{
-			    	
+			    	alert("Item was successfully created");
 			    }
 			  }
 			);

@@ -25,16 +25,19 @@ public class UserMySQLDAO extends AbstractDAO implements UserDAO{
 	public boolean createAccount(User user) throws SQLException {
 		if (usernameExists(user.getUsername())) return false;
 		
-		execSql("INSERT INTO users (username, password, firstname, lastname, " +
-				"email, phone_num, date_created VALUES (" + 
-				user.getUsername() + "," +
-				user.getPassword() + "," +
-				user.getFirstName() + "," +
-				user.getLastName() + "," +
-				user.getEmail() + "," +
-				user.getPhoneNumber() + ", CURDATE())");
+		String query = "INSERT INTO users (username, password, firstname, lastname, " +
+				"email, phone_num, date_created) VALUES ('" + 
+				user.getUsername() + "', '" +
+				user.getPassword() + "', '" +
+				user.getFirstName() + "', '" +
+				user.getLastName() + "', '" +
+				user.getEmail() + "'," +
+				user.getPhoneNumber() + ", CURDATE())";
 		
-		return false;
+		System.err.println(query);
+		execSql(query);
+		
+		return true;
 	}
 	
 	public User getUser(String username) throws SQLException
@@ -44,7 +47,7 @@ public class UserMySQLDAO extends AbstractDAO implements UserDAO{
 		if (rs.next()) {
 		user = new User(rs.getLong("userid"), rs
 				.getString("username"), rs.getString("password"), rs
-				.getString("first_name"), rs.getString("last_name"), rs
+				.getString("firstname"), rs.getString("lastname"), rs
 				.getString("email"), rs.getString("phone_num"), rs
 				.getDate("date_created"));
 		}
