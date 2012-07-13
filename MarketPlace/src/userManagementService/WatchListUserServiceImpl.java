@@ -25,6 +25,16 @@ public class WatchListUserServiceImpl implements WatchListUserService{
 	}
 	
 	public boolean exportList(User u, int typeOfReport){
+		AbstractReport report;
+		if(typeOfReport == 1){
+			report = new PDFReport();
+		}
+		else{
+			report = new HTMLReport();
+		}
+		
+		report.export();
+		
 		return false;
 	}
 	
