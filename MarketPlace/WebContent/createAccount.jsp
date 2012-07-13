@@ -92,7 +92,7 @@
 			
 		$.post("UserAction",{ action: "create", username: username, password: password, firstname: firstName, lastname: lastName, phone: phone, email: quest+"@uwaterloo.ca" },
 		  function(data){
-			if(data == "true"){
+			if(data == "false"){
 		   	 	alert("Username already exists.");
 			}
 			else{
