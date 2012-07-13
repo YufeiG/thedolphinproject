@@ -20,7 +20,7 @@ public class DatabaseController {
 			//Class.forName(driver);
 
 			Class.forName("com.mysql.jdbc.Driver");
-			mConnection = DriverManager.getConnection(url + db, "root", MarketplaceConfig.Instance().DB_PW);
+			mConnection = DriverManager.getConnection(url + db, "root", MarketplaceConfig.DB_PW);
 
 			return mConnection;
 

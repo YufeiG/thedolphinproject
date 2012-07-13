@@ -33,7 +33,7 @@ public abstract class AbstractDAO {
 			//Class.forName(driver);
 
 			Class.forName(driver);
-			mConnection = DriverManager.getConnection(url + db, "root", MarketplaceConfig.Instance().DB_PW);
+			mConnection = DriverManager.getConnection(url + db, "root", MarketplaceConfig.DB_PW);
 
 			return mConnection;
 
