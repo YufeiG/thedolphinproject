@@ -2,15 +2,16 @@ package userManagementService;
 
 import java.sql.SQLException;
 
-import dao.AbstractDAO;
-import dao.AbstractDAOFactory;
 import model.User;
 import mysqldao.MySQLDAOFactory;
 import mysqldao.UserMySQLDAO;
+import dao.AbstractDAO;
+import dao.AbstractDAOFactory;
+import dao.UserDAO;
 
 public class UserAccountServiceImpl implements UserAccountService {
 
-	UserMySQLDAO userDAO;
+	UserDAO userDAO;
 	
 	public UserAccountServiceImpl(){
 		AbstractDAOFactory factory = new MySQLDAOFactory();

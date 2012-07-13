@@ -9,10 +9,11 @@ import mysqldao.ItemMySQLDAO;
 import mysqldao.MySQLDAOFactory;
 import dao.AbstractDAO;
 import dao.AbstractDAOFactory;
+import dao.ItemDAO;
 
 public class ListingServiceImpl implements ListingService{
 
-	ItemMySQLDAO itemDAO;
+	ItemDAO itemDAO;
 	
 	public ListingServiceImpl(){
 		AbstractDAOFactory factory = new MySQLDAOFactory();
