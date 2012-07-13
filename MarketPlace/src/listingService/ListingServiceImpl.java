@@ -16,7 +16,7 @@ public class ListingServiceImpl implements ListingService{
 	
 	public ListingServiceImpl(){
 		AbstractDAOFactory factory = new MySQLDAOFactory();
-		AbstractDAO dao = factory.getUserDAO();
+		AbstractDAO dao = factory.getItemDAO();
 		itemDAO = (ItemMySQLDAO) dao;
 	}
 	

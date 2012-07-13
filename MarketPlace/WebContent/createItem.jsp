@@ -41,8 +41,8 @@
 				alert("Error: Title cannot be empty");
 				return;
 			}
-			if(lastName == ""){
-				alert("Error: Last Name cannot be empty");
+			if(description == ""){
+				alert("Error: description cannot be empty");
 				return;
 			}
 			
@@ -55,11 +55,16 @@
 				alert("Error: Price cannot be empty");
 				return;
 			}
+			
+			if(isNaN(price1) || isNaN(price2)){
+				alert("Error: price format not correct");
+				return;
+			}
 		
 		
 			$.post("ItemAction",{ action: "create", title: title, description: description,
 				date1: date1, date2: date2, price1: price1, price2: price2,
-				user: "usernamehere", category: "cathere", userid: 0 },
+				userid: 0, category: "cathere" },
 			  function(data){
 			    alert("Account result: " + data);
 			  }
@@ -71,7 +76,7 @@
 Title: <input id="title" type="text" name="title" /><br />
 Description: <input id ="description" type="text" name="description" height=300 /><br />
 Available from <input id ="date1" type="text" name="date1" height=300 /> to <input id ="date2" type="text" name="date2" height=300 /><br />
-Price from <input id ="price1" type="text" name="price1" height=300 /> to <input id ="price2" type="text" name="price2" height=300 /><br />
+Price from $<input id ="price1" type="text" name="price1" height=300 /> to $<input id ="price2" type="text" name="price2" height=300 /><br />
 <button id = "submit" type="button">Create Item</button>
 </form> 
 </body>
