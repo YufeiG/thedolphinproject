@@ -1,6 +1,5 @@
 package authenticationService;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import model.User;
@@ -13,36 +12,28 @@ import dao.UserDAO;
 public class AuthenticationServiceImpl implements AuthenticationService {
 
 	UserDAO userDAO;
-	
-	
-	public AuthenticationServiceImpl(){
+
+	public AuthenticationServiceImpl() {
 		AbstractDAOFactory factory = new MySQLDAOFactory();
 		AbstractDAO dao = factory.getUserDAO();
 		userDAO = (UserMySQLDAO) dao;
+
 	}
-	
-	public long authenticate(String username, String password) throws SQLException{
-		
-		try {
-			User user;
-			
-			user = userDAO.getUser(username);
-			if(user!=null && password.equals(user.getPassword())){
-				return user.getUserid();
-			}
-			else{
-				return -1;
-			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			throw e;
-			
+
+	public long authenticate(String username, String password)
+			throws SQLException {
+		User user;
+
+		user = userDAO.getUser(username);
+		if (user != null && password.equals(user.getPassword())) {
+			return user.getUserid();
+		} else {
+			return -1;
 		}
 
 	}
-	
-	public boolean logout(User u){
+
+	public boolean logout(User u) {
 		return false;
 	}
 }

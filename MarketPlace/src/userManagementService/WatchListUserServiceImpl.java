@@ -6,13 +6,13 @@ import model.Item;
 import model.User;
 import mysqldao.ItemMySQLDAO;
 import mysqldao.MySQLDAOFactory;
-import mysqldao.UserMySQLDAO;
 import dao.AbstractDAO;
 import dao.AbstractDAOFactory;
+import dao.ItemDAO;
 
 public class WatchListUserServiceImpl implements WatchListUserService{
 
-	ItemMySQLDAO itemDAO;
+	ItemDAO itemDAO;
 	
 	public WatchListUserServiceImpl() {
 		AbstractDAOFactory factory = new MySQLDAOFactory();
@@ -24,7 +24,7 @@ public class WatchListUserServiceImpl implements WatchListUserService{
 		return null;
 	}
 	
-	public boolean exportList(User u){
+	public boolean exportList(User u, int typeOfReport){
 		return false;
 	}
 	

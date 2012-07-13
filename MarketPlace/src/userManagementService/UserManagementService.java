@@ -1,5 +1,6 @@
 package userManagementService;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import model.Item;
@@ -14,13 +15,13 @@ public interface UserManagementService {
 	
 	public boolean deleteFromWatchList(Item i, User u);
 	
-	public boolean exportWatchList(User u);
+	public boolean exportWatchList(User u, int typeOfReport);
 	
-	public boolean createAccount(User u);
+	public boolean createAccount(User u) throws SQLException ;
 	
-	public boolean editAccount(User user);
+	public boolean editAccount(User user) throws SQLException ;
 	
-	public boolean deleteAccount(String username);
+	public boolean deleteAccount(long userid) throws SQLException ;
 	
 	public boolean banAccount(User user);
 	

@@ -1,14 +1,17 @@
 package userManagementService;
 
-import dao.AbstractDAO;
-import dao.AbstractDAOFactory;
+import java.sql.SQLException;
+
 import model.User;
 import mysqldao.MySQLDAOFactory;
 import mysqldao.UserMySQLDAO;
+import dao.AbstractDAO;
+import dao.AbstractDAOFactory;
+import dao.UserDAO;
 
 public class UserAccountServiceImpl implements UserAccountService {
 
-	UserMySQLDAO userDAO;
+	UserDAO userDAO;
 	
 	public UserAccountServiceImpl(){
 		AbstractDAOFactory factory = new MySQLDAOFactory();
@@ -16,16 +19,16 @@ public class UserAccountServiceImpl implements UserAccountService {
 		userDAO = (UserMySQLDAO) dao;
 	}
 	
-	public boolean createAccount(User user){
+	public boolean createAccount(User user) throws SQLException{
 		return userDAO.createAccount(user);
 	}
 	
-	public boolean editAccount(User user){
+	public boolean editAccount(User user) throws SQLException{
 		return userDAO.editUser(user);
 	}
 	
-	public boolean deleteAccount(String username){
-		return userDAO.deleteUser(username);
+	public boolean deleteAccount(long userid) throws SQLException{
+		return userDAO.deleteUser(userid);
 	}
 	
 	//ban user
