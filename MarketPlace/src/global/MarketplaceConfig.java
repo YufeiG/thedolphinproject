@@ -1,15 +1,19 @@
 package global;
 
 public final class MarketplaceConfig {
-	private static MarketplaceConfig _instance;
-	public String DB_PW = "yufei";
+	//private static MarketplaceConfig _instance;
+	public static String DB_PW = "yufei";
 
-	public enum SortType {
+	public static enum SortType {
 		 NONE, RECENCY, POPULARITY, PRICE; 
 	}
+	
+	public static enum ReportType {
+		 PDF, HTML; 
+	}
 
-
-    public static MarketplaceConfig Instance() {
+	/*
+	public static MarketplaceConfig Instance() {
     	if(_instance == null)
     	{
     		_instance = new MarketplaceConfig();
@@ -19,4 +23,6 @@ public final class MarketplaceConfig {
 
     private MarketplaceConfig() {
     }
+    
+    */
 }

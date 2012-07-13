@@ -1,5 +1,7 @@
 package listingService;
 
+import global.MarketplaceConfig;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,16 +28,17 @@ public class ListingServiceImpl implements ListingService{
 		return false;
 	}
 	
-	public List<Item> findItems(List<Tag> list, int category, int sortBy){
+	public List<Item> findItems(List<Tag> list, int category, MarketplaceConfig.SortType sortBy){
 		SearchProcessing processing;
 		
-		if(sortBy == 0){
+		
+		if(sortBy == MarketplaceConfig.SortType.POPULARITY){
 			processing = new PopularitySearchProcessing();
 		}
-		else if(sortBy == 1){
+		else if(sortBy == MarketplaceConfig.SortType.PRICE){
 			processing = new PriceSearchProcessing();
 		}
-		else if(sortBy == 2){
+		else if(sortBy == MarketplaceConfig.SortType.RECENCY){
 			processing = new RecencySearchProcessing();
 		}
 		else{

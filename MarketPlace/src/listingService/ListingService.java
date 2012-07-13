@@ -1,5 +1,7 @@
 package listingService;
 
+import global.MarketplaceConfig;
+
 import java.util.List;
 
 import model.Item;
@@ -10,7 +12,7 @@ public interface ListingService {
 	
 	public boolean createItem(Item i);
 	
-	public List<Item> findItems(List<Tag> list, int category, int sortBy);
+	public List<Item> findItems(List<Tag> list, int category, MarketplaceConfig.SortType sortBy);
 	
 	public boolean editItem(Item i);
 	
