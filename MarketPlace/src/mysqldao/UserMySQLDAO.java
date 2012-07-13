@@ -37,6 +37,21 @@ public class UserMySQLDAO extends AbstractDAO implements UserDAO{
 		return false;
 	}
 	
+	public User getUser(String username) throws SQLException
+	{
+		User user = null;
+		ResultSet rs = execSql("SELECT * FROM users WHERE username = '" + username + "'");
+		if (rs.next()) {
+		user = new User(rs.getLong("userid"), rs
+				.getString("username"), rs.getString("password"), rs
+				.getString("first_name"), rs.getString("last_name"), rs
+				.getString("email"), rs.getString("phone_num"), rs
+				.getDate("date_created"));
+		}
+
+		return user;
+		
+	}
 	public User getUser(long userid) throws SQLException {
 
 		User user = null;

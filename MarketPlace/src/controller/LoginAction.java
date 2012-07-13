@@ -1,10 +1,13 @@
 package controller;
 
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import authenticationService.AuthenticationService;
+import authenticationService.AuthenticationServiceImpl;
 
 public class LoginAction extends HttpServlet{
 	/**
@@ -17,13 +20,36 @@ public class LoginAction extends HttpServlet{
 			throws java.io.IOException {
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
-		System.err.println("username: " + username);
-		System.err.println("password: " + password);
 		
-		AuthenticationService as = new AuthenticationService();
-		
+		AuthenticationService as = new AuthenticationServiceImpl();
+
 		res.setContentType("text/html");
-		res.getWriter().write(as.authenticate(username, password) + "");
+		System.err.println("logging in..."+username+" "+password);
+		
+		try {
+			long result = as.authenticate(username, password);
+			if(result < 0)
+			{
+				res.getWriter().write("false");
+				System.err.println("login failed");
+				
+			}
+			else
+			{
+				res.getWriter().write(result + "");
+				System.err.println("login succeed: "+result);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+			// redirect user to error page
+			res.getWriter().write("error.jsp");
+			System.err.println("sql exception");
+		}
+		
+
+		
 	}
 
 	@Override

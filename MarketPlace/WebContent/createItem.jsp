@@ -57,8 +57,9 @@
 			}
 		
 		
-			$.post("ItemAction",{ action: "create", title: title, description: description, date1: date1, date2: date2, price1: price1, price2: price2,
-				user: "usernamehere", category: "cathere" },
+			$.post("ItemAction",{ action: "create", title: title, description: description,
+				date1: date1, date2: date2, price1: price1, price2: price2,
+				user: "usernamehere", category: "cathere", userid: 0 },
 			  function(data){
 			    alert("Account result: " + data);
 			  }
