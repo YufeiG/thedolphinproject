@@ -1,8 +1,9 @@
 package scheduler;
 
-import java.util.List;
+import java.util.HashMap;
 
 import model.Item;
+import model.User;
 import email.EmailNotification;
 
 public class MainScheduler {
@@ -40,7 +41,7 @@ public class MainScheduler {
 	}
 	
 	public void runWishListAlgorithm(){
-		List<Item> list = algorithm.match();
+		HashMap<User, Item> list = algorithm.match();
 		email.sendMessageToUser(list);
 	}
 

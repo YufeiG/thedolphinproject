@@ -1,12 +1,13 @@
 package email;
 
-import java.util.List;
+import java.util.HashMap;
 
 import model.Item;
+import model.User;
 
 public class EmailNotification {
 
-	public void sendMessageToUser(List<Item> list){
+	public void sendMessageToUser(HashMap<User, Item> list){
 		
 	}
 }

@@ -1,9 +1,12 @@
 package scheduler;
 
-import java.util.List;
+import java.util.HashMap;
 
 import model.Item;
+import model.User;
+
+
 
 public interface WishListAlgorithm {
-	public List<Item> match();
+	public HashMap<User, Item> match();
 }
