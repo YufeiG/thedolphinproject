@@ -10,15 +10,41 @@
   <title>UWMarketplace Header</title>
 
 
-  <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="yn3XBl2kDGWMhdk0lJof3ovHLgWLAh/q4Avu7wy9Fi4=">
-  <link rel="stylesheet" type="text/css" media="screen" href="themeforest.css">
-  <link rel="stylesheet" type="text/css" media="screen" href="1818400_files/widget.css">
-  <link rel="apple-touch-icon" href="http://themeforest.net/images/webclip-icons/themeforest.png">
+<meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token"
+	content="yn3XBl2kDGWMhdk0lJof3ovHLgWLAh/q4Avu7wy9Fi4=">
+<link rel="stylesheet" type="text/css" media="screen"
+	href="themeforest.css">
+<link rel="stylesheet" type="text/css" media="screen"
+	href="1818400_files/widget.css">
+<link rel="apple-touch-icon"
+	href="http://themeforest.net/images/webclip-icons/themeforest.png">
+<meta name="WT.ad" content="item_portfolio;item_more_thumb">
 
-
-  <meta name="WT.ad" content="item_portfolio;item_more_thumb">
-
+<script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        
+	<script type="text/javascript">
+	$(document).ready(function() {
+	
+	$("#headerSearchButton").click(function(){
+		//$("#username").val("new user");
+		
+		var headerSerachInput = $("#headerSearchBox").val();
+			
+		$.post("SearchAction",{ action:"searchFromHeader", "headerSearchInput":headerSearchInput },
+		  function(data){
+		    if(data != null)
+		    {
+		    	alert("Here is the result");
+		    	//Set the main Pane to datatable as given by SearchAction
+		    	$("#mainPane").val(data);
+		    }
+		  }
+		);
+	});
+	});
+</script>
 
 </head>
 
