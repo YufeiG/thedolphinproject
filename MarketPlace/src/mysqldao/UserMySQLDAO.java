@@ -62,7 +62,7 @@ public class UserMySQLDAO extends AbstractDAO implements UserDAO{
 		if (rs.next()) {
 		user = new User(rs.getLong("userid"), rs
 				.getString("username"), rs.getString("password"), rs
-				.getString("first_name"), rs.getString("last_name"), rs
+				.getString("firstname"), rs.getString("lastname"), rs
 				.getString("email"), rs.getString("phone_num"), rs
 				.getDate("date_created"));
 		}

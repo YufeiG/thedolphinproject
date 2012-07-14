@@ -23,6 +23,8 @@ public interface UserManagementService {
 	
 	public boolean deleteAccount(long userid) throws SQLException ;
 	
+	public User getAccount(long userid) throws SQLException;
+	
 	public boolean banAccount(User user);
 	
 	public List<Tag> getWishList(User user);

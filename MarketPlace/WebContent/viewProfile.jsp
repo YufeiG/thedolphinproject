@@ -14,19 +14,16 @@
 
 <form>
 <table class="input_table">
+<tr><td>userID:</td><td> <input id="id" type="text" name="id" /><button id = "populate" type="button">Get Profile</button></td></tr>
 <tr><td>Username:</td><td> <input id="username" type="text" name="username" /></td></tr>
 <tr><td>Password:</td><td><input id ="password" type="password" name="pwd" /></td></tr>
-<tr><td>Retype Password: </td><td><input id ="password2" type="password" name="pwd2" /> <br/>
-</td></tr>
 <tr><td>First Name:</td><td><input id ="first" type="text" name="first" /> <br/>
 </td></tr>
 <tr><td>Last Name: </td><td><input id ="last" type="text" name="last" /> <br/>
 </td></tr>
-<tr><td>Quest ID (for verification):</td><td><input id ="quest" type="text" name="quest" />@uwaterloo.ca<br/>
+<tr><td>Email: </td><td><input id ="email" type="text" name="email" /><br/>
 </td></tr>
-<tr><td>Retype Quest ID:</td><td><input id ="quest2" type="text" name="quest2" />@uwaterloo.ca<br/>
-</td></tr>
-<tr><td>Phone (optional):</td><td>
+<tr><td>Phone: </td><td>
 <input id ="phone" type="text" name="phone" /><br/>
 
 </td></tr>
@@ -35,72 +32,32 @@
 </form>
 <script type="text/javascript">
 	$(document).ready(function() {
+		$("#populate").click(function(){
+			var id = $("#id").val();
+			if(id != "" && !isNaN(id)){
+		
+				$.post("UserAction",{ action: "get", userid : id },
+						  function(data){
+					
+							if(data != "false" && data != "error"){
+								var dataArray = data.split(",");
+								
+								if(dataArray.length == 6){
+		
+									$("#username").val(dataArray[0]);
+									$("#password").val(dataArray[1]);
+									$("#first").val(dataArray[2]);
+									$("#last").val(dataArray[3]);
+									$("#email").val(dataArray[4]);
+									$("#phone").val(dataArray[5]);
+								}
+							}
+						  }
+						);
+			}
+		
+		});
 	
-	$("#submit").click(function(){
-		var username = $("#username").val();
-		var password = $("#password").val();
-		var password2 = $("#password2").val();
-		var firstName = $("#first").val();
-		var lastName = $("#last").val();
-		var phone = $("#phone").val();
-		var quest = $("#quest").val();
-		var quest2 = $("#quest2").val();
-		if(username == ""){
-			alert("Error: User Name cannot be empty");
-			return;
-		}
-		
-		if(firstName == ""){
-			alert("Error: First Name cannot be empty");
-			return;
-		}
-		
-		if(lastName == ""){
-			alert("Error: Last Name cannot be empty");
-			return;
-		}
-		
-		if(lastName == ""){
-			alert("Error: Last Name cannot be empty");
-			return;
-		}
-		
-		if(password2 == "" || password == "") {
-			alert("Error: Password cannot be empty");
-			return;
-		}
-		
-		if(quest == "" || quest2 == ""){
-			alert("Error: Quest ID cannot be empty. Only UW students can use the marketplace. You need this to verify your account. You can change this email after you verify your account.");
-			return;
-		}
-		
-		if(quest != quest2) {
-			alert("Error: The typed Quest IDs don't match.");
-			$("#quest").val("");
-			$("#quest2").val("");
-			return;
-		}
-		
-		if(password2 != password) {
-			alert("Error: The typed passwords don't match.");
-			$("#password").val("");
-			$("#password2").val("");
-			return;
-		}
-		
-			
-		$.post("UserAction",{ action: "create", username: username, password: password, firstname: firstName, lastname: lastName, phone: phone, email: quest+"@uwaterloo.ca" },
-		  function(data){
-			if(data == "false"){
-		   	 	alert("Username already exists.");
-			}
-			else{
-				alert("Your account has been created. Please sign in to test.");	
-			}
-		  }
-		);
-	});
 	});
 </script> 
 </body>

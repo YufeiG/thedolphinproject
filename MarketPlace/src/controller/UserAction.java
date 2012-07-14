@@ -28,10 +28,13 @@ public class UserAction extends HttpServlet {
 		
 		if(action == null)
 		{
-			res.getWriter().write("true");
+			res.getWriter().write("false");
 			return;
 			
 		}
+		
+		UserManagementService service = new UserManagementServiceImpl();
+		
 		if(action.equals("create"))
 		{
 			String username = req.getParameter("username");
@@ -46,10 +49,6 @@ public class UserAction extends HttpServlet {
 			User user = new User(0, username, password,
 					firstname, lastname, email,
 					phone,  new Date());
-			
-			UserManagementService service = new UserManagementServiceImpl();
-			
-			
 					
 			try {
 				if(!service.createAccount(user))
@@ -64,9 +63,41 @@ public class UserAction extends HttpServlet {
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				System.err.println("Error");
 				res.getWriter().write("error");
+				e.printStackTrace();
 			}
+			
+			
+		}
+		else if(action.equals("get")){
+			String userIDString = req.getParameter("userid");
+			long userID = Long.parseLong(userIDString);
+			
+			User user;
+			try {
+				user = service.getAccount(userID);
+				
+				if(user == null)
+				{
+					res.getWriter().write("false");
+				}
+				else
+				{
+					String returnData = user.getUsername() + "," + user.getPassword() + "," +
+							user.getFirstName() + "," + user.getLastName() + "," +
+							user.getEmail() + "," + user.getPhoneNumber();
+					res.getWriter().write(returnData);
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				res.getWriter().write("error");
+				e.printStackTrace();
+				
+			}
+			
+
+			
 			
 			
 		}

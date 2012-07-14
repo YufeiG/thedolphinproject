@@ -27,6 +27,9 @@ public class UserAccountServiceImpl implements UserAccountService {
 		return userDAO.editUser(user);
 	}
 	
+	public User getAccount(long userid) throws SQLException{
+		return userDAO.getUser(userid);
+	}
 	public boolean deleteAccount(long userid) throws SQLException{
 		return userDAO.deleteUser(userid);
 	}

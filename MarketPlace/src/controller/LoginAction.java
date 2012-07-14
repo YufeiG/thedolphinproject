@@ -41,11 +41,13 @@ public class LoginAction extends HttpServlet{
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 			
 			// redirect user to error page
 			res.getWriter().write("error.jsp");
 			System.err.println("sql exception");
+			
+			e.printStackTrace();
 		}
 		
 

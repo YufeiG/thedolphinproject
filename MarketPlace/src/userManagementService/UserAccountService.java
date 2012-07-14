@@ -16,6 +16,8 @@ public interface UserAccountService {
 	
 	public boolean deleteAccount(long userid) throws SQLException;
 	
+	public User getAccount(long userid) throws SQLException;
+	
 	//ban user
 	public boolean banAccount(User user);
 	

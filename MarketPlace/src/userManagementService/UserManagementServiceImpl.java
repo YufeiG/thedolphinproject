@@ -18,6 +18,10 @@ public class UserManagementServiceImpl implements UserManagementService {
 		watchListUserService = new WatchListUserServiceImpl();
 	}
 	
+	public User getAccount(long userid) throws SQLException
+	{
+		return userAccountService.getAccount(userid);
+	}
 	public List<Item> getWatchList(User u){
 		return watchListUserService.getWatchListItems(u);
 	}
