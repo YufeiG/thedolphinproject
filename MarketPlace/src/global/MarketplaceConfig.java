@@ -15,6 +15,14 @@ public final class MarketplaceConfig {
 		 HOUSING, TEXTBOOKS, FURNITURE, SERVICES;
 	}
 	
+	public static enum RecommendationAlgorithm{
+		MOST_RECENT_PRIORITY, QUANTITY_PRIORITY;
+	}
+	
+	public static enum WishListAlgorithm{
+		MOST_RECENT, MOST_TAGS
+	}
+	
 	
 
    
