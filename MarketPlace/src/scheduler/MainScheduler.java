@@ -2,6 +2,8 @@ package scheduler;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import model.Item;
 import model.User;
@@ -14,6 +16,9 @@ public class MainScheduler {
 	
 	WishListAlgorithm algorithm;
 	EmailNotification email;
+	Timer timer;
+	
+	
 	
 	//private constructors for singleton
 	private MainScheduler(){
@@ -30,6 +35,16 @@ public class MainScheduler {
 	}
 	
 	public void createSchedulerThread(){
+		if(timer == null){
+			timer.scheduleAtFixedRate(new TimerTask() {
+				
+				@Override
+				public void run() {
+					runWishListAlgorithm();
+				}
+			}, 0, MarketplaceConfig.WISH_LIST_MATCH_TIME_INTERVAL);
+			
+		}
 		
 	}
 	
