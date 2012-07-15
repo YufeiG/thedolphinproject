@@ -6,6 +6,7 @@ import java.sql.Statement;
 import java.util.List;
 
 import model.Item;
+import model.Tag;
 
 import dao.AbstractDAO;
 import dao.ItemDAO;
@@ -41,6 +42,12 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO{
 
 		@Override
 		public List<Item> getItems() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public List<Item> getItems(List<Tag> tags) {
 			// TODO Auto-generated method stub
 			return null;
 		}
