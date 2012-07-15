@@ -6,6 +6,7 @@ import java.util.List;
 import model.Item;
 import model.User;
 import email.EmailNotification;
+import global.MarketplaceConfig;
 
 public class MainScheduler {
 	
@@ -17,6 +18,7 @@ public class MainScheduler {
 	//private constructors for singleton
 	private MainScheduler(){
 		email = new EmailNotification();
+		algorithm = new MostRecentItemsFirstWishListAlgorithm();
 	}
 	
 	public static MainScheduler getInstance() {
@@ -31,12 +33,15 @@ public class MainScheduler {
 		
 	}
 	
-	public void selectWishListAlgorithm(int type){
-		if(type == 1){
+	public void selectWishListAlgorithm(MarketplaceConfig.WishListAlgorithm type){
+		switch (type) {
+		case MOST_RECENT:
 			algorithm = new MostRecentItemsFirstWishListAlgorithm();
-		}
-		else{
+			break;
+
+		case MOST_TAGS:
 			algorithm = new MostTagsMatchedFirstWishListAlgorithm();
+			break;
 		}
 		
 	}

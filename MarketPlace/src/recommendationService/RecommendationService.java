@@ -1,5 +1,7 @@
 package recommendationService;
 
+import global.MarketplaceConfig;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,5 +12,5 @@ public interface RecommendationService {
 	
 	public List<Item> generateRecommendations(User u);
 	
-	public boolean selectRecommendationsAlgorithm(int select);
+	public boolean selectRecommendationsAlgorithm(MarketplaceConfig.RecommendationAlgorithm select);
 }

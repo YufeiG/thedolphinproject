@@ -1,5 +1,7 @@
 package userManagementService;
 
+import global.MarketplaceConfig.ReportType;
+
 import java.util.List;
 
 import model.Item;
@@ -24,18 +26,23 @@ public class WatchListUserServiceImpl implements WatchListUserService{
 		return null;
 	}
 	
-	public boolean exportList(User u, int typeOfReport){
+	public boolean exportList(User u, ReportType typeOfReport){
 		AbstractReport report;
-		if(typeOfReport == 1){
+
+		switch (typeOfReport){
+		case PDF:
 			report = new PDFReport();
-		}
-		else{
+			break;
+		case HTML:
 			report = new HTMLReport();
+			break;
+		default:
+			return false;
 		}
 		
 		report.export();
 		
-		return false;
+		return true;
 	}
 	
 	public boolean deleteFromWatchList(Item i, User u){

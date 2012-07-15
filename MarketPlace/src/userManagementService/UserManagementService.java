@@ -1,5 +1,7 @@
 package userManagementService;
 
+import global.MarketplaceConfig;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -15,7 +17,7 @@ public interface UserManagementService {
 	
 	public boolean deleteFromWatchList(Item i, User u);
 	
-	public boolean exportWatchList(User u, int typeOfReport);
+	public boolean exportWatchList(User u, MarketplaceConfig.ReportType typeOfReport);
 	
 	public boolean createAccount(User u) throws SQLException ;
 	

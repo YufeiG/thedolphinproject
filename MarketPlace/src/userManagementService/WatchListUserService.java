@@ -1,5 +1,7 @@
 package userManagementService;
 
+import global.MarketplaceConfig.ReportType;
+
 import java.util.List;
 
 import model.Item;
@@ -14,7 +16,7 @@ public interface WatchListUserService {
 	
 	public List<Item> getWatchListItems(User u);
 	
-	public boolean exportList(User u, int typeOfReport);
+	public boolean exportList(User u, ReportType typeOfReport);
 	
 	public boolean deleteFromWatchList(Item i, User u);
 	

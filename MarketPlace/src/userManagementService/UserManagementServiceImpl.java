@@ -1,5 +1,7 @@
 package userManagementService;
 
+import global.MarketplaceConfig;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -34,7 +36,7 @@ public class UserManagementServiceImpl implements UserManagementService {
 		return watchListUserService.deleteFromWatchList(i, u);
 	}
 	
-	public boolean exportWatchList(User u, int typeOfReport){
+	public boolean exportWatchList(User u, MarketplaceConfig.ReportType typeOfReport){
 		return watchListUserService.exportList(u, typeOfReport);
 	}
 	

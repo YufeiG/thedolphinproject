@@ -1,6 +1,7 @@
 package recommendationService;
 
-import java.util.ArrayList;
+import global.MarketplaceConfig;
+
 import java.util.List;
 
 import model.Item;
@@ -13,12 +14,12 @@ public class RecommendationServiceImpl implements RecommendationService{
 		return algorithm.generateRecommendations(u);
 	}
 	
-	public boolean selectRecommendationsAlgorithm(int select){
+	public boolean selectRecommendationsAlgorithm(MarketplaceConfig.RecommendationAlgorithm select){
 		switch (select) {
-		case 1:
+		case MOST_RECENT_PRIORITY:
 			algorithm = new MostRecentPriorityAlgorithm();
 			return true;
-		case 2:
+		case QUANTITY_PRIORITY:
 			algorithm = new QuantityPriorityAlgorithm();
 			return true;
 		}
