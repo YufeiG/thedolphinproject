@@ -1,6 +1,7 @@
 package mysqldao;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
@@ -15,7 +16,6 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO{
 			mConnection = createConnection();
 		}
 
-		@Override
 		public Item getItem() {
 			// TODO Auto-generated method stub
 			return null;
@@ -33,8 +33,8 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO{
 			return false;
 		}
 
-		@Override
-		public boolean createItem() {
+		public boolean createItem(Item item) throws SQLException {
+
 			// TODO Auto-generated method stub
 			return false;
 		}
