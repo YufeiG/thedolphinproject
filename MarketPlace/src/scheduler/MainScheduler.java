@@ -1,5 +1,6 @@
 package scheduler;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Timer;
@@ -40,7 +41,7 @@ public class MainScheduler {
 				
 				@Override
 				public void run() {
-					runWishListAlgorithm();
+					runWishListAlgorithm(new Date(System.currentTimeMillis()));
 				}
 			}, 0, MarketplaceConfig.WISH_LIST_MATCH_TIME_INTERVAL);
 			
@@ -61,8 +62,12 @@ public class MainScheduler {
 		
 	}
 	
-	private void runWishListAlgorithm(){
-		HashMap<User, List<Item>> list = algorithm.match();
+	private void runWishListAlgorithm(Date date){
+		HashMap<User, List<Item>> list = algorithm.match(date);
+		emailToUser(list);
+	}
+	
+	private void emailToUser(HashMap<User, List<Item>> list){
 		email.sendMessageToUser(list);
 	}
 
