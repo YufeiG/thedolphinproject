@@ -24,7 +24,7 @@ public class UserMySQLDAO extends AbstractDAO implements UserDAO{
 
 	public boolean createAccount(User user) throws SQLException {
 		if (usernameExists(user.getUsername())) return false;
-		
+
 		String query = "INSERT INTO users (username, password, firstname, lastname, " +
 				"email, phone_num, date_created) VALUES ('" + 
 				user.getUsername() + "', '" +
@@ -32,7 +32,7 @@ public class UserMySQLDAO extends AbstractDAO implements UserDAO{
 				user.getFirstName() + "', '" +
 				user.getLastName() + "', '" +
 				user.getEmail() + "'," +
-				user.getPhoneNumber() + ", CURDATE())";
+				strIsNull(user.getPhoneNumber()) + ", CURDATE())";
 		
 		System.err.println(query);
 		execSql(query);

@@ -4,25 +4,25 @@ import java.util.Date;
 
 public class Item {
 	private long itemid;
-	private String name;
+	private String title;
 	private int category;
 	private long userid;
 	private String description;
-	private boolean sold;
+	private int sold;
 	private Date availStart;
 	private Date availEnd;
 	private double priceLow;
 	private double priceHigh;
 	private int popularity;
-	private Date timePosted;
-	private Date lastModified;
+	private Date timeAdded;
+	private Date timeModified;
 	
-	public Item(long itemid, String name, int category, long userid,
-			String description, boolean sold, Date availStart, Date availEnd,
-			double priceLow, double priceHigh, int popularity, Date timePosted,
-			Date lastModified) {
+	public Item(long itemid, String title, int category, long userid,
+			String description, int sold, Date availStart, Date availEnd,
+			double priceLow, double priceHigh, int popularity, Date timeAdded,
+			Date timeModified) {
 		this.itemid = itemid;
-		this.name = name;
+		this.title = title;
 		this.category = category;
 		this.userid = userid;
 		this.description = description;
@@ -32,8 +32,8 @@ public class Item {
 		this.priceLow = priceLow;
 		this.priceHigh = priceHigh;
 		this.popularity = popularity;
-		this.timePosted = timePosted;
-		this.lastModified = lastModified;
+		this.timeAdded = timeAdded;
+		this.timeModified = timeModified;
 	}
 	
 	public long getItemid() {
@@ -42,11 +42,11 @@ public class Item {
 	public void setItemid(long itemid) {
 		this.itemid = itemid;
 	}
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setName(String title) {
+		this.title = title;
 	}
 	public int getCategory() {
 		return category;
@@ -66,10 +66,10 @@ public class Item {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public boolean isSold() {
+	public int getSold() {
 		return sold;
 	}
-	public void setSold(boolean sold) {
+	public void setSold(int sold) {
 		this.sold = sold;
 	}
 	public Date getAvailStart() {
@@ -102,17 +102,17 @@ public class Item {
 	public void setPopularity(int popularity) {
 		this.popularity = popularity;
 	}
-	public Date getTimePosted() {
-		return timePosted;
+	public Date getTimeAdded() {
+		return timeAdded;
 	}
-	public void setTimePosted(Date timePosted) {
-		this.timePosted = timePosted;
+	public void setTimeAdded(Date timeAdded) {
+		this.timeAdded = timeAdded;
 	}
-	public Date getLastModified() {
-		return lastModified;
+	public Date getTimeModified() {
+		return timeModified;
 	}
-	public void setLastModified(Date lastModified) {
-		this.lastModified = lastModified;
+	public void setTimeModified(Date timeModified) {
+		this.timeModified = timeModified;
 	}
 	
 }
