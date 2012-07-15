@@ -58,7 +58,7 @@ public class UserMySQLDAO extends AbstractDAO implements UserDAO{
 	public User getUser(long userid) throws SQLException {
 
 		User user = null;
-		ResultSet rs = execSql("SELECT * FROM users WHERE userid = '" + userid + "'");
+		ResultSet rs = execSql("SELECT * FROM users WHERE userid = " + userid);
 		if (rs.next()) {
 		user = new User(rs.getLong("userid"), rs
 				.getString("username"), rs.getString("password"), rs
@@ -87,19 +87,19 @@ public class UserMySQLDAO extends AbstractDAO implements UserDAO{
 	}
 	
 	public boolean deleteUser(long userid) throws SQLException {
-		execSql("DELETE FROM users WHERE userid = '" + userid + "'");
+		execSql("DELETE FROM users WHERE userid = " + userid + "");
 		return true;
 	}
 	
 	public boolean editUser(User user) throws SQLException {
 		execSql("UPDATE users" +
-				"SET username=" + user.getUsername() +
-				", password=" + user.getPassword() +
-				", firstname=" + user.getFirstName() +
-				", lastname=" + user.getLastName() +
-				", email" + user.getEmail() +
-				", phone_num=" + user.getPhoneNumber() +
-				"WHERE username=" + user.getUsername());
+				"SET username='" + user.getUsername() +
+				"', password='" + user.getPassword() +
+				"', firstname='" + user.getFirstName() +
+				"', lastname='" + user.getLastName() +
+				"', email" + user.getEmail() +
+				"', phone_num=" + strIsNull(user.getPhoneNumber()) +
+				"WHERE username='" + user.getUsername() + "'");
 		return true;
 	}
 }
