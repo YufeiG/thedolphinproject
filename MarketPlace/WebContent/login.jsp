@@ -29,7 +29,7 @@
 		    }
 		    else if(currentSessionUser != null){
 		    	// save userid in cookies	
-		    	alert(currentSessionUser);
+		    	alert("You are logged in. Redirecting...");
 		    	window.location = "index.jsp";
 		    }
 		    else{

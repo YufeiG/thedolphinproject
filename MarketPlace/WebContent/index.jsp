@@ -10,13 +10,15 @@
 <!--  <link rel="stylesheet" type="text/css" href="css/marketplace.css">
 -->
 <title>Market Place</title>
+</head>
+
+<body>
 
 <p>current session user<%=session.getAttribute("currentSessionUser") %></p>
 
+<p>current session user id<%=session.getAttribute("currentSessionID") %></p>
 
-</head>
-
-
+</body>
 
 <!-- 
 <body>
