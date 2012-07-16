@@ -20,6 +20,16 @@ public class TagMySQLDAO extends AbstractDAO implements TagDAO {
 		Tag tag = new Tag(rs.getLong("tagid"), rs.getString("tag_name"));
 		return tag;
 	}
+	
+	private long getTagid(String tagName) throws SQLException{
+		ResultSet rs = execSql("SELECT tagid FROM tags WHERE tag_name='"
+				+ tagName + "'");
+		
+		if (rs.next()) {
+			return rs.getLong("tagid");
+		}
+		return 0;
+	}
 
 	public boolean tagExists(String tagName) throws SQLException {
 		ResultSet rs = execSql("SELECT * FROM tags WHERE tag_name='" + tagName
@@ -47,15 +57,32 @@ public class TagMySQLDAO extends AbstractDAO implements TagDAO {
 			String thisTag = tagNames.get(i);
 			Date d = new Date(System.currentTimeMillis());
 			createTag(thisTag);
-			ResultSet rs = execSql("SELECT tagid FROM tags WHERE tag_name='"
-					+ thisTag + "'");
-			
-			if (rs.next()) {
-				execSql("INSERT INTO wishlist VALUES (" + userid + ","
-						+ tagNames.get(i) + "," + toSqlDate(d) + ")");
+
+			long thisTagid = getTagid(thisTag);
+
+			if (thisTagid != 0) {
+				execSql("INSERT INTO wishlist VALUES (" + userid + "," +
+						thisTagid + "," + toSqlDate(d) + ")");
+				return true;
 			}
 		}
-		return true;
+		return false;
+	}
+	
+	public boolean removeTagsFromWishlist(long userid, List<String> tagNames)
+			throws SQLException {
+		
+		for (int i = 0; i < tagNames.size(); i++) {
+			String thisTag = tagNames.get(i);
+			long thisTagid = getTagid(thisTag);
+
+			if (thisTagid != 0) {
+				execSql("DELETE FROM wishlist " +
+						"WHERE userid=" + userid + " AND tagid=" + thisTagid);
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public List<Tag> getTags(long userid) throws SQLException {
