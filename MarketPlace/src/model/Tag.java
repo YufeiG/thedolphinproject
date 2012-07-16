@@ -1,21 +1,21 @@
 package model;
 
 public class Tag {
-	long id;
+	long tagid;
 	String name;
 	
 
-	public Tag(long id, String name) {
-		this.id = id;
+	public Tag(long tagid, String name) {
+		this.tagid = tagid;
 		this.name = name;
 	}
 
-	public long getId() {
-		return id;
+	public long getTagid() {
+		return tagid;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setId(long tagid) {
+		this.tagid = tagid;
 	}
 
 	public String getName() {

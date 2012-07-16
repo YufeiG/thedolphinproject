@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import java.sql.Connection;
+import java.util.List;
 
 public abstract class AbstractDAO {
 	protected static Connection mConnection;
@@ -50,6 +51,15 @@ public abstract class AbstractDAO {
 	protected ResultSet execSql(String query) throws SQLException {
 		Statement st = mConnection.createStatement();
 		st.execute(query);
+		return st.getResultSet();
+	}
+	
+	protected ResultSet execSqlBatch(List<String> queries) throws SQLException {
+		Statement st = mConnection.createStatement();
+		for (int i=0; i<queries.size(); i++)
+			st.addBatch(queries.get(i));
+		
+		st.executeBatch();
 		return st.getResultSet();
 	}
 	

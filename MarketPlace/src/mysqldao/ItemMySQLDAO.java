@@ -75,7 +75,8 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO{
 			return true;
 		}
 
-		public boolean createItem(Item item) throws SQLException {
+		public boolean createItem(Item item, List<Tag> tags) throws SQLException {
+			
 			String query = 
 					"INSERT INTO items (title, category, userid,, description, " +
 					"sold, avail_start, avail_end, price_low, price_high, popularity, " +
