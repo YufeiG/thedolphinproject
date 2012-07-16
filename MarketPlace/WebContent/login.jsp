@@ -26,9 +26,9 @@
 		    {
 		    	alert("Wrong username or password!");
 		    }
-		    else if(!isNaN(data)){
+		    else if(session.getAttribute("currentSessionUser") != null){
 		    	// save userid in cookies	
-		    	alert("You have successfully logged in. Sessions are not working yet, but your userid is "+ data);
+		    	alert("You have successfully logged in. Welcome, " + session.getAttribute("currentSessionUser"));
 		    }
 		    else{
 		    	alert("Error! Probably an SQLException or a typo somewhere.");

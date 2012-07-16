@@ -40,6 +40,7 @@ public class LoginAction extends HttpServlet{
 				// Track a logged in user's session
 				HttpSession session = req.getSession(true);
 				session.setAttribute("currentSessionUser", username);
+				session.setAttribute("currentSessionID", result);
 				
 				res.getWriter().write(result + "");
 				System.err.println("login succeed: "+result);

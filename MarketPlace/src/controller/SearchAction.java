@@ -10,6 +10,7 @@ import java.util.List;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import listingService.ListingService;
 import listingService.ListingServiceImpl;
@@ -24,6 +25,12 @@ public class SearchAction extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws java.io.IOException {
+		
+		// Track user id session
+		HttpSession session = req.getSession(true);
+		String userID = (String)session.getAttribute("currentUserID");
+		
+		
 		
 		String action = req.getParameter("action");
 		String longTag = req.getParameter("headerSearchInput");
