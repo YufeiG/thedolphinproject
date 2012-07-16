@@ -88,9 +88,10 @@ public class ItemAction extends HttpServlet {
 		}
 		else if(action.equals("get"))
 		{
-			String itemIDString = req.getParameter("id");
+			String itemIDString = req.getParameter("itemid");
+			System.err.println("Getting item..."+itemIDString);
 			long itemID = Long.parseLong(itemIDString);
-			System.err.println("Getting item...");
+			
 
 			Item item = service.getItem(itemID);
 

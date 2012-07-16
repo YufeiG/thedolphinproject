@@ -21,7 +21,7 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 
 	private Item getItemObj(ResultSet rs) throws SQLException {
 		Item item = new Item(rs.getLong("itemid"), rs.getString("title"),
-				rs.getInt("category"), rs.getLong("userid"),
+				rs.getInt("categoryid"), rs.getLong("userid"),
 				rs.getString("description"), rs.getInt("sold"),
 				rs.getDate("avail_start"), rs.getDate("avail_end"),
 				rs.getFloat("price_low"), rs.getFloat("price_high"),
@@ -46,7 +46,7 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 
 	public boolean editItem(Item item) throws SQLException {
 		String query = "UPDATE users"
-				+ String.format("SET title='%s', " + "category=%d, "
+				+ String.format("SET title='%s', " + "categoryid=%d, "
 						+ "description=%s, " + "sold=%d, " + "avail_start=%s, "
 						+ "avail_end=%s, " + "price_low=%f, "
 						+ "price_high=%f, " + "popularity=%d, "
