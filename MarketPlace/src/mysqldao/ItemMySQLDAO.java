@@ -15,10 +15,11 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO{
 			mConnection = createConnection();
 		}
 
-		@Override
-		public Item getItem(long id) {
-			// TODO Auto-generated method stub
-			return null;
+		public Item getItem(long itemid) throws SQLException {
+			String query = "SELECT * FROM items WHERE itemid=" + itemid;
+			ResultSet rs = execSql(query);
+			
+			return getItemObj(rs);
 		}
 		
 		@Override
