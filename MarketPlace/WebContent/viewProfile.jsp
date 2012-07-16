@@ -46,7 +46,9 @@
 									$("#first").val(dataArray[2]);
 									$("#last").val(dataArray[3]);
 									$("#email").val(dataArray[4]);
-									$("#phone").val(dataArray[5]);
+									if(dataArray[5] != "null"){
+										$("#phone").val(dataArray[5]);
+									}
 								}
 							}
 						  }
