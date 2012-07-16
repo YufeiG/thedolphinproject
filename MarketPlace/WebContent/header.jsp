@@ -32,6 +32,12 @@
 		window.location = "listing.jsp?search="+$("#headerSearchBox").val() ;
 	});
 	});
+	
+	function logout() {
+		<%session.removeAttribute("currentSessionUser");
+		session.removeAttribute("currentSessionID");%>
+		window.location = "index.jsp";
+	}
 </script>
 
 </head>
@@ -92,7 +98,7 @@
     { %>
     	<li><a href="">Welcome, <%= currSessionUser %></a></li>
     	<li>
-    	  <a href="logout.jsp">Logout</a>
+    	  <a onclick="logout()">Logout</a>
     	</li>
     <% } else { %>
     
