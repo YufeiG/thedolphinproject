@@ -28,8 +28,10 @@
 	$(document).ready(function() {
 	
 	$("#headerSearchButton").click(function(){
+		alert("button clicked");
+		window.location = "listing.jsp?search="+$("#headerSearchBox").val() ;
 		//$("#username").val("new user");
-		
+		/*
 		var headerSerachInput = $("#headerSearchBox").val();
 			
 		$.post("SearchAction",{ action:"searchFromHeader", "headerSearchInput":headerSearchInput },
@@ -42,6 +44,7 @@
 		    }
 		  }
 		);
+		*/
 	});
 	});
 </script>
@@ -173,8 +176,8 @@
   </ul>
 
   </div> <!-- end .container -->
-  <input id="term" type="text" value="" placeholder="Start Searching..." name="term" autocomplete="off" style="float:right" size="30">
-<button class="image-button search no-margin" type="submit" style="float:right">Search</button>
+  <input id="headerSearchBox" type="text" value="" placeholder="Start Searching..." name="term" autocomplete="off" style="float:right" size="30">
+<button id= "headerSearchButton" class="image-button search no-margin" type="submit" style="float:right">Search</button>
 </header> <!-- end role main header -->
 
 </html>

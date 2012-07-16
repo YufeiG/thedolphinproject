@@ -27,12 +27,12 @@ public class SearchHtmlGenerator {
 		
 		for(int i = 0; i<searchResult.size(); i++){
 			table.append("<tr>");
-			table.append("<td>" + searchResult.get(i).getName()+"</td>");
+			table.append("<td>" + searchResult.get(i).getTitle()+"</td>");
 			table.append("<td>" + searchResult.get(i).getCategory()+"</td>");
 			table.append("<td>" + searchResult.get(i).getDescription()+"</td>");
 			table.append("<td>" + searchResult.get(i).getPriceLow()+"</td>");
 			table.append("<td>" + searchResult.get(i).getPriceLow()+"</td>");
-			table.append("<td>" + searchResult.get(i).getTimePosted().toString()+"</td>");
+			table.append("<td>" + searchResult.get(i).getTimeAdded().toString()+"</td>");
 			table.append("</tr>");
 		}
 		
