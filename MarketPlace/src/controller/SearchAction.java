@@ -65,7 +65,7 @@ public class SearchAction extends HttpServlet {
 				ListingService listingService = new ListingServiceImpl();
 				List<Item> searchResult;
 				
-				searchResult = listingService.findItems(tags, null, sortType);
+				searchResult = listingService.findItems(null, null, sortType);
 				
 				res.setContentType("text/html");
 				res.getWriter().write(SearchHtmlGenerator.createItemTableHtml(searchResult));

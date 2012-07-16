@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.*, java.lang.*,global.MarketplaceConfig,global.MarketplaceConfig.Category" %> 
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ include file="header.jsp" %>
 <html>
@@ -62,19 +64,27 @@
 			}
 		
 			var id = '<%=session.getAttribute("currentSessionID")%>';
+			if(id == "null"){
+				alert("Error! You must be logged in to create an item");
+			}
+			else{
+				$.post("ItemAction",{ action: "create", title: title, description: description,
+					date1: date1, date2: date2, price1: price1, price2: price2,
+					userid: id, category: "cathere" },
+				  function(data){
+				    if(data == "false"){
+				    	alert("Item not created. There was an error.");
+				    }
+				    else if(data == "true"){
+				    	alert("Item was successfully created");
+				    }
+				    else{
+				    	alert("Error! You must be logged in to create an item");
+				    }
+				  }
+				);	
+			}
 			
-			$.post("ItemAction",{ action: "create", title: title, description: description,
-				date1: date1, date2: date2, price1: price1, price2: price2,
-				userid: id, category: "cathere" },
-			  function(data){
-			    if(data == "false"){
-			    	alert("Item not created. There was an error.");
-			    }
-			    else{
-			    	alert("Item was successfully created");
-			    }
-			  }
-			);
 		});
 	});
 </script>
@@ -83,6 +93,12 @@ Title: <input id="title" type="text" name="title" /><br />
 Description: <input id ="description" type="text" name="description" height=300 /><br />
 Available from <input id ="date1" type="text" name="date1" height=300 /> to <input id ="date2" type="text" name="date2" height=300 /><br />
 Price from $<input id ="price1" type="text" name="price1" height=300 /> to $<input id ="price2" type="text" name="price2" height=300 /><br />
+Categories: <select id="categoryDropdownMenu">
+<% for(Category category: MarketplaceConfig.Category.values()){%>
+	<option value="<%= category.name()%>"><%= category.name()%></option>		
+	<%}%> 
+	</select>
+	<br/>
 <button id = "submit" type="button">Create Item</button>
 </form> 
 </body>
