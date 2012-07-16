@@ -1,6 +1,7 @@
 package mysqldao;
 
 import java.sql.ResultSet;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,7 @@ import model.Tag;
 
 import dao.AbstractDAO;
 import dao.ItemDAO;
+import dao.TagDAO;
 
 public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 
@@ -58,8 +60,11 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 		return true;
 	}
 
-	public boolean createItem(Item item, List<Tag> tags) throws SQLException {
-		
+	public boolean createItem(Item item, List<String> tags) throws SQLException {
+		TagDAO dao = new TagMySQLDAO();
+		for (int i=0; i<tags.size();i++)
+			
+			dao.createTag(tags.get(i));
 		String query = "INSERT INTO items (title, category, userid, description, "
 				+ "sold, avail_start, avail_end, price_low, price_high, popularity, "
 				+ "time_added, time_mod) "
@@ -70,13 +75,13 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 						item.getUserid(),
 						strIsNull(item.getDescription()), 
 						item.getSold(),
-						strIsNull(item.getAvailStart().toString()),
-						strIsNull(item.getAvailEnd().toString()),
+						strIsNull(toSqlDate(item.getAvailStart())),
+						strIsNull(toSqlDate(item.getAvailEnd())),
 						item.getPriceLow(), 
 						item.getPriceHigh(),
 						item.getPopularity(), 
-						item.getTimeAdded().toString(),
-						item.getTimeModified().toString());
+						toSqlDate(item.getTimeAdded()),
+						toSqlDate(item.getTimeModified()));
 
 		execSql(query);
 

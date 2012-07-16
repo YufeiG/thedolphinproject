@@ -56,6 +56,8 @@ public class ListingServiceImpl implements ListingService{
 		List<Item> result = itemDAO.getItems(list);
 		
 		processing.process(result);
+				
+	
 		
 		
 		
@@ -75,7 +77,6 @@ public class ListingServiceImpl implements ListingService{
 		try {
 			return itemDAO.getItem(itemID);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

@@ -37,7 +37,6 @@ public class SearchAction extends HttpServlet {
 		String [] tagTemp = longTag.split(" ");
 		List<Tag> tags = new ArrayList<Tag>();
 		
-		
 		//Possible Search Actions
 		
 		if("searchFromHeader".equals(action)){
@@ -50,6 +49,7 @@ public class SearchAction extends HttpServlet {
 			}
 			//String category = req.getParameter("category");
 			//String sortType = req.getParameter("sortType");
+	
 			
 			
 			try {
