@@ -26,6 +26,7 @@
             src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
         <script type="text/javascript"  src="js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript">
+	
 	$(document).ready(function() {
 	
 	$("#headerSearchButton").click(function(){
@@ -38,7 +39,8 @@
 
 <body data-twttr-rendered="true" id="" class="" itemscope="" itemtype="http://schema.org/CreativeWork">
 
-<% String currSessionUser = (String)session.getAttribute("currentSessionUser"); %>
+<% 
+String currSessionUser = (String)session.getAttribute("currentSessionUser"); %>
 
   <header style="height:100px">
   <div class="container">
@@ -78,7 +80,7 @@
             </a>
           </li>
           <li class="photodune">
-            <a href="http://photodune.net/">
+            <a href="http://photodune.net/">f
               <span>PhotoDune</span>
               <span class="description">Stock Photography</span>
             </a>
@@ -92,7 +94,7 @@
     { %>
     	<li><a href="">Welcome, <%= currSessionUser %></a></li>
     	<li>
-    	  <a onclick="logout()">Logout</a>
+    	  <a href="logout.jsp">Logout</a>
     	</li>
     <% } else { %>
     
