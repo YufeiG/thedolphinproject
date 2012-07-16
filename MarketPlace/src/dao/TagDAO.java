@@ -1,11 +1,12 @@
 package dao;
 
+import java.sql.SQLException;
 import java.util.List;
 import model.Tag;
 
 public interface TagDAO {
-	public String getTag(String tagName);
-	public boolean deleteTag(String tagName);
-	public boolean createTag(String tagName);
-	public List<Tag> getTags();
+	public boolean tagExists(String tagName) throws SQLException;
+	public boolean deleteTag(String tagName) throws SQLException;
+	public boolean createTag(String tagName) throws SQLException;
+	public List<Tag> getTags() throws SQLException ;
 }
