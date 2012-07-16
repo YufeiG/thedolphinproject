@@ -15,6 +15,9 @@
 <form>
 <table class="input_table">
 <tr><td>userID:</td><td> <input id="id" type="text" name="id" /><button id = "populate" type="button">Get Profile</button></td></tr>
+</table>
+</form>
+<table>
 <tr><td>Username:</td><td> <input id="username" type="text" name="username" /></td></tr>
 <tr><td>Password:</td><td><input id ="password" type="password" name="pwd" /></td></tr>
 <tr><td>First Name:</td><td><input id ="first" type="text" name="first" /> <br/>
@@ -28,8 +31,8 @@
 
 </td></tr>
 </table>
-<button id = "submit" type="button">Create Account</button>
-</form>
+
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#populate").click(function(){

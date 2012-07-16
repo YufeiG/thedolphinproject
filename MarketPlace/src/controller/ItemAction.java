@@ -25,6 +25,15 @@ public class ItemAction extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws java.io.IOException {
 		String action = req.getParameter("action");
+		res.setContentType("text/html");
+		
+		if(action == null)
+		{
+			res.getWriter().write("error");
+			return;
+		}
+		ListingService service = new ListingServiceImpl();
+		
 		if(action.equals("create"))
 		{
 			String title = req.getParameter("title");
@@ -53,11 +62,8 @@ public class ItemAction extends HttpServlet {
 			String userIDString = req.getParameter("userid");
 			long userID = Long.parseLong(userIDString);
 
-			Item item = new Item(0, title, 0, userID, description, false,
+			Item item = new Item(0, title, 0, userID, description, 0,
 					date1Parsed, date2Parsed, 0.0, 1.0, 0, new Date(), new Date());
-			
-			ListingService service = new ListingServiceImpl();
-			res.setContentType("text/html");
 			
 
 				
@@ -72,6 +78,29 @@ public class ItemAction extends HttpServlet {
 				res.getWriter().write("true");
 			}
 			
+			
+			
+			
+		}
+		else if(action.equals("get"))
+		{
+			String itemIDString = req.getParameter("id");
+			long itemID = Long.parseLong(itemIDString);
+			System.err.println("Getting item...");
+
+			Item item = service.getItem(itemID);
+
+				
+			if(item != null)
+			{
+				String data = item.getTitle() + "," + item.getDescription() + "," + item.getAvailStart() + "," + item.getAvailEnd()
+						+ "," + item.getPriceLow() + "," + item.getPriceHigh();
+				res.getWriter().write(data);
+			}
+			else
+			{
+				res.getWriter().write("false");
+			}
 			
 			
 			
