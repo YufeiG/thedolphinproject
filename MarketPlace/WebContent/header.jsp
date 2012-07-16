@@ -34,17 +34,7 @@
 		/*
 		var headerSerachInput = $("#headerSearchBox").val();
 			
-		$.post("SearchAction",{ action:"searchFromHeader", "headerSearchInput":headerSearchInput },
-		  function(data){
-		    if(data != null)
-		    {
-		    	alert("Here is the result");
-		    	//Set the main Pane to datatable as given by SearchAction
-		    	$("#mainPane").val(data);
-		    }
-		  }
-		);
-		*/
+				*/
 	});
 	});
 </script>
