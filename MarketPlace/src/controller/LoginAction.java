@@ -41,8 +41,8 @@ public class LoginAction extends HttpServlet{
 				HttpSession session = req.getSession(true);
 				
 				// Remove any previous user session
-				session.removeAttribute("currentSessionUser");
-				session.removeAttribute("currrentSessionID");
+				//session.removeAttribute("currentSessionUser");
+				//session.removeAttribute("currrentSessionID");
 				
 				session.setAttribute("currentSessionUser", username);
 				session.setAttribute("currentSessionID", result);
