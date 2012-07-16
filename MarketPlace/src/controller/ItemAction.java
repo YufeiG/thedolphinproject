@@ -62,7 +62,7 @@ public class ItemAction extends HttpServlet {
 			String userIDString = req.getParameter("userid");
 			long userID = Long.parseLong(userIDString);
 
-			Item item = new Item(0, title, 0, userID, description, false,
+			Item item = new Item(0, title, 0, userID, description, 0,
 					date1Parsed, date2Parsed, 0.0, 1.0, 0, new Date(), new Date());
 			
 
@@ -93,7 +93,7 @@ public class ItemAction extends HttpServlet {
 				
 			if(item != null)
 			{
-				String data = item.getName() + "," + item.getDescription() + "," + item.getAvailStart() + "," + item.getAvailEnd()
+				String data = item.getTitle() + "," + item.getDescription() + "," + item.getAvailStart() + "," + item.getAvailEnd()
 						+ "," + item.getPriceLow() + "," + item.getPriceHigh();
 				res.getWriter().write(data);
 			}

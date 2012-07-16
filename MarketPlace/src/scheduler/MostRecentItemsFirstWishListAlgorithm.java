@@ -48,7 +48,7 @@ public class MostRecentItemsFirstWishListAlgorithm implements WishListAlgorithm{
 				Iterator<Item> itemIterator = items.iterator();
 				while(itemIterator.hasNext()){
 					Item currentItem = itemIterator.next();
-					if(currentItem.getTimePosted().after(date)){
+					if(currentItem.getTimeAdded().after(date)){
 						matchedItems.add(currentItem);
 					}					
 				}
@@ -57,10 +57,10 @@ public class MostRecentItemsFirstWishListAlgorithm implements WishListAlgorithm{
 
 					@Override
 					public int compare(Item o1, Item o2) {
-						if(o1.getTimePosted().before(o2.getTimePosted())){
+						if(o1.getTimeAdded().before(o2.getTimeAdded())){
 							return -1;
 						}
-						else if(o1.getTimePosted().equals(o2.getTimePosted())){
+						else if(o1.getTimeAdded().equals(o2.getTimeAdded())){
 							return 0;
 						}
 						else{
