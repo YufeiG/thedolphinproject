@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import authenticationService.AuthenticationService;
 import authenticationService.AuthenticationServiceImpl;
@@ -36,6 +37,11 @@ public class LoginAction extends HttpServlet{
 			}
 			else
 			{
+				// Track a logged in user's session
+				HttpSession session = req.getSession(true);
+				session.setAttribute("currentSessionUser", username);
+				session.setAttribute("currentSessionID", result);
+				
 				res.getWriter().write(result + "");
 				System.err.println("login succeed: "+result);
 			}

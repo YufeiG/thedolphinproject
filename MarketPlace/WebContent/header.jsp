@@ -38,6 +38,8 @@
 
 <body data-twttr-rendered="true" id="" class="" itemscope="" itemtype="http://schema.org/CreativeWork">
 
+<% String currSessionUser = (String)session.getAttribute("currentSessionUser"); %>
+
   <header style="height:100px">
   <div class="container">
 
@@ -86,10 +88,19 @@
 
   <div class="account-wrapper">
     <ul id="user-account-nav">
+    <% if(currSessionUser != null) 
+    { %>
+    	<li><a href="">Welcome, <%= currSessionUser %></a></li>
+    	<li>
+    	  <a href="logout.jsp">Logout</a>
+    	</li>
+    <% } else { %>
+    
         <li><a href="createAccount.jsp"><span>Create Account</span></a></li>
         <li>
           <a href="login.jsp">Sign In</a>
         </li>
+        <% } %>
     </ul>
   </div>
 
