@@ -18,6 +18,7 @@ public class MainScheduler {
 	WishListAlgorithm algorithm;
 	EmailNotification email;
 	Timer timer;
+	Date lastMatchedDate = new Date(0);
 	
 	
 	
@@ -41,7 +42,8 @@ public class MainScheduler {
 				
 				@Override
 				public void run() {
-					runWishListAlgorithm(new Date(System.currentTimeMillis()));
+					runWishListAlgorithm(lastMatchedDate);
+					lastMatchedDate = new Date(System.currentTimeMillis());
 				}
 			}, 0, MarketplaceConfig.WISH_LIST_MATCH_TIME_INTERVAL);
 			
