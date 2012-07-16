@@ -1,5 +1,7 @@
 package controller;
 
+import global.MarketplaceConfig;
+import global.MarketplaceConfig.SortType;
 import htmlGenerator.SearchHtmlGenerator;
 
 import java.sql.SQLException;
@@ -34,9 +36,15 @@ public class SearchAction extends HttpServlet {
 		
 		String action = req.getParameter("action");
 		String longTag = req.getParameter("headerSearchInput");
+		String categoryString = req.getParameter("category");
+		SortType sortType = MarketplaceConfig.SortType.NONE;
 		String [] tagTemp = longTag.split(" ");
 		List<Tag> tags = new ArrayList<Tag>();
 		
+		for(SortType sortTypeTemp : MarketplaceConfig.SortType.values()){
+			sortTypeTemp.name().equals(categoryString);
+			sortType = sortTypeTemp;
+		}
 		//Possible Search Actions
 		
 		if("searchFromHeader".equals(action)){
@@ -57,7 +65,7 @@ public class SearchAction extends HttpServlet {
 				ListingService listingService = new ListingServiceImpl();
 				List<Item> searchResult;
 				
-				searchResult = listingService.findItems(tags, null, null);
+				searchResult = listingService.findItems(tags, null, sortType);
 				
 				res.setContentType("text/html");
 				res.getWriter().write(SearchHtmlGenerator.createItemTableHtml(searchResult));
@@ -65,6 +73,7 @@ public class SearchAction extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 			
 			
 

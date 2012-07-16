@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ page import="java.util.*, java.lang.*,global.MarketplaceConfig,global.MarketplaceConfig.SortType" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html  lang="en"><!--<![endif]--><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -28,8 +29,7 @@
 	$(document).ready(function() {
 	
 	$("#headerSearchButton").click(function(){
-		alert("button clicked");
-		window.location = "listing.jsp?search="+$("#headerSearchBox").val() ;
+		window.location = "listing.jsp?search="+$("#headerSearchBox").val()+"&category="+$("#categoryDropdown").val() ;
 	});
 	});
 </script>
@@ -172,6 +172,13 @@
   </ul>
 
   </div> <!-- end .container -->
+  <select id="categoryDropdown" style="float:right">
+  
+  <% for(SortType sortType : MarketplaceConfig.SortType.values()){%>
+	<option value="<%= sortType.name()%>"><%= sortType.name()%></option>		
+	<%}%>
+</select> 
+
   <input id="headerSearchBox" type="text" value="" placeholder="Start Searching..." name="term" autocomplete="off" style="float:right" size="30">
 <button id= "headerSearchButton" class="image-button search no-margin" type="submit" style="float:right">Search</button>
 </header> <!-- end role main header -->
