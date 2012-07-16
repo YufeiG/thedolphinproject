@@ -13,7 +13,7 @@ public final class MarketplaceConfig {
 	}
 
 	public static enum Category {
-		 HOUSING, TEXTBOOKS, FURNITURE, SERVICES;
+		 BOOKS, HOUSING, SERVICES, FURNITURE;
 	}
 	
 	public static enum RecommendationAlgorithm{
