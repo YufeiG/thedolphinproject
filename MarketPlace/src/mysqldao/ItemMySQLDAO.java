@@ -16,11 +16,11 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO{
 		}
 
 		@Override
-		public Item getItem() {
+		public Item getItem(long id) {
 			// TODO Auto-generated method stub
 			return null;
 		}
-
+		
 		@Override
 		public boolean deleteItem() {
 			// TODO Auto-generated method stub

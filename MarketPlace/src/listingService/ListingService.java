@@ -20,4 +20,6 @@ public interface ListingService {
 	public boolean editItem(Item i);
 	
 	public boolean deleteItem(Item i);
+	
+	public Item getItem(long itemID);
 }

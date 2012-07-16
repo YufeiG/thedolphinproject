@@ -62,4 +62,9 @@ public class ListingServiceImpl implements ListingService{
 	public boolean deleteItem(Item i){
 		return false;
 	}
+	
+	public Item getItem(long itemID)
+	{
+		return itemDAO.getItem(itemID);
+	}
 }
