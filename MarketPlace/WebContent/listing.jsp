@@ -449,13 +449,15 @@
 		return vars;
 	}
 	var headerSearchInput = getUrlVars()["search"];
+	var category = getUrlVars()["category"];
 
 	alert(headerSearchInput);
+	alert(category);
 	$('#example').dataTable();
 
 	
 		
-		$.post("SearchAction",{ action:"searchFromHeader", "headerSearchInput":headerSearchInput },
+		$.post("SearchAction",{ action:"searchFromHeader", "headerSearchInput":headerSearchInput, "category":category },
 				  function(data){
 				    if(data != null)
 				    {
