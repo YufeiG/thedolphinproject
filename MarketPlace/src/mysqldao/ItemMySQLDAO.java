@@ -1,11 +1,11 @@
 package mysqldao;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
 import model.Item;
-import model.Tag;
 
 import dao.AbstractDAO;
 import dao.ItemDAO;
@@ -16,12 +16,13 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO{
 			mConnection = createConnection();
 		}
 
-		@Override
-		public Item getItem() {
-			// TODO Auto-generated method stub
-			return null;
+		public Item getItem(long itemid) throws SQLException {
+			String query = "SELECT * FROM items WHERE itemid=" + itemid;
+			ResultSet rs = execSql(query);
+			
+			return getItemObj(rs);
 		}
-
+		
 		@Override
 		public boolean deleteItem() {
 			// TODO Auto-generated method stub
@@ -42,12 +43,6 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO{
 
 		@Override
 		public List<Item> getItems() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public List<Item> getItems(List<Tag> tags) {
 			// TODO Auto-generated method stub
 			return null;
 		}

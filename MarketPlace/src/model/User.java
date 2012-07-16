@@ -63,8 +63,7 @@ public class User {
 		this.email = email;
 	}
 	public String getPhoneNumber() {
-		if (phoneNumber.trim().isEmpty()) return "NULL";
-		else return phoneNumber;
+		return phoneNumber;
 	}
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;

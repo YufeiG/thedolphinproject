@@ -2,6 +2,7 @@ package listingService;
 
 import global.MarketplaceConfig;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,5 +62,17 @@ public class ListingServiceImpl implements ListingService{
 	
 	public boolean deleteItem(Item i){
 		return false;
+	}
+	
+	public Item getItem(long itemID)
+	{
+		try {
+			return itemDAO.getItem(itemID);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 }

@@ -7,18 +7,46 @@
 <head>
 <script type="text/javascript"
             src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script type="text/javascript" language="javascript" src="js/jquery.dataTables.min.js"></script>
+
 <script type="text/javascript" charset="utf-8">
-			$(document).ready(function() {
-				alert("hello");
-				$('#example').dataTable();
-			} );
+		
+	function getUrlVars() {
+		var vars = {};
+		var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,
+				function(m, key, value) {
+					vars[key] = value;
+				});
+		return vars;
+	}
+	var headerSearchInput = getUrlVars()["search"];
+
+	alert(headerSearchInput);
+	
+	$(document).ready(function() {
+		
+		alert(first);
+		$('#example').dataTable();
+
+		
+		$.post("SearchAction",{ action:"searchFromHeader", "headerSearchInput":headerSearchInput },
+				  function(data){
+				    if(data != null)
+				    {
+				    	alert(data);
+				    	//Set the main Pane to datatable as given by SearchAction
+				    	$("#mainPane").val(data);
+				    	$('#searchResultTable').dataTable();
+				    }
+				  }
+				);
+		 
+	});
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Search Listing</title>
 </head>
 <body>
-
+<!-- <div id ="mainPane"> -->
 <!-- BEGIN EXAMPLE TABLE =========================================================-->
 <table cellpadding="0" cellspacing="0" border="0" class="display" id="example" width="100%">
 	<thead>
@@ -445,6 +473,7 @@
 		</tr>
 	</tfoot>
 </table>
+<!-- </div> -->
 <!-- END EXAMPLE TABLE ===========================================================-->
 </body>
 

@@ -52,4 +52,9 @@ public abstract class AbstractDAO {
 		st.execute(query);
 		return st.getResultSet();
 	}
+	
+	protected String strIsNull(String s) {
+		if (s.trim().isEmpty()) return "NULL";
+		else return "'" + s + "'";
+	}
 }
