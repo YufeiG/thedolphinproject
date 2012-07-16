@@ -12,5 +12,5 @@ public interface ItemDAO {
 	public boolean deleteItem(Item item) throws SQLException;
 	public boolean editItem(Item item) throws SQLException;
 	public boolean createItem(Item item) throws SQLException;
-	public List<Item> getItems(List<Tag> tags);
+	public List<Item> getItems(List<Tag> tags) throws SQLException;
 }

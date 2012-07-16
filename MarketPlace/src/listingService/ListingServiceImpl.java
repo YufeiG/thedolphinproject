@@ -30,7 +30,7 @@ public class ListingServiceImpl implements ListingService{
 	}
 	
 
-	public List<Item> findItems(List<Tag> list,  MarketplaceConfig.Category category, MarketplaceConfig.SortType sortBy){
+	public List<Item> findItems(List<Tag> list,  MarketplaceConfig.Category category, MarketplaceConfig.SortType sortBy) throws SQLException{
 
 		SearchProcessing processing;
 
@@ -53,7 +53,7 @@ public class ListingServiceImpl implements ListingService{
 		
 		
 		
-		return new ArrayList<Item>();
+		return result;
 	}
 	
 	public boolean editItem(Item i){
