@@ -33,8 +33,9 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 	public Item getItem(long itemid) throws SQLException {
 		String query = "SELECT * FROM items WHERE itemid=" + itemid;
 		ResultSet rs = execSql(query);
-
-		return getItemObj(rs);
+		if (rs.next())
+			return getItemObj(rs);
+		else return null;
 	}
 
 	public boolean deleteItem(Item item) throws SQLException {
@@ -46,7 +47,7 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 
 	public boolean editItem(Item item) throws SQLException {
 		String query = "UPDATE users"
-				+ String.format("SET title='%s', " + "category=%d, "
+				+ String.format("SET title='%s', " + "categoryid=%d, "
 						+ "description=%s, " + "sold=%d, " + "avail_start=%s, "
 						+ "avail_end=%s, " + "price_low=%f, "
 						+ "price_high=%f, " + "popularity=%d, "

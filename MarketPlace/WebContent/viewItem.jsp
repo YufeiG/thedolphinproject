@@ -41,9 +41,9 @@
 			var id = $("#id").val();
 			if(id != "" && !isNaN(id)){
 		
-				$.post("ItemAction",{ action: "get", userid : id },
+				$.post("ItemAction",{ action: "get", itemid : id },
 						  function(data){
-					
+					alert(data);
 							if(data != "false" && data != "error"){
 								var dataArray = data.split(",");
 								
