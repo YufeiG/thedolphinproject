@@ -62,19 +62,27 @@
 			}
 		
 			var id = '<%=session.getAttribute("currentSessionID")%>';
+			if(id == "null"){
+				alert("Error! You must be logged in to create an item");
+			}
+			else{
+				$.post("ItemAction",{ action: "create", title: title, description: description,
+					date1: date1, date2: date2, price1: price1, price2: price2,
+					userid: id, category: "cathere" },
+				  function(data){
+				    if(data == "false"){
+				    	alert("Item not created. There was an error.");
+				    }
+				    else if(data == "true"){
+				    	alert("Item was successfully created");
+				    }
+				    else{
+				    	alert("Error! You must be logged in to create an item");
+				    }
+				  }
+				);	
+			}
 			
-			$.post("ItemAction",{ action: "create", title: title, description: description,
-				date1: date1, date2: date2, price1: price1, price2: price2,
-				userid: id, category: "cathere" },
-			  function(data){
-			    if(data == "false"){
-			    	alert("Item not created. There was an error.");
-			    }
-			    else{
-			    	alert("Item was successfully created");
-			    }
-			  }
-			);
 		});
 	});
 </script>

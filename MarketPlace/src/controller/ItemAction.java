@@ -64,6 +64,14 @@ public class ItemAction extends HttpServlet {
 			String user = req.getParameter("user");
 			String cat = req.getParameter("category");
 			String userIDString = req.getParameter("userid");
+			if(userIDString == null || userIDString.equals("null")||userIDString.equals(""))
+			{
+				// can't create item without logging in
+				System.err.println("Item not created because null user");
+				res.getWriter().write("error");
+				return;
+			}
+			System.err.println("User exists "+userIDString +"-");
 			long userID = Long.parseLong(userIDString);
 
 			Item item = new Item(0, title, 0, userID, description, 0,
