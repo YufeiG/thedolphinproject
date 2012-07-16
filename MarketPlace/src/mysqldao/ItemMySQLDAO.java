@@ -33,8 +33,9 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 	public Item getItem(long itemid) throws SQLException {
 		String query = "SELECT * FROM items WHERE itemid=" + itemid;
 		ResultSet rs = execSql(query);
-
-		return getItemObj(rs);
+		if (rs.next())
+			return getItemObj(rs);
+		else return null;
 	}
 
 	public boolean deleteItem(Item item) throws SQLException {
