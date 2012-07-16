@@ -47,7 +47,7 @@ public class ListingServiceImpl implements ListingService{
 			processing = new RandomSearchProcessing();
 		}
 		
-		List<Item> result = itemDAO.getItems();
+		List<Item> result = itemDAO.getItems(list);
 		
 		processing.process(result);
 		
