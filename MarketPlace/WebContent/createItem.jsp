@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.*, java.lang.*,global.MarketplaceConfig,global.MarketplaceConfig.Category" %> 
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ include file="header.jsp" %>
 <html>
@@ -91,6 +93,12 @@ Title: <input id="title" type="text" name="title" /><br />
 Description: <input id ="description" type="text" name="description" height=300 /><br />
 Available from <input id ="date1" type="text" name="date1" height=300 /> to <input id ="date2" type="text" name="date2" height=300 /><br />
 Price from $<input id ="price1" type="text" name="price1" height=300 /> to $<input id ="price2" type="text" name="price2" height=300 /><br />
+Categories: <select id="categoryDropdownMenu">
+<% for(Category category: MarketplaceConfig.Category.values()){%>
+	<option value="<%= category.name()%>"><%= category.name()%></option>		
+	<%}%> 
+	</select>
+	<br/>
 <button id = "submit" type="button">Create Item</button>
 </form> 
 </body>

@@ -463,7 +463,7 @@
 				    {
 				    	alert(data);
 				    	//Set the main Pane to datatable as given by SearchAction
-				    	$("#mainPane").text(data);
+				    	$("#mainPane").html(data);
 				    	$('#searchResultTable').dataTable();
 				    }
 				  }
@@ -471,5 +471,8 @@
 		 
 	
 </script>
+
+
+
 
 </html>

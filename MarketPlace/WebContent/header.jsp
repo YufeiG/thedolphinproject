@@ -32,12 +32,6 @@
 		window.location = "listing.jsp?search="+$("#headerSearchBox").val()+"&category="+$("#categoryDropdown").val() ;
 	});
 	});
-	
-	function logout() {
-		<%session.removeAttribute("currentSessionUser");
-		session.removeAttribute("currentSessionID");%>
-		window.location = "index.jsp";
-	}
 </script>
 
 </head>

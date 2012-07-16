@@ -40,16 +40,16 @@ public class SearchHtmlGenerator {
 		
 		// Adding table footer
 		
-		table.append("<tfoot>");
-		table.append("<tr>");
-		table.append("<th>Name</th>");
-		table.append("<th>Category</th>");
-		table.append("<th>Description</th>");
-		table.append("<th>Price Low</th>");
-		table.append("<th>Price High</th>");
-		table.append("<th>Time Posted</th>");
-		table.append("</tr>");
-		table.append("</tfoot>");
+//		table.append("<tfoot>");
+//		table.append("<tr>");
+//		table.append("<th>Name</th>");
+//		table.append("<th>Category</th>");
+//		table.append("<th>Description</th>");
+//		table.append("<th>Price Low</th>");
+//		table.append("<th>Price High</th>");
+//		table.append("<th>Time Posted</th>");
+//		table.append("</tr>");
+//		table.append("</tfoot>");
 		
 		// End of table
 		table.append("</table>");

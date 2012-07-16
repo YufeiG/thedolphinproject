@@ -21,7 +21,7 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 
 	private Item getItemObj(ResultSet rs) throws SQLException {
 		Item item = new Item(rs.getLong("itemid"), rs.getString("title"),
-				rs.getInt("category"), rs.getLong("userid"),
+				rs.getInt("categoryid"), rs.getLong("userid"),
 				rs.getString("description"), rs.getInt("sold"),
 				rs.getDate("avail_start"), rs.getDate("avail_end"),
 				rs.getFloat("price_low"), rs.getFloat("price_high"),
@@ -62,41 +62,47 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 
 	public boolean createItem(Item item, List<String> tags) throws SQLException {
 		TagDAO dao = new TagMySQLDAO();
-		
+
 		if (tags != null) {
-			for (int i=0; i<tags.size();i++)
+			for (int i = 0; i < tags.size(); i++)
 				dao.createTag(tags.get(i));
 		}
-		
+
 		String query = "INSERT INTO items (title, categoryid, userid, description, "
 				+ "sold, avail_start, avail_end, price_low, price_high, popularity, "
 				+ "time_added, time_mod) "
 				+ String.format(
 						"VALUES ('%s',%s, %d, %s, '%d', %s, %s, %f, %f, %d, '%s', '%s')",
-						item.getTitle(), 
-						(item.getCategory() == 0 ? "NULL" : item.getCategory()+""), 
-						item.getUserid(),
-						strIsNull(item.getDescription()), 
-						item.getSold(),
+						item.getTitle(), (item.getCategory() == 0 ? "NULL"
+								: item.getCategory() + ""), item.getUserid(),
+						strIsNull(item.getDescription()), item.getSold(),
 						strIsNull(toSqlDate(item.getAvailStart())),
-						strIsNull(toSqlDate(item.getAvailEnd())),
-						item.getPriceLow(), 
-						item.getPriceHigh(),
-						item.getPopularity(), 
-						toSqlDate(item.getTimeAdded()),
-						toSqlDate(item.getTimeModified()));
+						strIsNull(toSqlDate(item.getAvailEnd())), item
+								.getPriceLow(), item.getPriceHigh(), item
+								.getPopularity(),
+						toSqlDate(item.getTimeAdded()), toSqlDate(item
+								.getTimeModified()));
 
 		execSql(query);
 
 		return true;
 	}
 
-	public List<Item> getItems() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Item> getItems() throws SQLException {
+		ResultSet rs = execSql("SELECT * FROM items");
+		List<Item> mylist = new ArrayList<Item>();
+		if (rs.next()) {
+			mylist.add(getItemObj(rs));
+		}
+
+		return mylist;
 	}
 
 	public List<Item> getItems(List<Tag> tags) throws SQLException {
+		
+		if(tags == null || tags.size() == 0)
+			return getItems();
+		
 		String strTags = "";
 		int listSize = tags.size();
 
@@ -110,8 +116,10 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 		String query = "SELECT * FROM items i, tags t, item_tags r "
 				+ "WHERE i.itemid = r.itemid AND t.tagid = item_tags.tagid "
 				+ "AND t.tag_name IN (" + strTags + ")";
+				
 		ResultSet rs = execSql(query);
 
+		
 		List<Item> mylist = new ArrayList<Item>();
 		if (rs.next()) {
 			mylist.add(getItemObj(rs));
@@ -119,5 +127,4 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 
 		return mylist;
 	}
-
 }
