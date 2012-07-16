@@ -11,7 +11,9 @@ import listingService.ListingServiceImpl;
 import model.Item;
 import model.User;
 import userManagementService.UserManagementService;
+import userManagementService.UserManagementServiceImpl;
 
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -102,18 +104,32 @@ public class ItemAction extends HttpServlet {
 			
 
 			Item item = service.getItem(itemID);
-
+			
+			UserManagementService userService = new UserManagementServiceImpl();
+			try {
+				User user = userService.getAccount(item.getUserid());
 				
-			if(item != null)
-			{
-				String data = item.getTitle() + "," + item.getDescription() + "," + item.getAvailStart() + "," + item.getAvailEnd()
-						+ "," + item.getPriceLow() + "," + item.getPriceHigh();
-				res.getWriter().write(data);
+				if(item != null && user != null)
+				{
+					String data = item.getTitle() + "," + item.getDescription() + "," + item.getAvailStart() + "," + item.getAvailEnd()
+							+ "," + item.getPriceLow() + "," + item.getPriceHigh() + "," + user.getUsername() + ","
+							+ user.getEmail() + "," + user.getPhoneNumber();
+					res.getWriter().write(data);
+				}
+				else
+				{
+					res.getWriter().write("false");
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				res.getWriter().write("error");
 			}
-			else
-			{
-				res.getWriter().write("false");
-			}
+			
+
+			
+			
 			
 			
 			
