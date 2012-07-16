@@ -11,4 +11,5 @@ public interface TagDAO {
 	public List<Tag> getTags() throws SQLException;
 	public List<Tag> getTags(long userid) throws SQLException;
 	public boolean addTagsToWishlist(long userid, List<String> tagNames) throws SQLException;
+	public boolean removeTagsFromWishlist(long userid, List<String> tagNames) throws SQLException;
 }
