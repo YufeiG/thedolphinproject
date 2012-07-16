@@ -51,11 +51,22 @@ public class SearchAction extends HttpServlet {
 			//String category = req.getParameter("category");
 			//String sortType = req.getParameter("sortType");
 			
-			ListingService listingService = new ListingServiceImpl();
-			List <Item> searchResult = listingService.findItems(tags, null, null);
 			
-			res.setContentType("text/html");
-			res.getWriter().write(SearchHtmlGenerator.createItemTableHtml(searchResult));
+			try {
+				
+				ListingService listingService = new ListingServiceImpl();
+				List<Item> searchResult;
+				
+				searchResult = listingService.findItems(tags, null, null);
+				
+				res.setContentType("text/html");
+				res.getWriter().write(SearchHtmlGenerator.createItemTableHtml(searchResult));
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
 
 		}
 				
