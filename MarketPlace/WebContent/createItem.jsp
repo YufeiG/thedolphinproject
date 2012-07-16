@@ -61,10 +61,11 @@
 				return;
 			}
 		
-		
+			var id = '<%=session.getAttribute("currentSessionID")%>';
+			
 			$.post("ItemAction",{ action: "create", title: title, description: description,
 				date1: date1, date2: date2, price1: price1, price2: price2,
-				userid: 0, category: "cathere" },
+				userid: id, category: "cathere" },
 			  function(data){
 			    if(data == "false"){
 			    	alert("Item not created. There was an error.");

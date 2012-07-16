@@ -68,13 +68,13 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 				dao.createTag(tags.get(i));
 		}
 		
-		String query = "INSERT INTO items (title, category, userid, description, "
+		String query = "INSERT INTO items (title, categoryid, userid, description, "
 				+ "sold, avail_start, avail_end, price_low, price_high, popularity, "
 				+ "time_added, time_mod) "
 				+ String.format(
-						"VALUES ('%s',%d, %d, %s, '%d', %s, %s, %f, %f, %d, '%s', '%s')",
+						"VALUES ('%s',%s, %d, %s, '%d', %s, %s, %f, %f, %d, '%s', '%s')",
 						item.getTitle(), 
-						item.getCategory(), 
+						(item.getCategory() == 0 ? "NULL" : item.getCategory()+""), 
 						item.getUserid(),
 						strIsNull(item.getDescription()), 
 						item.getSold(),
