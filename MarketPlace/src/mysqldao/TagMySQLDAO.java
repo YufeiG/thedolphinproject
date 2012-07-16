@@ -1,22 +1,26 @@
 package mysqldao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.SQLException;
 import java.util.List;
 
-import model.File;
 import model.Tag;
 
 import dao.AbstractDAO;
-import dao.FileDAO;
 import dao.TagDAO;
 
 public class TagMySQLDAO extends AbstractDAO implements TagDAO{
 		
 		public TagMySQLDAO(){
 			mConnection = createConnection();
+		}
+		
+		private Tag createTagObj(ResultSet rs) throws SQLException {
+			Tag tag = null;
+			if (rs.next()) {
+				tag = new Tag(rs.getLong("tagid"), rs.getString("tag_name"));
+			}
+			return tag;
 		}
 
 		@Override
@@ -39,6 +43,7 @@ public class TagMySQLDAO extends AbstractDAO implements TagDAO{
 
 		@Override
 		public List<Tag> getTags() {
+			
 			// TODO Auto-generated method stub
 			return null;
 		}
