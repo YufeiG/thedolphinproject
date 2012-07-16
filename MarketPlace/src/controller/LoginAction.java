@@ -39,6 +39,11 @@ public class LoginAction extends HttpServlet{
 			{
 				// Track a logged in user's session
 				HttpSession session = req.getSession(true);
+				
+				// Remove any previous user session
+				session.removeAttribute("currentSessionUser");
+				session.removeAttribute("currrentSessionID");
+				
 				session.setAttribute("currentSessionUser", username);
 				session.setAttribute("currentSessionID", result);
 				

@@ -22,13 +22,14 @@
 			
 		$.post("LoginAction",{ username: username, password: password },
 		  function(data){
+			var currentSessionUser = '<%=session.getAttribute("currentSessionUser")%>';
 		    if(data == "false")
 		    {
 		    	alert("Wrong username or password!");
 		    }
-		    else if(session.getAttribute("currentSessionUser") != null){
+		    else if(currentSessionUser != null){
 		    	// save userid in cookies	
-		    	alert("You have successfully logged in. Welcome, " + session.getAttribute("currentSessionUser"));
+		    	window.location = "index.jsp";
 		    }
 		    else{
 		    	alert("Error! Probably an SQLException or a typo somewhere.");
