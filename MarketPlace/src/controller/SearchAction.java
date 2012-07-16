@@ -30,7 +30,6 @@ public class SearchAction extends HttpServlet {
 		String [] tagTemp = longTag.split(" ");
 		List<Tag> tags = new ArrayList<Tag>();
 		
-		
 		//Possible Search Actions
 		
 		if("searchFromHeader".equals(action)){
@@ -47,8 +46,22 @@ public class SearchAction extends HttpServlet {
 			ListingService listingService = new ListingServiceImpl();
 			List <Item> searchResult = listingService.findItems(tags, null, null);
 			
-			res.setContentType("text/html");
-			res.getWriter().write(SearchHtmlGenerator.createItemTableHtml(searchResult));
+		
+			try {
+				
+				ListingService listingService = new ListingServiceImpl();
+				List<Item> searchResult;
+				
+				searchResult = listingService.findItems(tags, null, null);
+				
+				res.setContentType("text/html");
+				res.getWriter().write(SearchHtmlGenerator.createItemTableHtml(searchResult));
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
 
 		}
 				
