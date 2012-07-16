@@ -12,11 +12,7 @@
 </head>
 <body>
 
-<form>
-<table class="input_table">
-<tr><td>userID:</td><td> <input id="id" type="text" name="id" /><button id = "populate" type="button">Get Profile</button></td></tr>
-</table>
-</form>
+
 <table>
 <tr><td>Username:</td><td> <input id="username" type="text" name="username" /></td></tr>
 <tr><td>Password:</td><td><input id ="password" type="password" name="pwd" /></td></tr>
@@ -35,10 +31,8 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$("#populate").click(function(){
-			var id = $("#id").val();
-			if(id != "" && !isNaN(id)){
-		
+		var id = '<%=session.getAttribute("currentSessionID")%>';
+			if(!isNaN(id)){
 				$.post("UserAction",{ action: "get", userid : id },
 						  function(data){
 					
@@ -59,7 +53,7 @@
 						);
 			}
 		
-		});
+		
 	
 	});
 </script> 
