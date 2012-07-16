@@ -451,7 +451,6 @@
 	var headerSearchInput = getUrlVars()["search"];
 
 	alert(headerSearchInput);
-	$('#test').text("asdf");
 	$('#example').dataTable();
 
 	
