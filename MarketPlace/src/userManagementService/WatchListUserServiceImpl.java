@@ -18,8 +18,7 @@ public class WatchListUserServiceImpl implements WatchListUserService{
 	
 	public WatchListUserServiceImpl() {
 		AbstractDAOFactory factory = new MySQLDAOFactory();
-		AbstractDAO dao = factory.getItemDAO();
-		itemDAO = (ItemMySQLDAO) dao;
+		itemDAO = factory.getItemDAO();
 	}
 	
 	public List<Item> getWatchListItems(User u){

@@ -29,9 +29,9 @@ public interface UserManagementService {
 	
 	public boolean banAccount(User user);
 	
-	public List<Tag> getWishList(User user);
+	public List<Tag> getWishList(long userid) throws SQLException;
 	
-	public boolean addToWishList(Tag t, User user);
+	public boolean addToWishList(List<String> tagNames, long userId) throws SQLException;
 	
-	public boolean deleteFromWishList(Tag t, User user);
+	public boolean deleteFromWishList(List<String> tagNames, long userId) throws SQLException;
 }

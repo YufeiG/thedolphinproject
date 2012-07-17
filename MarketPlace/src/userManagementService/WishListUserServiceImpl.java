@@ -1,24 +1,34 @@
 package userManagementService;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Item;
 import model.Tag;
-import model.User;
+import mysqldao.MySQLDAOFactory;
+import dao.AbstractDAO;
+import dao.AbstractDAOFactory;
+import dao.TagDAO;
 
 public class WishListUserServiceImpl implements WishListUserService{
+	TagDAO tagDAO;
 	
-	public List<Tag> getItemsInWishList(User u, String option){
-		return new ArrayList<Tag>();
+	public WishListUserServiceImpl(){
+		AbstractDAOFactory factory = new MySQLDAOFactory();
+		tagDAO = factory.getTagDAO();
 	}
 	
-	public boolean addToWishList(Tag t, User u){
-		return false;
+	
+	public List<Tag> getItemsInWishList(long userid) throws SQLException{
+		return tagDAO.getTags(userid);
 	}
 	
-	public boolean deleteFromWishList(Tag t, User u){
-		return false;
+	public boolean addToWishList(List<String> tagNames, long userId) throws SQLException{
+		return tagDAO.addTagsToWishlist(userId, tagNames);
+	}
+	
+	public boolean deleteFromWishList(List<String> tagNames, long userId) throws SQLException{
+		return tagDAO.removeTagsFromWishlist(userId, tagNames);
 	}
 	
 }

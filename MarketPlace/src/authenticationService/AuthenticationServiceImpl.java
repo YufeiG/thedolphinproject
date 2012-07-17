@@ -15,8 +15,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
 	public AuthenticationServiceImpl() {
 		AbstractDAOFactory factory = new MySQLDAOFactory();
-		AbstractDAO dao = factory.getUserDAO();
-		userDAO = (UserMySQLDAO) dao;
+		userDAO = factory.getUserDAO();
 
 	}
 

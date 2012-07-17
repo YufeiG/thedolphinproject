@@ -15,8 +15,7 @@ public class UserAccountServiceImpl implements UserAccountService {
 	
 	public UserAccountServiceImpl(){
 		AbstractDAOFactory factory = new MySQLDAOFactory();
-		AbstractDAO dao = factory.getUserDAO();
-		userDAO = (UserMySQLDAO) dao;
+		userDAO = factory.getUserDAO();
 	}
 	
 	public boolean createAccount(User user) throws SQLException{

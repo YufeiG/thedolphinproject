@@ -56,15 +56,15 @@ public class UserManagementServiceImpl implements UserManagementService {
 		return userAccountService.banAccount(user);
 	}
 	
-	public List<Tag> getWishList(User user){
-		return wishListUserService.getItemsInWishList(user, "");
+	public List<Tag> getWishList(long userid) throws SQLException{
+		return wishListUserService.getItemsInWishList(userid);
 	}
 	
-	public boolean addToWishList(Tag t, User user){
-		return wishListUserService.addToWishList(t, user);
+	public boolean addToWishList(List<String> tagNames, long userId) throws SQLException{
+		return wishListUserService.addToWishList(tagNames, userId);
 	}
 	
-	public boolean deleteFromWishList(Tag t, User user){
-		return wishListUserService.deleteFromWishList(t, user);
+	public boolean deleteFromWishList(List<String> tagNames, long userId) throws SQLException{
+		return wishListUserService.deleteFromWishList(tagNames, userId);
 	}
 }

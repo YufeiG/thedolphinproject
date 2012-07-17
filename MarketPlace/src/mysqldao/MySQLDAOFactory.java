@@ -1,22 +1,26 @@
 package mysqldao;
 
 import dao.AbstractDAOFactory;
+import dao.FileDAO;
+import dao.ItemDAO;
+import dao.TagDAO;
+import dao.UserDAO;
 
 public class MySQLDAOFactory implements AbstractDAOFactory{
 	
-	public FileMySQLDAO getFileDAO(){
+	public FileDAO getFileDAO(){
 		return new FileMySQLDAO();
 	}
 	
-	public ItemMySQLDAO getItemDAO(){
+	public ItemDAO getItemDAO(){
 		return new ItemMySQLDAO();
 	}
 	
-	public UserMySQLDAO getUserDAO(){
+	public UserDAO getUserDAO(){
 		return new UserMySQLDAO();
 	}
 	
-	public TagMySQLDAO getTagDAO(){
+	public TagDAO getTagDAO(){
 		return new TagMySQLDAO();
 	}
 		
