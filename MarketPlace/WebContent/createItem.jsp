@@ -16,20 +16,29 @@
 <body>
 <script type="text/javascript">
 	$(document).ready(function() {
-	
+		 $("#price1").val("1");
+		$("#price2").val("1000");
+		
+		var currentDate = new Date();
+		
 		$( "#date1" ).datepicker({
 			minDate: 0,
 			onSelect: function( selectedDate ) {
 				$( "#date2" ).datepicker( "option", "minDate", selectedDate );
 			}
 		});
+		
+		$( "#date1" ).datepicker('setDate', currentDate);
+		
 		$( "#date2" ).datepicker({
 			minDate: 0, 
 			onSelect: function( selectedDate ) {
 				$( "#date1" ).datepicker( "option", "maxDate", selectedDate );
 			}
 		});
-			
+		
+		$( "#date2" ).datepicker('setDate', currentDate.getDate()+14);
+		
 		$("#submit").click(function(){
 			var title = $("#title").val();
 			var description = $("#description").val();
@@ -37,7 +46,7 @@
 			var price2 = $("#price2").val();
 			var date1 = $("#date1").val();
 			var date2 = $("#date2").val();
-	
+			var cat = $("#categoryDropdownMenu").val();
 			
 			if(title == ""){
 				alert("Error: Title cannot be empty");
@@ -62,6 +71,11 @@
 				alert("Error: price format not correct");
 				return;
 			}
+
+			if(parseFloat(price1) > parseFloat(price2)){
+				alert("Error: Max price cannot be lower than min price.");
+				return;
+			}
 		
 			var id = '<%=session.getAttribute("currentSessionID")%>';
 			if(id == "null"){
@@ -70,7 +84,7 @@
 			else{
 				$.post("ItemAction",{ action: "create", title: title, description: description,
 					date1: date1, date2: date2, price1: price1, price2: price2,
-					userid: id, category: "cathere" },
+					userid: id, category: cat },
 				  function(data){
 				    if(data == "false"){
 				    	alert("Item not created. There was an error.");

@@ -1,4 +1,6 @@
 package controller;
+import global.MarketplaceConfig;
+
 import java.util.Date;
 import java.util.Locale;
 
@@ -65,6 +67,9 @@ public class ItemAction extends HttpServlet {
 			
 			String user = req.getParameter("user");
 			String cat = req.getParameter("category");
+			
+			int categoryID = MarketplaceConfig.Category.valueOf(cat).getValue();
+			
 			String userIDString = req.getParameter("userid");
 			if(userIDString == null || userIDString.equals("null")||userIDString.equals(""))
 			{
@@ -76,7 +81,7 @@ public class ItemAction extends HttpServlet {
 			System.err.println("User exists "+userIDString +"-");
 			long userID = Long.parseLong(userIDString);
 
-			Item item = new Item(0, title, 0, userID, description, 0,
+			Item item = new Item(0, title, categoryID, userID, description, 0,
 					date1Parsed, date2Parsed, price1Parsed, price2Parsed, 0, new Date(), new Date());
 			
 

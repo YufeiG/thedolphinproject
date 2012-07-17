@@ -13,7 +13,17 @@ public final class MarketplaceConfig {
 	}
 
 	public static enum Category {
-		 BOOKS, HOUSING, SERVICES, FURNITURE;
+		 BOOKS(1), HOUSING(2), SERVICES(3), FURNITURE(4);
+		 
+		 private int value;
+		 
+		 private Category(int value){
+			 this.value = value;
+		 }
+		 
+		 public int getValue(){
+			 return value;
+		 }
 	}
 	
 	public static enum RecommendationAlgorithm{
