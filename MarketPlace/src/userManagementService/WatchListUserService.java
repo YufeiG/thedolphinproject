@@ -2,6 +2,7 @@ package userManagementService;
 
 import global.MarketplaceConfig.ReportType;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import model.Item;
@@ -13,13 +14,14 @@ import dao.AbstractDAO;
 import dao.AbstractDAOFactory;
 
 public interface WatchListUserService {
-	
+
 	public List<Item> getWatchListItems(User u);
-	
+
 	public boolean exportList(User u, ReportType typeOfReport);
-	
-	public boolean deleteFromWatchList(Item i, User u);
-	
-	public boolean addToWatchList(Item i, User u);
-	
+
+	public boolean deleteFromWatchList(long itemid, long userid)
+			throws SQLException;
+
+	public boolean addToWatchList(long itemid, long userid) throws SQLException;
+
 }

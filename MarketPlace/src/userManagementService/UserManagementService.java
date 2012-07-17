@@ -13,9 +13,9 @@ public interface UserManagementService {
 	
 	public List<Item> getWatchList(User u);
 	
-	public boolean addToWatchList(Item i, User u);
+	public boolean addToWatchList(long itemid, long userid) throws SQLException;
 	
-	public boolean deleteFromWatchList(Item i, User u);
+	public boolean deleteFromWatchList(long itemid, long userid) throws SQLException;
 	
 	public boolean exportWatchList(User u, MarketplaceConfig.ReportType typeOfReport);
 	

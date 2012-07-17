@@ -28,12 +28,12 @@ public class UserManagementServiceImpl implements UserManagementService {
 		return watchListUserService.getWatchListItems(u);
 	}
 	
-	public boolean addToWatchList(Item i, User u){
-		return watchListUserService.addToWatchList(i, u);
+	public boolean addToWatchList(long itemid, long userid) throws SQLException{
+		return watchListUserService.addToWatchList(itemid, userid);
 	}
 	
-	public boolean deleteFromWatchList(Item i, User u){
-		return watchListUserService.deleteFromWatchList(i, u);
+	public boolean deleteFromWatchList(long itemid, long userid) throws SQLException{
+		return watchListUserService.deleteFromWatchList(itemid, userid);
 	}
 	
 	public boolean exportWatchList(User u, MarketplaceConfig.ReportType typeOfReport){
