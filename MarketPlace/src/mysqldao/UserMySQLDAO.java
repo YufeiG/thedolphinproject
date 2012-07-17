@@ -3,6 +3,7 @@ package mysqldao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import dao.AbstractDAO;
@@ -100,6 +101,24 @@ public class UserMySQLDAO extends AbstractDAO implements UserDAO{
 				"', email" + user.getEmail() +
 				"', phone_num=" + strIsNull(user.getPhoneNumber()) +
 				"WHERE username='" + user.getUsername() + "'");
+		return true;
+	}
+
+	public boolean deleteFromWatchList(long itemid, long userid) throws SQLException {
+		String query = String.format(
+				"DELETE FROM watchlist WHERE itemid=%d AND userid=%d", itemid, userid);
+		execSql(query);
+		
+		return true;
+	}
+
+	public boolean addToWatchList(long itemid, long userid) throws SQLException {
+		Date d = new Date(System.currentTimeMillis());
+		
+		String query = String.format(
+				"INSERT INTO watchlist VALUES (%d, %d, %s)", itemid, userid, toSqlDate(d));
+		execSql(query);
+		
 		return true;
 	}
 }

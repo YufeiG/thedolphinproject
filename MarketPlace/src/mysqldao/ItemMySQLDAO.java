@@ -64,7 +64,7 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 
 	public boolean createItem(Item item, List<String> tags) throws SQLException {
 		TagDAO dao = new TagMySQLDAO();
-		List tagIds = new ArrayList();
+		List<Long> tagIds = new ArrayList<Long>();
 
 		if (tags != null) {
 			for (int i = 0; i < tags.size(); i++) {
