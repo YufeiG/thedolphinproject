@@ -15,6 +15,13 @@
 </head>
 <body>
 <script type="text/javascript">
+	function parseTag(){
+		var tags = $("#tags").val();
+		var noSpace = tags.split(' ').join('');
+		var lowerCase = noSpace.toLowerCase();
+		$("#tags").val(lowerCase);
+	}
+
 	$(document).ready(function() {
 		 $("#price1").val("1");
 		$("#price2").val("1000");
@@ -40,13 +47,15 @@
 		$( "#date2" ).datepicker('setDate', currentDate.getDate()+14);
 		
 		$("#submit").click(function(){
-			var title = $("#title").val();
-			var description = $("#description").val();
-			var price1 = $("#price1").val();
-			var price2 = $("#price2").val();
-			var date1 = $("#date1").val();
-			var date2 = $("#date2").val();
-			var cat = $("#categoryDropdownMenu").val();
+			parseTag();
+			var title = $.trim($("#title").val());
+			var description = $.trim($("#description").val());
+			var price1 = $.trim($("#price1").val());
+			var price2 = $.trim($("#price2").val());
+			var date1 = $.trim($("#date1").val());
+			var date2 = $.trim($("#date2").val());
+			var cat = $.trim($("#categoryDropdownMenu").val());
+			var tags = $.trim($("#tags").val());
 			
 			if(title == ""){
 				alert("Error: Title cannot be empty");
@@ -71,7 +80,11 @@
 				alert("Error: price format not correct");
 				return;
 			}
-
+			if(price1.indexOf('-') >= 0 || price2.indexOf('-') >= 0){
+				alert("Error: Price cannot be negative.");
+				return;
+			}
+			
 			if(parseFloat(price1) > parseFloat(price2)){
 				alert("Error: Max price cannot be lower than min price.");
 				return;
@@ -113,6 +126,7 @@ Categories: <select id="categoryDropdownMenu">
 	<%}%> 
 	</select>
 	<br/>
+Tags: <input id ="tags" type="text" name="tags" height=300 onkeydown="parseTag()" /><br />
 <button id = "submit" type="button">Create Item</button>
 </form> 
 </body>
