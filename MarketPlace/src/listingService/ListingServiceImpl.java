@@ -3,24 +3,24 @@ package listingService;
 import global.MarketplaceConfig;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import model.Item;
 import model.Tag;
-import mysqldao.ItemMySQLDAO;
 import mysqldao.MySQLDAOFactory;
-import dao.AbstractDAO;
 import dao.AbstractDAOFactory;
 import dao.ItemDAO;
+import dao.TagDAO;
 
 public class ListingServiceImpl implements ListingService{
 
 	ItemDAO itemDAO;
+	TagDAO tagDAO;
 	
 	public ListingServiceImpl(){
 		AbstractDAOFactory factory = new MySQLDAOFactory();
 		itemDAO = factory.getItemDAO();
+		tagDAO = factory.getTagDAO();
 	}
 	
 	
@@ -80,5 +80,23 @@ public class ListingServiceImpl implements ListingService{
 		}
 		
 		return null;
+	}
+
+
+	@Override
+	public boolean deleteTag(String tagName) throws SQLException {
+		return tagDAO.deleteTag(tagName);
+	}
+
+
+	@Override
+	public boolean createTag(String tagName) throws SQLException {
+		return tagDAO.createTag(tagName);
+	}
+
+
+	@Override
+	public List<Tag> getAllTags() throws SQLException {
+		return tagDAO.getTags();
 	}
 }
