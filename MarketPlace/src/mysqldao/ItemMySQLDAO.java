@@ -35,7 +35,8 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 		ResultSet rs = execSql(query);
 		if (rs.next())
 			return getItemObj(rs);
-		else return null;
+		else
+			return null;
 	}
 
 	public boolean deleteItem(Item item) throws SQLException {
@@ -63,17 +64,20 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 
 	public boolean createItem(Item item, List<String> tags) throws SQLException {
 		TagDAO dao = new TagMySQLDAO();
+		List tagIds = new ArrayList();
 
 		if (tags != null) {
-			for (int i = 0; i < tags.size(); i++)
+			for (int i = 0; i < tags.size(); i++) {
 				dao.createTag(tags.get(i));
+				tagIds.add(dao.getTagId(tags.get(i)));
+			}
 		}
 
 		String query = "INSERT INTO items (title, categoryid, userid, description, "
 				+ "sold, avail_start, avail_end, price_low, price_high, popularity, "
 				+ "time_added, time_mod) "
 				+ String.format(
-						"VALUES ('%s',%s, %d, %s, '%d', %s, %s, %f, %f, %d, '%s', '%s')",
+						"VALUES ('%s',%s, %d, %s, '%d', %s, %s, %f, %f, %d, '%s', '%s');",
 						item.getTitle(), (item.getCategory() == 0 ? "NULL"
 								: item.getCategory() + ""), item.getUserid(),
 						strIsNull(item.getDescription()), item.getSold(),
@@ -83,8 +87,24 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 								.getPopularity(),
 						toSqlDate(item.getTimeAdded()), toSqlDate(item
 								.getTimeModified()));
+		
+execSql(query);
 
-		execSql(query);
+		ResultSet rs = execSql("SELECT LAST_INSERT_ID();");
+
+		if (rs.next()) {
+			for (int k=0; k<tagIds.size(); k++) {
+				try{
+					execSql("INSERT INTO item_tags VALUES (" + rs.getLong("LAST_INSERT_ID()") + "," + tagIds.get(k) + ")");
+				}
+				catch(SQLException e){
+					// Duplicate itemid-tagid pair was inserted. This means the user created two of more tags
+					// with the same string. We can safely ignore this
+					System.err.println("User inserted two identical tags for the same item. Duplicate tag ignored.");
+				}
+				
+			}
+		}
 
 		return true;
 	}
@@ -100,10 +120,10 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 	}
 
 	public List<Item> getItems(List<Tag> tags) throws SQLException {
-		
-		if(tags == null || tags.size() == 0)
+
+		if (tags == null || tags.size() == 0)
 			return getItems();
-		
+
 		String strTags = "";
 		int listSize = tags.size();
 
@@ -117,10 +137,9 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 		String query = "SELECT * FROM items i, tags t, item_tags r "
 				+ "WHERE i.itemid = r.itemid AND t.tagid = item_tags.tagid "
 				+ "AND t.tag_name IN (" + strTags + ")";
-				
+
 		ResultSet rs = execSql(query);
 
-		
 		List<Item> mylist = new ArrayList<Item>();
 		if (rs.next()) {
 			mylist.add(getItemObj(rs));

@@ -5,6 +5,7 @@ import java.util.List;
 import model.Tag;
 
 public interface TagDAO {
+	public long getTagId(String tagName) throws SQLException;
 	public boolean tagExists(String tagName) throws SQLException;
 	public boolean deleteTag(String tagName) throws SQLException;
 	public boolean createTag(String tagName) throws SQLException;
