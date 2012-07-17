@@ -97,7 +97,7 @@
 			else{
 				$.post("ItemAction",{ action: "create", title: title, description: description,
 					date1: date1, date2: date2, price1: price1, price2: price2,
-					userid: id, category: cat },
+					userid: id, category: cat, tags: tags },
 				  function(data){
 				    if(data == "false"){
 				    	alert("Item not created. There was an error.");
@@ -116,8 +116,8 @@
 	});
 </script>
 <form>
-Title: <input id="title" type="text" name="title" /><br />
-Description: <input id ="description" type="text" name="description" height=300 /><br />
+Title: <input id="title" type="text" name="title"  size="60" /><br />
+Description: <input id ="description" type="text" name="description" height=300 size="60"  /><br />
 Available from <input id ="date1" type="text" name="date1" height=300 /> to <input id ="date2" type="text" name="date2" height=300 /><br />
 Price from $<input id ="price1" type="text" name="price1" height=300 /> to $<input id ="price2" type="text" name="price2" height=300 /><br />
 Categories: <select id="categoryDropdownMenu">
@@ -126,7 +126,8 @@ Categories: <select id="categoryDropdownMenu">
 	<%}%> 
 	</select>
 	<br/>
-Tags: <input id ="tags" type="text" name="tags" height=300 onkeydown="parseTag()" /><br />
+Tags will allow your item to show up with a higher priority when those tags are keywords.<br/>
+Tags: <input id ="tags" type="text" name="tags" onkeydown="parseTag()" size="60" /><br />
 <button id = "submit" type="button">Create Item</button>
 </form> 
 </body>

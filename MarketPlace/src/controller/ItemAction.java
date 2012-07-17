@@ -1,7 +1,9 @@
 package controller;
 import global.MarketplaceConfig;
 
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServlet;
@@ -15,6 +17,7 @@ import model.User;
 import userManagementService.UserManagementService;
 import userManagementService.UserManagementServiceImpl;
 
+import java.lang.reflect.Array;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -81,12 +84,17 @@ public class ItemAction extends HttpServlet {
 			System.err.println("User exists "+userIDString +"-");
 			long userID = Long.parseLong(userIDString);
 
+			String tags = req.getParameter("tags");
+			String[] tagsArray = tags.split(",");
+			List<String> tagsList = Arrays.asList(tagsArray);
+			
+			
 			Item item = new Item(0, title, categoryID, userID, description, 0,
 					date1Parsed, date2Parsed, price1Parsed, price2Parsed, 0, new Date(), new Date());
 			
 
 				
-			if(!service.createItem(item))
+			if(!service.createItem(item, tagsList))
 			{
 				System.err.println("Item not created : " + title);
 				res.getWriter().write("false");

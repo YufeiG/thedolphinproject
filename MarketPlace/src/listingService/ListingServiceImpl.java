@@ -25,9 +25,9 @@ public class ListingServiceImpl implements ListingService{
 	}
 	
 	
-	public boolean createItem(Item i){
+	public boolean createItem(Item i, List<String> tags){
 		try {
-			return itemDAO.createItem(i, null);
+			return itemDAO.createItem(i, tags);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

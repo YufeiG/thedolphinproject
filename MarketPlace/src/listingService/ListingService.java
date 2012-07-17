@@ -12,7 +12,7 @@ import model.Tag;
 public interface ListingService {
 
 	
-	public boolean createItem(Item i);
+	public boolean createItem(Item i, List<String> tags);
 	
 
 	public List<Item> findItems(List<Tag> list, MarketplaceConfig.Category category, MarketplaceConfig.SortType sortBy) throws SQLException;
