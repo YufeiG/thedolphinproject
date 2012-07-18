@@ -63,7 +63,7 @@
 								$("#title").val(dataArray[0]);
 								$("#description").val(dataArray[1]);
 								$("#date").val(dataArray[2] + " to " +dataArray[3]);
-								$("#price").val("$"+dataArray[4] + " to $" + dataArray[5]);
+								$("#price").val(dataArray[4] + " to " + dataArray[5]);
 								$("#username").val(dataArray[6]);
 								if(dataArray[8] != "null")
 									$("#phone").val(dataArray[8]);
@@ -80,9 +80,9 @@
 			var id = '<%=session.getAttribute("currentSessionID")%>';
 			if(id != null && !isNaN(id)){
 				//add to watch list
-				var itemid = $("#id").val();
-				if(itemid != "" && !isNaN(itemid)){
-					$.post("UserAction",{ action: "addWatchList", userid: id, itemid : itemid },
+				
+				if(itemID != "" && !isNaN(itemID)){
+					$.post("UserAction",{ action: "addWatchList", userid: id, itemid : itemID },
 							  function(data){
 						if(data == "true"){
 							alert("item was added");

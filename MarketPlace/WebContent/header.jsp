@@ -83,10 +83,10 @@ String currSessionUser = (String)session.getAttribute("currentSessionUser"); %>
     <li><a href="">Categories</a>
       <div class="dropdown">
         <ul>
-          <li><a href="http://themeforest.net/make_money/become_an_author">Books</a></li>
-          <li><a href="http://themeforest.net/make_money/payment_rates">Housing</a></li>
-          <li><a href="http://themeforest.net/make_money/payment_rates">Services</a></li>
-          <li><a href="http://themeforest.net/make_money/payment_rates">Furniture</a></li>
+          <li><a href="listing.jsp?search=books&category=NONE">Books</a></li>
+          <li><a href="listing.jsp?search=housing&category=NONE">Housing</a></li>
+          <li><a href="listing.jsp?search=services&category=NONE">Services</a></li>
+          <li><a href="listing.jsp?search=furniture&category=NONE">Furniture</a></li>
         </ul>
       </div>
     </li>
