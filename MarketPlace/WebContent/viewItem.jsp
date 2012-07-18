@@ -33,10 +33,49 @@
 <input id ="email" type="text" name="email" /><br/>
 </td></tr>
 </table>
+<button id = "watch" type="button">Watch Item</button>
 
 
 <script type="text/javascript">
+	function getUrlVars() {
+		var vars = {};
+		var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,
+				function(m, key, value) {
+					vars[key] = value;
+				});
+		return vars;
+	}
+	
+	var itemID = getUrlVars()["itemid"];
+	
 	$(document).ready(function() {
+		$("#watch").click(function(){
+			var id = '<%=session.getAttribute("currentSessionID")%>';
+			if(id != null && !isNaN(id)){
+				//add to watch list
+				var itemid = $("#id").val();
+				if(itemid != "" && !isNaN(itemid)){
+					$.post("UserAction",{ action: "addWatchList", userid: id, itemid : itemid },
+							  function(data){
+						if(data == "true"){
+							alert("item was added");
+						}
+						else{
+							alert("adding failed");
+						}
+					});
+				}
+				else
+				{
+					alert("invalid item id");
+				}
+				
+			}
+			else{
+				alert("You are not signed in!");
+			}
+		
+		});
 		$("#populate").click(function(){
 			var id = $("#id").val();
 			if(id != "" && !isNaN(id)){

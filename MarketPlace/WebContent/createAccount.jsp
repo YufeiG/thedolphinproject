@@ -96,7 +96,8 @@
 		   	 	alert("Username already exists.");
 			}
 			else{
-				alert("Your account has been created. Please sign in to test.");	
+				alert("Your account has been created. Please sign in to test.");
+				window.location = "index.jsp";
 			}
 		  }
 		);

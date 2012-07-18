@@ -35,7 +35,7 @@ public class ListingServiceImpl implements ListingService{
 	}
 	
 
-	public List<Item> findItems(List<Tag> list,  MarketplaceConfig.Category category, MarketplaceConfig.SortType sortBy) throws SQLException{
+	public List<Item> findItems(List<String> tokens,  MarketplaceConfig.Category category, MarketplaceConfig.SortType sortBy) throws SQLException{
 
 		SearchProcessing processing;
 
@@ -52,7 +52,7 @@ public class ListingServiceImpl implements ListingService{
 			processing = new RandomSearchProcessing();
 		}
 		
-		List<Item> result = itemDAO.getItems(list);
+		List<Item> result = itemDAO.getItems(tokens);
 		
 		processing.process(result);
 				
@@ -90,7 +90,7 @@ public class ListingServiceImpl implements ListingService{
 
 
 	@Override
-	public boolean createTag(String tagName) throws SQLException {
+	public long createTag(String tagName) throws SQLException {
 		return tagDAO.createTag(tagName);
 	}
 

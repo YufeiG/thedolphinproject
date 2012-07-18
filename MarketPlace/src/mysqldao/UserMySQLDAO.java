@@ -116,7 +116,7 @@ public class UserMySQLDAO extends AbstractDAO implements UserDAO{
 		Date d = new Date(System.currentTimeMillis());
 		
 		String query = String.format(
-				"INSERT INTO watchlist VALUES (%d, %d, %s)", itemid, userid, toSqlDate(d));
+				"INSERT INTO watchlist VALUES (%d, %d, '%s')", itemid, userid, toSqlDate(d));
 		execSql(query);
 		
 		return true;

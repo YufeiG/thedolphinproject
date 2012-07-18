@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import model.Item;
@@ -47,6 +48,7 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 	}
 
 	public boolean editItem(Item item) throws SQLException {
+		Date d = new Date(System.currentTimeMillis());
 		String query = "UPDATE users"
 				+ String.format("SET title='%s', " + "categoryid=%d, "
 						+ "description=%s, " + "sold=%d, " + "avail_start=%s, "
@@ -57,7 +59,7 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 						strIsNull(item.getAvailStart().toString()),
 						strIsNull(item.getAvailEnd().toString()),
 						item.getPriceLow(), item.getPriceHigh(),
-						item.getPopularity(), item.getTimeModified().toString());
+						item.getPopularity(), toSqlDate(d));
 		execSql(query);
 		return true;
 	}
@@ -112,7 +114,7 @@ execSql(query);
 	public List<Item> getItems() throws SQLException {
 		ResultSet rs = execSql("SELECT * FROM items");
 		List<Item> mylist = new ArrayList<Item>();
-		if (rs.next()) {
+		while (rs.next()) {
 			mylist.add(getItemObj(rs));
 		}
 
@@ -128,10 +130,10 @@ execSql(query);
 		int listSize = tags.size();
 
 		if (listSize > 0)
-			strTags = "'" + tags.get(0).toString() + "'";
+			strTags = "'" + tags.get(0).getName() + "'";
 
 		for (int i = 1; i < listSize; i++) {
-			strTags += ", '" + tags.get(0).toString() + "'";
+			strTags += ", '" + tags.get(0).getName() + "'";
 		}
 
 		String query = "SELECT * FROM items i, tags t, item_tags r "
@@ -143,6 +145,22 @@ execSql(query);
 		List<Item> mylist = new ArrayList<Item>();
 		if (rs.next()) {
 			mylist.add(getItemObj(rs));
+		}
+
+		return mylist;
+	}
+	
+	public List<Item> getItemsDetailed(List<String> tokens) throws SQLException {
+
+		List<Item> mylist = new ArrayList<Item>();
+
+		for (int i=0; i<tokens.size(); i++) {
+			String thisToken = tokens.get(i);
+			String query = "SELECT * FROM items i WHERE i.title LIKE '%"+thisToken+"%' OR i.description LIKE '%"+thisToken+"%'";
+			ResultSet rs = execSql(query);
+			if (rs.next()) {
+				mylist.add(getItemObj(rs));
+			}
 		}
 
 		return mylist;

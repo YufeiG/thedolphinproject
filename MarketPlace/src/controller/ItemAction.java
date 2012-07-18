@@ -47,7 +47,6 @@ public class ItemAction extends HttpServlet {
 			String description = req.getParameter("description");
 			String date1 = req.getParameter("date1");
 			String date2 = req.getParameter("date2");
-			System.err.println("DATE IS ");
 			System.err.println("DATE IS "+date1+" "+date2);
 			
 			

@@ -6,6 +6,7 @@ import htmlGenerator.SearchHtmlGenerator;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -35,26 +36,22 @@ public class SearchAction extends HttpServlet {
 		
 		
 		String action = req.getParameter("action");
-		String longTag = req.getParameter("headerSearchInput");
-		String categoryString = req.getParameter("category");
-		SortType sortType = MarketplaceConfig.SortType.NONE;
-		String [] tagTemp = longTag.split(" ");
-		List<Tag> tags = new ArrayList<Tag>();
 		
-		for(SortType sortTypeTemp : MarketplaceConfig.SortType.values()){
-			sortTypeTemp.name().equals(categoryString);
-			sortType = sortTypeTemp;
-		}
+		String categoryString = req.getParameter("category");
+		SortType sortType =  MarketplaceConfig.SortType.valueOf(categoryString);
+		
+		String longTag = req.getParameter("headerSearchInput");
+		
+		List<String> tokens = Arrays.asList(longTag.split(" "));
+
+		
+
 		//Possible Search Actions
 		
+	 
 		if("searchFromHeader".equals(action)){
 			
-			for(int i = 0; i<tagTemp.length; i++){
-				tagTemp[i].trim();
-				if(!tagTemp.equals("")){
-					tags.add(new Tag(0,tagTemp[i]));
-				}
-			}
+			
 			//String category = req.getParameter("category");
 			//String sortType = req.getParameter("sortType");
 	
@@ -65,8 +62,9 @@ public class SearchAction extends HttpServlet {
 				ListingService listingService = new ListingServiceImpl();
 				List<Item> searchResult;
 				
-				searchResult = listingService.findItems(null, null, sortType);
-				
+				searchResult = listingService.findItems(tokens, null, sortType);
+	
+				System.err.println("items: "+searchResult);
 				res.setContentType("text/html");
 				res.getWriter().write(SearchHtmlGenerator.createItemTableHtml(searchResult));
 			} catch (SQLException e) {
