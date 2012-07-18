@@ -110,7 +110,7 @@ public class UserAction extends HttpServlet {
 			String itemIDString = req.getParameter("itemid");
 			long itemID = Long.parseLong(itemIDString);
 			
-			System.err.println("UserAction:addWatchList");
+			System.err.println("UserAction:addWatchList with ids "+userID+" item: "+itemID);
 			try {
 				if(service.addToWatchList(itemID, userID)){
 					res.getWriter().write("true");
