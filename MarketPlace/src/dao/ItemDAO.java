@@ -19,4 +19,5 @@ public interface ItemDAO {
 	public List<Item> getItemsDetailed(List<String> tokens) throws SQLException;
 	public List<Item> getItemsByCategory(List<MarketplaceConfig.Category> cats) throws SQLException;
 	public List<Item> getItemsByUser(long userid) throws SQLException;
+	public List<Item> getItemsQuery(String query) throws SQLException;
 }

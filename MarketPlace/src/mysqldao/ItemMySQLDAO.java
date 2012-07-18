@@ -118,7 +118,7 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 		return true;
 	}
 
-	private List<Item> getItems(String query) throws SQLException {
+	public List<Item> getItemsQuery(String query) throws SQLException {
 		List<Item> mylist = new ArrayList<Item>();
 
 		ResultSet rs = execSql(query);
@@ -131,7 +131,7 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 	}
 
 	public List<Item> getItems() throws SQLException {
-		return getItems("SELECT * FROM items AND avail_end<='" + getCurDate()
+		return getItemsQuery("SELECT * FROM items AND avail_end<='" + getCurDate()
 				+ "'");
 	}
 
@@ -153,7 +153,7 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 				+ "AND t.tag_name IN (" + strTags + ")" + "AND i.avail_end<='"
 				+ getCurDate() + "'";
 
-		return getItems(query);
+		return getItemsQuery(query);
 	}
 
 	public List<Item> getItemsDetailed(List<String> tokens) throws SQLException {
@@ -191,7 +191,7 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 				catIds += ", " + cats.get(i).getValue();
 			}
 
-			mylist = getItems("SELECT * FROM items WHERE categoryid IN ("
+			mylist = getItemsQuery("SELECT * FROM items WHERE categoryid IN ("
 					+ catIds + ")");
 		}
 
@@ -202,7 +202,7 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 
 		List<Item> mylist = new ArrayList<Item>();
 
-		mylist = getItems("SELECT * FROM items WHERE userid=" + userid + "");
+		mylist = getItemsQuery("SELECT * FROM items WHERE userid=" + userid + "");
 
 		return mylist;
 	}
