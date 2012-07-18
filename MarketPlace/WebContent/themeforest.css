@@ -229,34 +229,34 @@ nav[role=navigation] .search-container input {
 
 nav[role=navigation] .search-container button[type=submit] {
 	background: #705536
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-697px no-repeat;
 	background:
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-697px no-repeat,
 		-webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #8a6741),
 		color-stop(100%, #705536) ), #705536
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-697px no-repeat;
 	background:
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-697px no-repeat, -webkit-linear-gradient(#8a6741, #705536), #705536
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-697px no-repeat;
 	background:
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-697px no-repeat, -moz-linear-gradient(#8a6741, #705536), #705536
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-697px no-repeat;
 	background:
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-697px no-repeat, -o-linear-gradient(#8a6741, #705536), #705536
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-697px no-repeat;
 	background:
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-697px no-repeat, linear-gradient(#8a6741, #705536), #705536
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-697px no-repeat;
 	border: 0;
 	float: right;
@@ -266,67 +266,67 @@ nav[role=navigation] .search-container button[type=submit] {
 nav[role=navigation] .search-container button[type=submit]:hover,nav[role=navigation] .search-container button[type=submit]:focus
 	{
 	background: #634b30
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-697px no-repeat;
 	background:
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-697px no-repeat,
 		-webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #7d5d3b),
 		color-stop(100%, #634b30) ), #634b30
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-697px no-repeat;
 	background:
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-697px no-repeat, -webkit-linear-gradient(#7d5d3b, #634b30), #634b30
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-697px no-repeat;
 	background:
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-697px no-repeat, -moz-linear-gradient(#7d5d3b, #634b30), #634b30
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-697px no-repeat;
 	background:
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-697px no-repeat, -o-linear-gradient(#7d5d3b, #634b30), #634b30
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-697px no-repeat;
 	background:
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-697px no-repeat, linear-gradient(#7d5d3b, #634b30), #634b30
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-697px no-repeat
 }
 
 nav[role=navigation] .search-container button[type=submit]:active {
 	background: #705536
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-696px no-repeat;
 	background:
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-696px no-repeat,
 		-webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #634b30),
 		color-stop(100%, #7d5d3b) ), #705536
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-696px no-repeat;
 	background:
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-696px no-repeat, -webkit-linear-gradient(#634b30, #7d5d3b), #705536
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-696px no-repeat;
 	background:
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-696px no-repeat, -moz-linear-gradient(#634b30, #7d5d3b), #705536
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-696px no-repeat;
 	background:
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-696px no-repeat, -o-linear-gradient(#634b30, #7d5d3b), #705536
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-696px no-repeat;
 	background:
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-696px no-repeat, linear-gradient(#634b30, #7d5d3b), #705536
-		url(/css/buttons.png) 7px
+		url('css/buttons.png') 7px
 		-696px no-repeat
 }
 
@@ -9886,163 +9886,163 @@ input[type="submit"]::-moz-focus-inner,button::-moz-focus-inner {
 
 .btn-icon.bookmark:after {
 	background:
-		url(/css/buttons.png) 0 0
+		url('css/buttons.png') 0 0
 		no-repeat
 }
 
 .btn-icon.delete:after {
 	background:
-		url(/css/buttons.png) 0
+		url('css/buttons.png') 0
 		-37px no-repeat
 }
 
 .btn-icon.disable:after {
 	background:
-		url(/css/buttons.png) 0
+		url('css/buttons.png') 0
 		-74px no-repeat
 }
 
 .btn-icon.download:after {
 	background:
-		url(/css/buttons.png) 0
+		url('css/buttons.png') 0
 		-111px no-repeat
 }
 
 .btn-icon.get-hosting:after {
 	background:
-		url(/css/buttons.png) 0
+		url('css/buttons.png') 0
 		-148px no-repeat
 }
 
 .btn-icon.global:after {
 	background:
-		url(/css/buttons.png) 0
+		url('css/buttons.png') 0
 		-185px no-repeat
 }
 
 .btn-icon.grid-view:after {
 	background:
-		url(/css/buttons.png) 0
+		url('css/buttons.png') 0
 		-222px no-repeat
 }
 
 .btn-icon.help:after {
 	background:
-		url(/css/buttons.png) 0
+		url('css/buttons.png') 0
 		-259px no-repeat
 }
 
 .btn-icon.list-view:after {
 	background:
-		url(/css/buttons.png) 0
+		url('css/buttons.png') 0
 		-296px no-repeat
 }
 
 .btn-icon.live-preview:after {
 	background:
-		url(/css/buttons.png) 0
+		url('css/buttons.png') 0
 		-333px no-repeat
 }
 
 .btn-icon.lock:after {
 	background:
-		url(/css/buttons.png) 0
+		url('css/buttons.png') 0
 		-370px no-repeat
 }
 
 .btn-icon.new-thread:after {
 	background:
-		url(/css/buttons.png) 0
+		url('css/buttons.png') 0
 		-407px no-repeat
 }
 
 .btn-icon.portfolio:after {
 	background:
-		url(/css/buttons.png) 0
+		url('css/buttons.png') 0
 		-444px no-repeat
 }
 
 .btn-icon.post-reply:after {
 	background:
-		url(/css/buttons.png) 0
+		url('css/buttons.png') 0
 		-481px no-repeat
 }
 
 .btn-icon.process:after {
 	background:
-		url(/css/buttons.png) 0
+		url('css/buttons.png') 0
 		-518px no-repeat
 }
 
 .btn-icon.purchase:after {
 	background:
-		url(/css/buttons.png) 0
+		url('css/buttons.png') 0
 		-555px no-repeat
 }
 
 .btn-icon.regenerate:after {
 	background:
-		url(/css/buttons.png) 0
+		url('css/buttons.png') 0
 		-592px no-repeat
 }
 
 .btn-icon.save:after {
 	background:
-		url(/css/buttons.png) 0
+		url('css/buttons.png') 0
 		-629px no-repeat
 }
 
 .btn-icon.screenshots:after {
 	background:
-		url(/css/buttons.png) 0
+		url('css/buttons.png') 0
 		-666px no-repeat
 }
 
 .btn-icon.search-text:after {
 	background:
-		url(/css/buttons.png) 0
+		url('css/buttons.png') 0
 		-703px no-repeat
 }
 
 .btn-icon.sticky:after {
 	background:
-		url(/css/buttons.png) 0
+		url('css/buttons.png') 0
 		-740px no-repeat
 }
 
 .btn-icon.submit:after {
 	background:
-		url(/css/buttons.png) 0
+		url('css/buttons.png') 0
 		-777px no-repeat
 }
 
 .btn-icon.subscribe-mail:after {
 	background:
-		url(/css/buttons.png) 0
+		url('css/buttons.png') 0
 		-814px no-repeat
 }
 
 .btn-icon.subscribe-rss:after {
 	background:
-		url(/css/buttons.png) 0
+		url('css/buttons.png') 0
 		-851px no-repeat
 }
 
 .btn-icon.update:after {
 	background:
-		url(/css/buttons.png) 0
+		url('css/buttons.png') 0
 		-888px no-repeat
 }
 
 .btn-icon.upload:after {
 	background:
-		url(/css/buttons.png) 0
+		url('css/buttons.png') 0
 		-925px no-repeat
 }
 
 .btn-icon.video-preview:after {
 	background:
-		url(/css/buttons.png) 0
+		url('css/buttons.png') 0
 		-962px no-repeat
 }
 
@@ -10085,34 +10085,34 @@ input[type="submit"]::-moz-focus-inner,button::-moz-focus-inner {
 
 .search[type=submit] {
 	background: #705536
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-698px no-repeat;
 	background:
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-698px no-repeat,
 		-webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #8a6741),
 		color-stop(100%, #705536) ), #705536
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-698px no-repeat;
 	background:
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-698px no-repeat, -webkit-linear-gradient(#8a6741, #705536), #705536
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-698px no-repeat;
 	background:
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-698px no-repeat, -moz-linear-gradient(#8a6741, #705536), #705536
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-698px no-repeat;
 	background:
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-698px no-repeat, -o-linear-gradient(#8a6741, #705536), #705536
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-698px no-repeat;
 	background:
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-698px no-repeat, linear-gradient(#8a6741, #705536), #705536
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-698px no-repeat;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -10124,67 +10124,67 @@ input[type="submit"]::-moz-focus-inner,button::-moz-focus-inner {
 
 .search[type=submit]:hover,.search[type=submit]:focus {
 	background: #634b30
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-698px no-repeat;
 	background:
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-698px no-repeat,
 		-webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #7d5d3b),
 		color-stop(100%, #634b30) ), #634b30
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-698px no-repeat;
 	background:
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-698px no-repeat, -webkit-linear-gradient(#7d5d3b, #634b30), #634b30
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-698px no-repeat;
 	background:
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-698px no-repeat, -moz-linear-gradient(#7d5d3b, #634b30), #634b30
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-698px no-repeat;
 	background:
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-698px no-repeat, -o-linear-gradient(#7d5d3b, #634b30), #634b30
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-698px no-repeat;
 	background:
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-698px no-repeat, linear-gradient(#7d5d3b, #634b30), #634b30
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-698px no-repeat
 }
 
 .search[type=submit]:active {
 	background: #705536
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-697px no-repeat;
 	background:
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-697px no-repeat,
 		-webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #634b30),
 		color-stop(100%, #7d5d3b) ), #705536
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-697px no-repeat;
 	background:
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-697px no-repeat, -webkit-linear-gradient(#634b30, #7d5d3b), #705536
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-697px no-repeat;
 	background:
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-697px no-repeat, -moz-linear-gradient(#634b30, #7d5d3b), #705536
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-697px no-repeat;
 	background:
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-697px no-repeat, -o-linear-gradient(#634b30, #7d5d3b), #705536
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-697px no-repeat;
 	background:
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-697px no-repeat, linear-gradient(#634b30, #7d5d3b), #705536
-		url(/css/buttons.png) 6px
+		url('css/buttons.png') 6px
 		-697px no-repeat
 }
 
