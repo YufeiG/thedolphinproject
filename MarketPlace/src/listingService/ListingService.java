@@ -7,12 +7,13 @@ import java.util.Iterator;
 import java.util.List;
 
 import model.Item;
+import model.Tag;
 
 public interface ListingService {
 
 	public boolean createItem(Item i, List<String> tags);
 
-	public Iterator findItems(List<String> tokens,
+	public Iterator<Item> findItems(List<String> tokens,
 			MarketplaceConfig.Category category,
 			MarketplaceConfig.SortType sortBy) throws SQLException;
 
@@ -26,6 +27,6 @@ public interface ListingService {
 
 	public long createTag(String tagName) throws SQLException;
 
-	public Iterator getAllTags() throws SQLException;
+	public Iterator<Tag> getAllTags() throws SQLException;
 
 }

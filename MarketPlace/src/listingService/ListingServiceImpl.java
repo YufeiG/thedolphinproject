@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import model.Item;
+import model.Tag;
 import mysqldao.MySQLDAOFactory;
 import dao.AbstractDAOFactory;
 import dao.ItemDAO;
@@ -35,7 +36,7 @@ public class ListingServiceImpl implements ListingService{
 	}
 	
 
-	public Iterator findItems(List<String> tokens,  MarketplaceConfig.Category category, MarketplaceConfig.SortType sortBy) throws SQLException{
+	public Iterator<Item> findItems(List<String> tokens,  MarketplaceConfig.Category category, MarketplaceConfig.SortType sortBy) throws SQLException{
 
 		SearchProcessing processing;
 
@@ -92,7 +93,7 @@ public class ListingServiceImpl implements ListingService{
 
 
 	@Override
-	public Iterator getAllTags() throws SQLException {
+	public Iterator<Tag> getAllTags() throws SQLException {
 		return tagDAO.getTags().iterator();
 	}
 }
