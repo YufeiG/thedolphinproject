@@ -77,5 +77,4 @@ public abstract class AbstractDAO {
 		Date d = new Date(System.currentTimeMillis());
 		return toSqlDate(d);
 	}
-	}
 }
