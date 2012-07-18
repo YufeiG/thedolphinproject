@@ -80,9 +80,9 @@
 			var id = '<%=session.getAttribute("currentSessionID")%>';
 			if(id != null && !isNaN(id)){
 				//add to watch list
-				var itemid = $("#id").val();
-				if(itemid != "" && !isNaN(itemid)){
-					$.post("UserAction",{ action: "addWatchList", userid: id, itemid : itemid },
+				
+				if(itemID != "" && !isNaN(itemID)){
+					$.post("UserAction",{ action: "addWatchList", userid: id, itemid : itemID },
 							  function(data){
 						if(data == "true"){
 							alert("item was added");
