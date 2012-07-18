@@ -112,7 +112,7 @@ execSql(query);
 	}
 
 	public List<Item> getItems() throws SQLException {
-		ResultSet rs = execSql("SELECT * FROM items");
+		ResultSet rs = execSql("SELECT * FROM items AND avail_end<='"+getCurDate()+"'");
 		List<Item> mylist = new ArrayList<Item>();
 		while (rs.next()) {
 			mylist.add(getItemObj(rs));
@@ -135,10 +135,11 @@ execSql(query);
 		for (int i = 1; i < listSize; i++) {
 			strTags += ", '" + tags.get(0).getName() + "'";
 		}
-
+		
 		String query = "SELECT * FROM items i, tags t, item_tags r "
 				+ "WHERE i.itemid = r.itemid AND t.tagid = item_tags.tagid "
-				+ "AND t.tag_name IN (" + strTags + ")";
+				+ "AND t.tag_name IN (" + strTags + ")"
+				+ "AND i.avail_end<='"+getCurDate()+"'";
 
 		ResultSet rs = execSql(query);
 
@@ -156,7 +157,9 @@ execSql(query);
 
 		for (int i=0; i<tokens.size(); i++) {
 			String thisToken = tokens.get(i);
-			String query = "SELECT * FROM items i WHERE i.title LIKE '%"+thisToken+"%' OR i.description LIKE '%"+thisToken+"%'";
+			String query = "SELECT * FROM items i WHERE i.title LIKE '%" 
+					+ thisToken + "%' OR i.description LIKE '%" + thisToken + "%'"
+					+ "OR i.avail_end<='"+getCurDate()+"'";
 			ResultSet rs = execSql(query);
 			if (rs.next()) {
 				mylist.add(getItemObj(rs));

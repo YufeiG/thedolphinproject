@@ -72,4 +72,10 @@ public abstract class AbstractDAO {
 		StringBuilder YYYYMMDD = new StringBuilder( dateformatYYYYMMDD.format(d) );
 		return YYYYMMDD.toString();
 	}
+	
+	protected String getCurDate() {
+		Date d = new Date(System.currentTimeMillis());
+		return toSqlDate(d);
+	}
+	}
 }
