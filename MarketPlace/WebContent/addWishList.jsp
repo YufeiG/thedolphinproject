@@ -65,11 +65,17 @@
 		
 		
 		$("#save").click(function(){
-			parseTag();
-			var tags = $.trim($("#tags").val());
+			//parseTag();
+			var tags = "";
+			
+			for(var i = existingTags; i < $("#tagInputs").size() ; i++){
+				var r = $("#tag"+i).val();
+				if(r == null || r == "") continue;
+				if(i != $("#tagInputs").size()-1) tags += r + ",";
+				else tags += r;
+			}
 			
 			if(tags == ""){
-				alert("Tags cannot be empty!!");
 				return;
 			}
 		
