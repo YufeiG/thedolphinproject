@@ -152,28 +152,15 @@ execSql(query);
 	
 	public List<Item> getItemsDetailed(List<String> tokens) throws SQLException {
 
-		if (tags == null || tags.size() == 0)
-			return getItems();
-
-		String strTags = "";
-		int listSize = tags.size();
-
-		if (listSize > 0)
-			strTags = "'" + tags.get(0).toString() + "'";
-
-		for (int i = 1; i < listSize; i++) {
-			strTags += ", '" + tags.get(0).toString() + "'";
-		}
-
-		String query = "SELECT * FROM items i, tags t, item_tags r "
-				+ "WHERE i.itemid = r.itemid AND t.tagid = item_tags.tagid "
-				+ "AND t.tag_name IN (" + strTags + ")";
-
-		ResultSet rs = execSql(query);
-
 		List<Item> mylist = new ArrayList<Item>();
-		if (rs.next()) {
-			mylist.add(getItemObj(rs));
+
+		for (int i=0; i<tokens.size(); i++) {
+			String thisToken = tokens.get(i);
+			String query = "SELECT * FROM items i WHERE i.title LIKE '%"+thisToken+"%' OR i.description LIKE '%"+thisToken+"%'";
+			ResultSet rs = execSql(query);
+			if (rs.next()) {
+				mylist.add(getItemObj(rs));
+			}
 		}
 
 		return mylist;
