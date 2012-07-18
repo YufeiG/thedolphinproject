@@ -25,13 +25,11 @@
 	}
 	//var userid = getUrlVars()["userid"];
 
-	alert("hello");
 
 	$.post("WatchlistAction", {
 		action : "displayWatchlist"
 	}, function(data) {
 		if (data != null) {
-			alert(data);
 			//Set the main Pane to datatable as given by SearchAction
 			$("#mainPane").html(data);
 			$('#searchResultTable').dataTable();

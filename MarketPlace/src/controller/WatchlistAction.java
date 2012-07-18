@@ -43,9 +43,9 @@ public class WatchlistAction extends HttpServlet {
 			try {
 				UserManagementService userManagementService = new UserManagementServiceImpl();
 				Iterator<Item> watchlist;
-				System.out.println("UserId" + req.getSession().getAttribute("currentSessionID"));
 				watchlist = userManagementService.getWatchList((Long) req.getSession().getAttribute("currentSessionID"));
-				
+				System.out.println(watchlist.hasNext());
+
 				res.setContentType("text/html");
 				res.getWriter().write(SearchHtmlGenerator.createItemTableHtml(watchlist));
 			} catch (Exception e) {

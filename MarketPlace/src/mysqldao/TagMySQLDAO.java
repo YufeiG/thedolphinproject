@@ -58,19 +58,19 @@ public class TagMySQLDAO extends AbstractDAO implements TagDAO {
 
 	public boolean addTagsToWishlist(long userid, List<String> tagNames)
 			throws SQLException {
-		
 		for (int i = 0; i < tagNames.size(); i++) {
 			String thisTag = tagNames.get(i);
 			Date d = new Date(System.currentTimeMillis());
 			long thisTagid = createTag(thisTag);
 
+
 			if (thisTagid != 0) {
 				execSql(String.format("INSERT INTO wishlist VALUES (%d,%d,'%s')",
 						userid, thisTagid, toSqlDate(d)));
-				return true;
+		
 			}
 		}
-		return false;
+		return true;
 	}
 	
 	public boolean removeTagsFromWishlist(long userid, List<String> tagNames)
@@ -93,7 +93,7 @@ public class TagMySQLDAO extends AbstractDAO implements TagDAO {
 		ResultSet rs = execSql("SELECT * " + "FROM Tags t, wishlist w "
 				+ "WHERE t.tagid = w.tagid AND w.userid = " + userid);
 		List<Tag> ret = new ArrayList<Tag>();
-		if (rs.next())
+		while (rs.next())
 			ret.add(createTagObj(rs));
 		return ret;
 	}

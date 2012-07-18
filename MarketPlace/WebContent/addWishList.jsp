@@ -45,7 +45,7 @@
 		
 			$.post("WishlistAction",{ action: "get", userid: id},
 					  function(data){
-						alert(data);
+						//alert(data);
 						if(data != "false" && data != "error"){
 							var dataArray = data.split(",");
 							existingTags = dataArray.length;
@@ -67,12 +67,18 @@
 		$("#save").click(function(){
 			//parseTag();
 			var tags = "";
-			
-			for(var i = existingTags; i < $("#tagInputs").size() ; i++){
+
+			for(var i = existingTags; i < $("#tagInputs").children().length ; i++){
 				var r = $("#tag"+i).val();
 				if(r == null || r == "") continue;
-				if(i != $("#tagInputs").size()-1) tags += r + ",";
-				else tags += r;
+				
+				if(i == existingTags){
+					tags += r ;
+				
+				}
+				else{
+					tags += ","+ r;
+				}
 			}
 			
 			if(tags == ""){
@@ -91,7 +97,7 @@
 				    }
 				    else if(data == "true"){
 				    	alert("Tags were successfully added.");
-				    	window.location = "index.jsp";
+				    	window.location = "addWishList.jsp";
 				    }
 				    else{
 				    	alert("Server error! Try again later.");
