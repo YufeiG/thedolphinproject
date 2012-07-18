@@ -128,6 +128,6 @@ public class UserMySQLDAO extends AbstractDAO implements UserDAO{
 	public List<Item> getWatchlist(long userid) throws SQLException {
 		AbstractDAOFactory fact = new MySQLDAOFactory();
 		ItemDAO itemdao = fact.getItemDAO();
-		return itemdao.getItemsQuery("SELECT * FROM watchlist WHERE userid=" + userid);
+		return itemdao.getItemsQuery("SELECT * FROM watchlist w JOIN items i ON (w.itemid = i.itemid) WHERE w.userid=" + userid);
 	}
 }
