@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import model.Tag;
@@ -32,13 +33,13 @@ public class TagMySQLDAO extends AbstractDAO implements TagDAO {
 	}
 
 
-	public boolean tagExists(String tagName) throws SQLException {
+	private long tagExists(String tagName) throws SQLException {
 		ResultSet rs = execSql(String.format(
 				"SELECT * FROM tags WHERE tag_name='%s'", tagName));
 		if (rs.next())
-			return true;
+			return rs.getLong("tagid");
 		else
-			return false;
+			return 0;
 	}
 
 	public boolean deleteTag(String tagName) throws SQLException {
@@ -47,8 +48,8 @@ public class TagMySQLDAO extends AbstractDAO implements TagDAO {
 	}
 
 	public long createTag(String tagName) throws SQLException {
-		long id = 0;
-		if (!tagExists(tagName)) {
+		long id = tagExists(tagName);
+		if (id == 0) {
 			execSql(String.format("INSERT INTO tags(tag_name) VALUES ('%s')", tagName));
 			ResultSet rs = execSql("SELECT LAST_INSERT_ID();");
 			if (rs.next()) id = rs.getLong("LAST_INSERT_ID()");
@@ -58,16 +59,24 @@ public class TagMySQLDAO extends AbstractDAO implements TagDAO {
 
 	public boolean addTagsToWishlist(long userid, List<String> tagNames)
 			throws SQLException {
+
+		HashMap<Long,Boolean> addedTagids = new HashMap<Long,Boolean>();
+		HashMap<Long,Boolean> existingTags = new HashMap<Long,Boolean>();
+		
+		List<Tag> usersTags = getTags(userid);
+		for (int k=0; k<usersTags.size(); k++) {
+			existingTags.put(usersTags.get(k).getTagid(), true);
+		}
+
 		for (int i = 0; i < tagNames.size(); i++) {
 			String thisTag = tagNames.get(i);
 			Date d = new Date(System.currentTimeMillis());
 			long thisTagid = createTag(thisTag);
 
-
-			if (thisTagid != 0) {
+			if (!addedTagids.containsKey(thisTagid) && !existingTags.containsKey(thisTagid)) {
 				execSql(String.format("INSERT INTO wishlist VALUES (%d,%d,'%s')",
 						userid, thisTagid, toSqlDate(d)));
-		
+				addedTagids.put(thisTagid, true);
 			}
 		}
 		return true;

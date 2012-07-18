@@ -74,8 +74,8 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 
 		if (tags != null) {
 			for (int i = 0; i < tags.size(); i++) {
-				dao.createTag(tags.get(i));
-				tagIds.add(dao.getTagId(tags.get(i)));
+				long tagid = dao.createTag(tags.get(i));
+				tagIds.add(tagid);
 			}
 		}
 
