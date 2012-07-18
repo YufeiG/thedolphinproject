@@ -7,6 +7,7 @@ import htmlGenerator.SearchHtmlGenerator;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServlet;
@@ -41,9 +42,9 @@ public class WatchlistAction extends HttpServlet {
 			
 			try {
 				UserManagementService userManagementService = new UserManagementServiceImpl();
-				List<Item> watchlist;
-				
-				watchlist = userManagementService.getWatchList(new User((Long) req.getSession().getAttribute("currentSessionID"),null,null,null,null,null,null,null));
+				Iterator<Item> watchlist;
+				System.out.println("UserId" + req.getSession().getAttribute("currentSessionID"));
+				watchlist = userManagementService.getWatchList((Long) req.getSession().getAttribute("currentSessionID"));
 				
 				res.setContentType("text/html");
 				res.getWriter().write(SearchHtmlGenerator.createItemTableHtml(watchlist));

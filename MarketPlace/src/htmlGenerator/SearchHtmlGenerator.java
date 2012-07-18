@@ -1,5 +1,6 @@
 package htmlGenerator;
 
+import java.util.Iterator;
 import java.util.List;
 
 import model.Item;
@@ -10,7 +11,7 @@ public class SearchHtmlGenerator {
 	 * @return A html table
 	 */
 	
-	public static String createItemTableHtml(List<Item> searchResult){
+	public static String createItemTableHtml(Iterator<Item> searchResult){
 		StringBuilder table = new StringBuilder();
 		table.append("<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"display\" id=\"searchResultTable\" width=\"100%\">");
 		table.append("<thead>");
@@ -24,15 +25,16 @@ public class SearchHtmlGenerator {
 		table.append("</tr>");
 		table.append("</thead>");
 		table.append("<tbody>");
-		
-		for(int i = 0; i<searchResult.size(); i++){
+		Item item;
+		while(searchResult.hasNext()){
+			item = searchResult.next();
 			table.append("<tr>");
-			table.append("<td><a href=\"viewItem.jsp?itemid="+searchResult.get(i).getItemid()+"\">" + searchResult.get(i).getTitle()+"</a></td>");
-			table.append("<td>" + searchResult.get(i).getCategoryString()+"</td>");
-			table.append("<td>" + searchResult.get(i).getDescription()+"</td>");
-			table.append("<td>" + searchResult.get(i).getPriceLowString()+"</td>");
-			table.append("<td>" + searchResult.get(i).getPriceHighString()+"</td>");
-			table.append("<td>" + searchResult.get(i).getTimeAdded().toString()+"</td>");
+			table.append("<td><a href=\"viewItem.jsp?itemid="+item.getItemid()+"\">" + item.getTitle()+"</a></td>");
+			table.append("<td>" + item.getCategoryString()+"</td>");
+			table.append("<td>" + item.getDescription()+"</td>");
+			table.append("<td>" + item.getPriceLowString()+"</td>");
+			table.append("<td>" + item.getPriceHighString()+"</td>");
+			table.append("<td>" + item.getTimeAdded().toString()+"</td>");
 			table.append("</tr>");
 		}
 		
