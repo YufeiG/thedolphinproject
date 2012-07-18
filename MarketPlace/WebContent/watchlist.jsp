@@ -11,7 +11,10 @@
 <title>My Watchlist</title>
 </head>
 <body>
+<center>
+<h4>- Watch List -</h4>
 		<div id="mainPane"></div>
+</center>
 </body>
 <script type="text/javascript" charset="utf-8">
 
@@ -38,3 +41,5 @@
 
 </script>
 </html>
+
+<%@ include file="footer.jsp" %>

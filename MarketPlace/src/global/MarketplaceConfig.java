@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public final class MarketplaceConfig {
-	public static String DB_PW = "yufei";
+	public static String DB_PW = "dongfang";
 	public static long WISH_LIST_MATCH_TIME_INTERVAL = 24*60*60*1000; //run match algorithm once per day
 
 	public static enum SortType {

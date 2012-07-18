@@ -11,7 +11,8 @@
 
 </head>
 <body>
-
+<center>
+<h4>- View Items -</h4>
 
 <table>
 <tr><td>Seller name: </td><td> <input id="username" type="text" name="username" /></td></tr>
@@ -33,7 +34,10 @@
 </td></tr>
 
 </table>
+<p></p>
 <button id = "watch" type="button">Watch Item</button>
+
+</center>
 
 
 <script type="text/javascript">
@@ -109,3 +113,4 @@
 </script> 
 </body>
 </html>
+<%@ include file="footer.jsp" %>

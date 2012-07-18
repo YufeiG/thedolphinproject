@@ -14,6 +14,9 @@
 <title>Create Item</title>
 </head>
 <body>
+<center>
+<h4>- Create an Item -</h4>
+
 <script type="text/javascript">
 	function parseTag(){
 		var tags = $("#tags").val();
@@ -118,19 +121,26 @@
 	});
 </script>
 <form>
-Title: <input id="title" type="text" name="title"  size="60" /><br />
-Description: <input id ="description" type="text" name="description" height=300 size="60"  /><br />
-Available from <input id ="date1" type="text" name="date1" height=300 /> to <input id ="date2" type="text" name="date2" height=300 /><br />
-Price from $<input id ="price1" type="text" name="price1" height=300 /> to $<input id ="price2" type="text" name="price2" height=300 /><br />
-Categories: <select id="categoryDropdownMenu">
+<table class="input_table">
+<tr><td>Title:</td><td><input id="title" type="text" name="title"  size="60" /><br /></td></tr>
+<tr><td>Description:</td><td><input id ="description" type="text" name="description" height=300 size="60"  /><br /></td></tr>
+<tr><td>Available from </td><td><input id ="date1" type="text" name="date1" height=300 /> to <input id ="date2" type="text" name="date2" height=300 /><br /></td></tr>
+<tr><td>Price from $</td><td><input id ="price1" type="text" name="price1" height=300 /> to $<input id ="price2" type="text" name="price2" height=300 /><br /></td></tr>
+<tr><td>Categories:</td><td><select id="categoryDropdownMenu">
 <% for(Category category: MarketplaceConfig.Category.values()){%>
 	<option value="<%= category.name()%>"><%= category.name()%></option>		
 	<%}%> 
 	</select>
-	<br/>
-Tags will allow your item to show up with a higher priority when those tags are keywords.<br/>
-Tags: <input id ="tags" type="text" name="tags" onkeydown="parseTag()" size="60" /><br />
+	<br/></td></tr>
+<tr><td>Tags:</td><td><input id ="tags" type="text" name="tags" onkeydown="parseTag()" size="60" /><br /></td></tr>
+<tr><td></td><td>Tags will allow your item to show up with a higher priority when those tags are keywords.<br/></td></tr>
+
+</table>
+<p></p>
 <button id = "submit" type="button">Create Item</button>
-</form> 
+</form>
+
+</center> 
 </body>
 </html>
+<%@ include file="footer.jsp" %>

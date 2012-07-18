@@ -265,7 +265,8 @@ nav[role=navigation] .search-container button[type=submit] {
 		-697px no-repeat;
 	border: 0;
 	float: right;
-	height: 30px
+	height: 30px;
+	text-align: center;
 }
 
 nav[role=navigation] .search-container button[type=submit]:hover,nav[role=navigation] .search-container button[type=submit]:focus
@@ -299,7 +300,8 @@ nav[role=navigation] .search-container button[type=submit]:hover,nav[role=naviga
 		url('css/buttons.png') 7px
 		-697px no-repeat, linear-gradient(#7d5d3b, #634b30), #634b30
 		url('css/buttons.png') 7px
-		-697px no-repeat
+		-697px no-repeat;
+	text-align: center;
 }
 
 nav[role=navigation] .search-container button[type=submit]:active {
@@ -332,7 +334,8 @@ nav[role=navigation] .search-container button[type=submit]:active {
 		url('css/buttons.png') 7px
 		-696px no-repeat, linear-gradient(#634b30, #7d5d3b), #705536
 		url('css/buttons.png') 7px
-		-696px no-repeat
+		-696px no-repeat;
+	text-align: center;
 }
 
 .ie7 nav[role=navigation] .search-container {
@@ -471,7 +474,8 @@ nav[role=navigation] .search-container button[type=submit]:active {
 	border-color: #472f15;
 	box-shadow: inset 0 1px 0 0 #a98e73;
 	color: #fff;
-	text-decoration: none
+	text-decoration: none;
+	text-align: center;
 }
 
 #user-account-nav .profile a {
@@ -10127,7 +10131,8 @@ input[type="submit"]::-moz-focus-inner,button::-moz-focus-inner {
 	-o-border-radius: 5px;
 	-ms-border-radius: 5px;
 	-khtml-border-radius: 5px;
-	border-radius: 5px
+	border-radius: 5px;
+	text-align: center;
 }
 
 .search[type=submit]:hover,.search[type=submit]:focus {
@@ -10160,7 +10165,8 @@ input[type="submit"]::-moz-focus-inner,button::-moz-focus-inner {
 		url('css/buttons.png') 6px
 		-698px no-repeat, linear-gradient(#7d5d3b, #634b30), #634b30
 		url('css/buttons.png') 6px
-		-698px no-repeat
+		-698px no-repeat;
+	text-align: center;
 }
 
 .search[type=submit]:active {
@@ -10193,7 +10199,8 @@ input[type="submit"]::-moz-focus-inner,button::-moz-focus-inner {
 		url('css/buttons.png') 6px
 		-697px no-repeat, linear-gradient(#634b30, #7d5d3b), #705536
 		url('css/buttons.png') 6px
-		-697px no-repeat
+		-697px no-repeat;
+	text-align: center;
 }
 
 #envato-search form .ew-button {

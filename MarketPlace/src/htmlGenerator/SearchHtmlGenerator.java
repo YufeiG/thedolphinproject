@@ -16,12 +16,12 @@ public class SearchHtmlGenerator {
 		table.append("<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"display\" id=\"searchResultTable\" width=\"100%\">");
 		table.append("<thead>");
 		table.append("<tr>");
-		table.append("<th>Name</th>");
-		table.append("<th>Category</th>");
-		table.append("<th>Description</th>");
-		table.append("<th>Price Low</th>");
-		table.append("<th>Price High</th>");
-		table.append("<th>Time Posted</th>");
+		table.append("<th><strong>Name</strong></th>");
+		table.append("<th><strong>Category</strong></th>");
+		table.append("<th><strong>Description</strong></th>");
+		table.append("<th><strong>Price Low</strong></th>");
+		table.append("<th><strong>Price High</strong></th>");
+		table.append("<th><strong>Time Posted</strong></th>");
 		table.append("</tr>");
 		table.append("</thead>");
 		table.append("<tbody>");
