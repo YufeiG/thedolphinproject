@@ -111,9 +111,9 @@ public class ItemAction extends HttpServlet {
 		else if(action.equals("get"))
 		{
 			String itemIDString = req.getParameter("itemid");
-			System.err.println("Getting item..."+itemIDString);
-			long itemID = Long.parseLong(itemIDString);
 			
+			long itemID = Long.parseLong(itemIDString);
+			System.err.println("Getting item..."+itemID);
 
 			Item item = service.getItem(itemID);
 			
@@ -121,11 +121,14 @@ public class ItemAction extends HttpServlet {
 			try {
 				User user = userService.getAccount(item.getUserid());
 				
+
 				if(item != null && user != null)
 				{
-					String data = item.getTitle() + "," + item.getDescription() + "," + item.getAvailStart() + "," + item.getAvailEnd()
-							+ "," + item.getPriceLow() + "," + item.getPriceHigh() + "," + user.getUsername() + ","
-							+ user.getEmail() + "," + user.getPhoneNumber();
+					System.err.println(item.getCategoryString());
+
+					String data = item.getTitle() + "|" + item.getDescription() + "|" + item.getAvailStart() + "|" + item.getAvailEnd()
+							+ "|" + item.getPriceLowString() + "|" + item.getPriceHighString() + "|" + user.getUsername() + "|"
+							+ user.getEmail() + "|" + user.getPhoneNumber()+"|"+item.getCategoryString();
 					res.getWriter().write(data);
 				}
 				else

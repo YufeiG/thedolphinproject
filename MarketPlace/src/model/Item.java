@@ -82,8 +82,11 @@ public class Item {
 	}
 	// sets the category member using a String.
 	public String getCategoryString(){
-		return MarketplaceConfig.Category.get(this.category).name();
+		MarketplaceConfig.Category c = MarketplaceConfig.Category.get(this.category);
+		if(c == null || c.name() == null || "".equals(c.name())) return "NONE";
+		return c.name();
 	}
+	
 	public void setCategoryString(String category){
 		this.category = MarketplaceConfig.Category.valueOf(category).getValue();
 	}
