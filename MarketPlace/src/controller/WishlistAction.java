@@ -6,6 +6,7 @@ import htmlGenerator.SearchHtmlGenerator;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -30,45 +31,30 @@ public class WishlistAction extends HttpServlet {
 		
 		// Track user id session
 		HttpSession session = req.getSession(true);
-		String userID = (String)session.getAttribute("currentUserID");
-		
-		
+		String userIDString = (String)session.getAttribute("currentUserID");
+		long userID = Long.parseLong(req.getParameter("userid"));
 		
 		String action = req.getParameter("action");
-		String longTag = req.getParameter("headerSearchInput");
-		String categoryString = req.getParameter("category");
-		SortType sortType = MarketplaceConfig.SortType.NONE;
-		String [] tagTemp = longTag.split(" ");
-		List<Tag> tags = new ArrayList<Tag>();
+		res.setContentType("text/html");
 		
-		for(SortType sortTypeTemp : MarketplaceConfig.SortType.values()){
-			sortTypeTemp.name().equals(categoryString);
-			sortType = sortTypeTemp;
-		}
-		//Possible Search Actions
+		UserManagementService service = new UserManagementServiceImpl();
 		
-		if("searchFromHeader".equals(action)){
-			
-			for(int i = 0; i<tagTemp.length; i++){
-				tagTemp[i].trim();
-				if(!tagTemp.equals("")){
-					tags.add(new Tag(0,tagTemp[i]));
-				}
-			}
-			//String category = req.getParameter("category");
-			//String sortType = req.getParameter("sortType");
-	
+		
+		if("get".equals(action)){
 			
 			
 			try {
-				
-				ListingService listingService = new ListingServiceImpl();
-				List<Item> searchResult;
-				
-				searchResult = listingService.findItems(null, null, sortType);
-				
-				res.setContentType("text/html");
-				res.getWriter().write(SearchHtmlGenerator.createItemTableHtml(searchResult));
+				List<Tag> tags = service.getWishList(userID);
+				System.err.println("Size of wishlist "+tags.size());
+				String ret = "";
+				for(int i = 0; i < tags.size(); i++)
+				{
+					System.err.println("tags: "+tags.get(i).getName());
+					if(i == tags.size()-1) ret += tags.get(i).getName();
+					else ret += tags.get(i).getName()+",";
+					
+				}
+				res.getWriter().write(ret);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -77,6 +63,24 @@ public class WishlistAction extends HttpServlet {
 			
 			
 
+		}
+		else if("set".equals(action)){
+			String tags = req.getParameter("tags");
+			List<String> tagsTokens = Arrays.asList(tags.split(","));
+
+			try {
+				if(service.addToWishList(tagsTokens, userID)){
+					res.getWriter().write("true");
+				}
+				else{
+					res.getWriter().write("false");
+					
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				res.getWriter().write("error");
+			}
 		}
 				
 			

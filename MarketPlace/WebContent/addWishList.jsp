@@ -11,47 +11,71 @@
             src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" type="text/css" />
-<title>Add tags to Wish List</title>
+<title>Wish List</title>
 </head>
 <body>
 <script type="text/javascript">
-	function parseTag(){
-		var tags = $("#tags").val();
-		var noSpace = tags.split(' ').join('');
-		var lowerCase = noSpace.toLowerCase();
-		$("#tags").val(lowerCase);
+	//function parseTag(){
+		//var tags = $("#tags").val();
+		//var noSpace = tags.split(' ').join('');
+		//var lowerCase = noSpace.toLowerCase();
+		//$("#tags").val(lowerCase);
+	//}
+	jQuery.fn.exists = function(){return this.length>0;};
+	
+	function createInput(n)
+	{
+		var k = n+1;
+	
+		if($("#tag"+k).exists() == false){
+	
+			$("#tagInputs").append("<li><input onkeydown=\"createInput("+k+");\"  id=\"tag"+k+"\"/></li>");
+		}
+		
 	}
 
 	$(document).ready(function() {
-		 $("#price1").val("1");
-		$("#price2").val("1000");
+		var id = '<%=session.getAttribute("currentSessionID")%>';
+		var existingTags = 0;
+		if(id == null || id == "" || id == "null"){
+			alert("You must be signed in.");
+		}
+		else{
+	
 		
-		var currentDate = new Date();
+			$.post("WishlistAction",{ action: "get", userid: id},
+					  function(data){
+						alert(data);
+						if(data != "false" && data != "error"){
+							var dataArray = data.split(",");
+							existingTags = dataArray.length;
+							for(var i = 0; i < existingTags; i++)
+							{
+								
+								$("#tagInputs").append("<li><input id=\"tag"+(i)+"\" disabled=\"disabled\"/></li>");
+				
+								$("#tag"+i).val(dataArray[i]);
+							}
+						}
+						$("#tagInputs").append("<li><input onkeydown=\"createInput("+existingTags+");\" id=\"tag"+existingTags+"\"/></li>");
+			});
+		}
 		
-		$( "#date1" ).datepicker({
-			minDate: 0,
-			onSelect: function( selectedDate ) {
-				$( "#date2" ).datepicker( "option", "minDate", selectedDate );
+		
+		
+		
+		$("#save").click(function(){
+			//parseTag();
+			var tags = "";
+			
+			for(var i = existingTags; i < $("#tagInputs").size() ; i++){
+				var r = $("#tag"+i).val();
+				if(r == null || r == "") continue;
+				if(i != $("#tagInputs").size()-1) tags += r + ",";
+				else tags += r;
 			}
-		});
-		
-		$( "#date1" ).datepicker('setDate', currentDate);
-		
-		$( "#date2" ).datepicker({
-			minDate: 0, 
-			onSelect: function( selectedDate ) {
-				$( "#date1" ).datepicker( "option", "maxDate", selectedDate );
-			}
-		});
-		
-		$( "#date2" ).datepicker('setDate', currentDate.getDate()+14);
-		
-		$("#submit").click(function(){
-			parseTag();
-			var tags = $.trim($("#tags").val());
 			
 			if(tags == ""){
-				alert("Tags cannot be empty!!");
 				return;
 			}
 		
@@ -79,11 +103,10 @@
 		});
 	});
 </script>
-<form>
-Enter tags separated by commas i t he box below to add them to your account wish list.<br/>
-When items with matching tags are created by other user, you will receive notification via email.<br/>
-Tags: <input id ="tags" type="text" name="tags" onkeydown="parseTag()" size="60" /><br />
-<button id = "submit" type="button">Add</button>
-</form> 
+
+<ul id="tagInputs">
+	
+</ul>
+<button id = "save" type="button">Save</button>
 </body>
 </html>

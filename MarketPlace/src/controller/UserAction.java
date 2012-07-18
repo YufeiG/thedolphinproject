@@ -125,7 +125,6 @@ public class UserAction extends HttpServlet {
 				res.getWriter().write("error");
 			}
 			
-			
 		}
 		else if(action.equals("addWishList")){
 			String userIDString = req.getParameter("userid");

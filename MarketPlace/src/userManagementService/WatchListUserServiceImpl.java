@@ -3,7 +3,7 @@ package userManagementService;
 import global.MarketplaceConfig.ReportType;
 
 import java.sql.SQLException;
-import java.util.List;
+import java.util.Iterator;
 
 import model.Item;
 import model.User;
@@ -23,8 +23,8 @@ public class WatchListUserServiceImpl implements WatchListUserService{
 		userDAO = factory.getUserDAO();
 	}
 	
-	public List<Item> getWatchListItems(User u){
-		return null;
+	public Iterator<Item> getWatchListItems(long userid) throws SQLException{
+		return userDAO.getWatchlist(userid).iterator();
 	}
 	
 	public boolean exportList(User u, ReportType typeOfReport){

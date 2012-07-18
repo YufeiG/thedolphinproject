@@ -1,11 +1,14 @@
 package mysqldao;
 
+import global.MarketplaceConfig;
+
 import java.sql.ResultSet;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import model.Item;
@@ -90,31 +93,36 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 								.getPopularity(),
 						toSqlDate(item.getTimeAdded()), toSqlDate(item
 								.getTimeModified()));
-		
-execSql(query);
+
+		execSql(query);
 
 		ResultSet rs = execSql("SELECT LAST_INSERT_ID();");
 
 		if (rs.next()) {
-			for (int k=0; k<tagIds.size(); k++) {
-				try{
-					execSql("INSERT INTO item_tags VALUES (" + rs.getLong("LAST_INSERT_ID()") + "," + tagIds.get(k) + ")");
-				}
-				catch(SQLException e){
-					// Duplicate itemid-tagid pair was inserted. This means the user created two of more tags
+			for (int k = 0; k < tagIds.size(); k++) {
+				try {
+					execSql("INSERT INTO item_tags VALUES ("
+							+ rs.getLong("LAST_INSERT_ID()") + ","
+							+ tagIds.get(k) + ")");
+				} catch (SQLException e) {
+					// Duplicate itemid-tagid pair was inserted. This means the
+					// user created two of more tags
 					// with the same string. We can safely ignore this
-					System.err.println("User inserted two identical tags for the same item. Duplicate tag ignored.");
+					System.err
+							.println("User inserted two identical tags for the same item. Duplicate tag ignored.");
 				}
-				
+
 			}
 		}
 
 		return true;
 	}
 
-	public List<Item> getItems() throws SQLException {
-		ResultSet rs = execSql("SELECT * FROM items AND avail_end<='"+getCurDate()+"'");
+	private List<Item> getItems(String query) throws SQLException {
 		List<Item> mylist = new ArrayList<Item>();
+
+		ResultSet rs = execSql(query);
+
 		while (rs.next()) {
 			mylist.add(getItemObj(rs));
 		}
@@ -122,49 +130,45 @@ execSql(query);
 		return mylist;
 	}
 
-	public List<Item> getItems(List<Tag> tags) throws SQLException {
+	public List<Item> getItems() throws SQLException {
+		return getItems("SELECT * FROM items AND avail_end<='" + getCurDate()
+				+ "'");
+	}
 
-		if (tags == null || tags.size() == 0)
+	public List<Item> getItems(Iterator<Tag> tags) throws SQLException {
+
+		if (tags == null || tags.hasNext() == false)
 			return getItems();
 
 		String strTags = "";
-		int listSize = tags.size();
 
-		if (listSize > 0)
-			strTags = "'" + tags.get(0).getName() + "'";
-
-		for (int i = 1; i < listSize; i++) {
-			strTags += ", '" + tags.get(0).getName() + "'";
+		Tag tag = tags.next();
+		strTags = "'" + tag.getName() + "'";
+		while (tags.hasNext()) {
+			strTags += ", '" + tags.next().getName() + "'";
 		}
-		
+
 		String query = "SELECT * FROM items i, tags t, item_tags r "
 				+ "WHERE i.itemid = r.itemid AND t.tagid = item_tags.tagid "
-				+ "AND t.tag_name IN (" + strTags + ")"
-				+ "AND i.avail_end<='"+getCurDate()+"'";
+				+ "AND t.tag_name IN (" + strTags + ")" + "AND i.avail_end<='"
+				+ getCurDate() + "'";
 
-		ResultSet rs = execSql(query);
-
-		List<Item> mylist = new ArrayList<Item>();
-		if (rs.next()) {
-			mylist.add(getItemObj(rs));
-		}
-
-		return mylist;
+		return getItems(query);
 	}
-	
+
 	public List<Item> getItemsDetailed(List<String> tokens) throws SQLException {
 
 		List<Item> mylist = new ArrayList<Item>();
-		HashMap<Long,Boolean> map = new HashMap<Long,Boolean>();
+		HashMap<Long, Boolean> map = new HashMap<Long, Boolean>();
 
-		for (int i=0; i<tokens.size(); i++) {
+		for (int i = 0; i < tokens.size(); i++) {
 			String thisToken = tokens.get(i);
-			String query = "SELECT * FROM items i WHERE i.title LIKE '%" 
-					+ thisToken + "%' OR i.description LIKE '%" + thisToken + "%'"
-					+ "OR i.avail_end<='"+getCurDate()+"'";
-			
+			String query = "SELECT * FROM items i WHERE i.title LIKE '%"
+					+ thisToken + "%' OR i.description LIKE '%" + thisToken
+					+ "%'" + "OR i.avail_end<='" + getCurDate() + "'";
+
 			ResultSet rs = execSql(query);
-			
+
 			while (rs.next()) {
 				if (!map.containsKey(rs.getLong("itemid"))) {
 					mylist.add(getItemObj(rs));
@@ -172,6 +176,33 @@ execSql(query);
 				}
 			}
 		}
+
+		return mylist;
+	}
+
+	public List<Item> getItemsByCategory(List<MarketplaceConfig.Category> cats)
+			throws SQLException {
+
+		List<Item> mylist = new ArrayList<Item>();
+
+		if (cats.size() > 0) {
+			String catIds = cats.get(0).getValue() + "";
+			for (int i = 1; i < cats.size(); i++) {
+				catIds += ", " + cats.get(i).getValue();
+			}
+
+			mylist = getItems("SELECT * FROM items WHERE categoryid IN ("
+					+ catIds + ")");
+		}
+
+		return mylist;
+	}
+
+	public List<Item> getItemsByUser(long userid) throws SQLException {
+
+		List<Item> mylist = new ArrayList<Item>();
+
+		mylist = getItems("SELECT * FROM items WHERE userid=" + userid + "");
 
 		return mylist;
 	}

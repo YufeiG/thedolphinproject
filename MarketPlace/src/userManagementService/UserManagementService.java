@@ -3,6 +3,7 @@ package userManagementService;
 import global.MarketplaceConfig;
 
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.List;
 
 import model.Item;
@@ -11,7 +12,7 @@ import model.User;
 
 public interface UserManagementService {
 	
-	public List<Item> getWatchList(User u);
+	public Iterator<Item> getWatchList(long userid) throws SQLException;
 	
 	public boolean addToWatchList(long itemid, long userid) throws SQLException;
 	
@@ -29,7 +30,7 @@ public interface UserManagementService {
 	
 	public boolean banAccount(User user);
 	
-	public List<Tag> getWishList(long userid) throws SQLException;
+	public Iterator<Tag> getWishList(long userid) throws SQLException;
 	
 	public boolean addToWishList(List<String> tagNames, long userId) throws SQLException;
 	

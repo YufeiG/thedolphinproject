@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServlet;
@@ -60,7 +61,7 @@ public class SearchAction extends HttpServlet {
 			try {
 				
 				ListingService listingService = new ListingServiceImpl();
-				List<Item> searchResult;
+				Iterator <Item> searchResult;
 				
 				searchResult = listingService.findItems(tokens, null, sortType);
 	
