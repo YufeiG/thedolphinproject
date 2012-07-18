@@ -7,6 +7,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<div id="copyright">
+  <div class="container">
+    <div class="copyright">
+      <p>
+        <span>COPYRIGHT &copy; 2012 UW MARKETPLACE BY UW AVENGERS</span>|
+        <span><a href="">TERMS OF USAGE</a></span>|
+        <span><a href="">PRIVACY POLICY</a></span>|
+      </p>
+    </div>
+  </div>
+</div>
 </body>
 </html>

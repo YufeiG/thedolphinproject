@@ -912,8 +912,10 @@ nav[role=navigation] .search-container button[type=submit]:active {
 	background-color: #232323;
 	border-bottom: 1px solid #151515;
 	height: 95px;
+	position: absolute;
+	bottom: 0px;	
 	margin-top: 2px;
-	min-width: 984px;
+	min-width: 100%;
 	padding-top: 35px
 }
 

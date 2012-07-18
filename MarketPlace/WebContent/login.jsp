@@ -57,3 +57,5 @@ Please sign in below with a valid username and password.
 </center> 
 </body>
 </html>
+
+<%@ include file="footer.jsp" %>

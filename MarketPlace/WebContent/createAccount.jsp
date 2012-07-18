@@ -112,3 +112,5 @@ A valid uWaterloo username is required to create an account. Unless otherwise st
 </center>
 </body>
 </html>
+
+<%@ include file="footer.jsp" %>
