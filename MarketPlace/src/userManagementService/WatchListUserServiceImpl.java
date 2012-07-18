@@ -4,6 +4,7 @@ import global.MarketplaceConfig.ReportType;
 
 import java.sql.SQLException;
 import java.util.Iterator;
+import java.util.List;
 
 import model.Item;
 import model.User;
@@ -24,6 +25,7 @@ public class WatchListUserServiceImpl implements WatchListUserService{
 	}
 	
 	public Iterator<Item> getWatchListItems(long userid) throws SQLException{
+			
 		return userDAO.getWatchlist(userid).iterator();
 	}
 	
