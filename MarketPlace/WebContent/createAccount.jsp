@@ -11,6 +11,9 @@
 
 </head>
 <body>
+<center>
+<h4>- Create an Account -</h4>
+A valid uWaterloo username is required to create an account. Unless otherwise stated, all fields are required.
 
 <form>
 <table class="input_table">
@@ -31,6 +34,7 @@
 
 </td></tr>
 </table>
+<p></p>
 <button id = "submit" type="button">Create Account</button>
 </form>
 <script type="text/javascript">
@@ -104,5 +108,7 @@
 	});
 	});
 </script> 
+
+</center>
 </body>
 </html>

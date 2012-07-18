@@ -41,10 +41,19 @@
 	});
 	});
 </script>
+<center>
+<h4>- Sign In -</h4>
+Please sign in below with a valid username and password.
+
 <form>
-Username: <input id="username" type="text" name="username" /><br />
-Password: <input id ="password" type="password" name="pwd" /><br/>
-<button id = "submit" type="button">submit</button>
-</form> 
+<table class="input_table">
+<tr><td>Username:</td><td><input id="username" type="text" name="username" /><br /></td></tr>
+<tr><td>Password:</td><td><input id ="password" type="password" name="pwd" /><br/></td></tr>
+</table>
+<p></p>
+<button id = "submit" type="button">Sign In</button>
+</form>
+
+</center> 
 </body>
 </html>

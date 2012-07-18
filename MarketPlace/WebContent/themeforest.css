@@ -20,6 +20,10 @@ body {
 	background: #fff
 }
 
+form {
+	margin-top: 30px;	
+}
+
 ol,ul {
 	list-style: none
 }
@@ -31,6 +35,7 @@ table {
 }
 
 caption,th,td {
+	padding-right: 20px;
 	text-align: left;
 	font-weight: normal;
 	vertical-align: middle
@@ -9851,7 +9856,8 @@ a[role="button"],.ie8 button,.ie8 input[type="submit"] {
 }
 
 button,input[type="submit"] {
-	min-width: 127px
+	min-width: 127px;
+	text-align: center;
 }
 
 .auto-width[role="button"],button.auto-width,input.auto-width {
