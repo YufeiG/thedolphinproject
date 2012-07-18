@@ -43,7 +43,7 @@ public class MostRecentItemsFirstWishListAlgorithm implements WishListAlgorithm{
 			while(userIterator.hasNext()){
 				User currentUser = userIterator.next();
 				List<Item> matchedItems = new ArrayList<Item>();
-				List<Tag> tags = userManagementService.getWishList(currentUser.getUserid());
+				Iterator<Tag> tags = userManagementService.getWishList(currentUser.getUserid());
 				List<Item> items = itemDao.getItems(tags);				
 				Iterator<Item> itemIterator = items.iterator();
 				while(itemIterator.hasNext()){
