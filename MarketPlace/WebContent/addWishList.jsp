@@ -11,7 +11,7 @@
             src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" type="text/css" />
-<title>Create Item</title>
+<title>Add tags to Wish List</title>
 </head>
 <body>
 <script type="text/javascript">
@@ -48,66 +48,29 @@
 		
 		$("#submit").click(function(){
 			parseTag();
-			var title = $.trim($("#title").val());
-			var description = $.trim($("#description").val());
-			var price1 = $.trim($("#price1").val());
-			var price2 = $.trim($("#price2").val());
-			var date1 = $.trim($("#date1").val());
-			var date2 = $.trim($("#date2").val());
-			var cat = $.trim($("#categoryDropdownMenu").val());
 			var tags = $.trim($("#tags").val());
 			
-			if(title == ""){
-				alert("Error: Title cannot be empty");
-				return;
-			}
-			if(description == ""){
-				alert("Error: description cannot be empty");
-				return;
-			}
-			
-			if(date1 == "" || date2 == ""){
-				alert("Error: Date cannot be empty");
-				return;
-			}
-			
-			if(price1 == "" || price2 == "") {
-				alert("Error: Price cannot be empty");
-				return;
-			}
-			
-			if(isNaN(price1) || isNaN(price2)){
-				alert("Error: price format not correct");
-				return;
-			}
-			if(price1.indexOf('-') >= 0 || price2.indexOf('-') >= 0){
-				alert("Error: Price cannot be negative.");
-				return;
-			}
-			
-			if(parseFloat(price1) > parseFloat(price2)){
-				alert("Error: Max price cannot be lower than min price.");
+			if(tags == ""){
+				alert("Tags cannot be empty!!");
 				return;
 			}
 		
 			var id = '<%=session.getAttribute("currentSessionID")%>';
 			if(id == "null"){
-				alert("Error! You must be logged in to create an item");
+				alert("Error! You must be logged in have a wish list!");
 			}
 			else{
-				$.post("ItemAction",{ action: "create", title: title, description: description,
-					date1: date1, date2: date2, price1: price1, price2: price2,
-					userid: id, category: cat, tags: tags },
+				$.post("UserAction",{ action: "addWishList", userid: id, tags: tags },
 				  function(data){
 				    if(data == "false"){
-				    	alert("Item not created. There was an error.");
+				    	alert("Tags were not added.");
 				    }
 				    else if(data == "true"){
-				    	alert("Item was successfully created");
+				    	alert("Tags were successfully added.");
 				    	window.location = "index.jsp";
 				    }
 				    else{
-				    	alert("Error! You must be logged in to create an item");
+				    	alert("Server error! Try again later.");
 				    }
 				  }
 				);	
@@ -117,19 +80,10 @@
 	});
 </script>
 <form>
-Title: <input id="title" type="text" name="title"  size="60" /><br />
-Description: <input id ="description" type="text" name="description" height=300 size="60"  /><br />
-Available from <input id ="date1" type="text" name="date1" height=300 /> to <input id ="date2" type="text" name="date2" height=300 /><br />
-Price from $<input id ="price1" type="text" name="price1" height=300 /> to $<input id ="price2" type="text" name="price2" height=300 /><br />
-Categories: <select id="categoryDropdownMenu">
-<% for(Category category: MarketplaceConfig.Category.values()){%>
-	<option value="<%= category.name()%>"><%= category.name()%></option>		
-	<%}%> 
-	</select>
-	<br/>
-Tags will allow your item to show up with a higher priority when those tags are keywords.<br/>
+Enter tags separated by commas i t he box below to add them to your account wish list.<br/>
+When items with matching tags are created by other user, you will receive notification via email.<br/>
 Tags: <input id ="tags" type="text" name="tags" onkeydown="parseTag()" size="60" /><br />
-<button id = "submit" type="button">Create Item</button>
+<button id = "submit" type="button">Add</button>
 </form> 
 </body>
 </html>
