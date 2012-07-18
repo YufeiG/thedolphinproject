@@ -101,7 +101,7 @@ String currSessionUser = (String)session.getAttribute("currentSessionUser"); %>
     <li><a href="">Your Lists</a>
       <div class="dropdown">
         <ul>
-          <li><a href="">Watch List</a></li>
+          <li><a href="watchlist.jsp">Watch List</a></li>
           <li><a href="">Wish List</a></li>
         </ul>
       </div>

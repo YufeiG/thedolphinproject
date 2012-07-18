@@ -1,51 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
-  <display-name>MarketPlace</display-name>
-  <welcome-file-list>  
-    <welcome-file>index.jsp</welcome-file>
-  </welcome-file-list>
-  
-  <!-- Adding Servlets -->
-    
-  <servlet>
-    <servlet-name>LoginAction</servlet-name>
-    <servlet-class>controller.LoginAction</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>LoginAction</servlet-name>
-    <url-pattern>/LoginAction</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>UserAction</servlet-name>
-    <servlet-class>controller.UserAction</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>UserAction</servlet-name>
-    <url-pattern>/UserAction</url-pattern>
-  </servlet-mapping>
-    <servlet>
-    <servlet-name>SearchAction</servlet-name>
-    <servlet-class>controller.SearchAction</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>SearchAction</servlet-name>
-    <url-pattern>/SearchAction</url-pattern>
-  </servlet-mapping>
-    <servlet>
-    <servlet-name>ItemAction</servlet-name>
-    <servlet-class>controller.ItemAction</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ItemAction</servlet-name>
-    <url-pattern>/ItemAction</url-pattern>
-  </servlet-mapping>
-    <servlet>
-    <servlet-name>RecommendationAction</servlet-name>
-    <servlet-class>controller.RecommendationAction</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>RecommendationAction</servlet-name>
-    <url-pattern>/RecommendationAction</url-pattern>
-  </servlet-mapping>
-  
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<display-name>MarketPlace</display-name>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<!-- Adding Servlets -->
+
+	<servlet>
+		<servlet-name>LoginAction</servlet-name>
+		<servlet-class>controller.LoginAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoginAction</servlet-name>
+		<url-pattern>/LoginAction</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>UserAction</servlet-name>
+		<servlet-class>controller.UserAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserAction</servlet-name>
+		<url-pattern>/UserAction</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>SearchAction</servlet-name>
+		<servlet-class>controller.SearchAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SearchAction</servlet-name>
+		<url-pattern>/SearchAction</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ItemAction</servlet-name>
+		<servlet-class>controller.ItemAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ItemAction</servlet-name>
+		<url-pattern>/ItemAction</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>RecommendationAction</servlet-name>
+		<servlet-class>controller.RecommendationAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RecommendationAction</servlet-name>
+		<url-pattern>/RecommendationAction</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>WatchlistAction</servlet-name>
+		<servlet-class>controller.WatchlistAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>WatchlistAction</servlet-name>
+		<url-pattern>/WatchlistAction</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>WishlistAction</servlet-name>
+		<servlet-class>controller.WishlistAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>WishlistAction</servlet-name>
+		<url-pattern>/WishlistAction</url-pattern>
+	</servlet-mapping>
+	
+	
+
 </web-app>
