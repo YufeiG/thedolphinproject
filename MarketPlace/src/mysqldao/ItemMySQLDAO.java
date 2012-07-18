@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import model.Item;
@@ -47,6 +48,7 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 	}
 
 	public boolean editItem(Item item) throws SQLException {
+		Date d = new Date(System.currentTimeMillis());
 		String query = "UPDATE users"
 				+ String.format("SET title='%s', " + "categoryid=%d, "
 						+ "description=%s, " + "sold=%d, " + "avail_start=%s, "
@@ -57,7 +59,7 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 						strIsNull(item.getAvailStart().toString()),
 						strIsNull(item.getAvailEnd().toString()),
 						item.getPriceLow(), item.getPriceHigh(),
-						item.getPopularity(), item.getTimeModified().toString());
+						item.getPopularity(), toSqlDate(d));
 		execSql(query);
 		return true;
 	}
