@@ -63,7 +63,7 @@
 								$("#title").val(dataArray[0]);
 								$("#description").val(dataArray[1]);
 								$("#date").val(dataArray[2] + " to " +dataArray[3]);
-								$("#price").val("$"+dataArray[4] + " to $" + dataArray[5]);
+								$("#price").val(dataArray[4] + " to " + dataArray[5]);
 								$("#username").val(dataArray[6]);
 								if(dataArray[8] != "null")
 									$("#phone").val(dataArray[8]);
