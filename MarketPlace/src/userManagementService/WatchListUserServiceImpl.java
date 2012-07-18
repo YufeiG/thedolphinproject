@@ -56,6 +56,7 @@ public class WatchListUserServiceImpl implements WatchListUserService{
 
 	@Override
 	public boolean addToWatchList(long itemid, long userid) throws SQLException {
+		System.err.println("Adding to watch list");
 		return userDAO.addToWatchList(itemid, userid);
 	}
 	

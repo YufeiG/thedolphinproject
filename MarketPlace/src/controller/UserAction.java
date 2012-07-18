@@ -1,7 +1,9 @@
 package controller;
 
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -100,6 +102,54 @@ public class UserAction extends HttpServlet {
 			
 			
 			
+		}
+		else if(action.equals("addWatchList")){
+			String userIDString = req.getParameter("userid");
+			long userID = Long.parseLong(userIDString);
+			
+			String itemIDString = req.getParameter("itemid");
+			long itemID = Long.parseLong(itemIDString);
+			
+			System.err.println("UserAction:addWatchList");
+			try {
+				if(service.addToWatchList(itemID, userID)){
+					res.getWriter().write("true");
+				}
+				else{
+					res.getWriter().write("false");
+					
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				res.getWriter().write("error");
+			}
+			
+			
+		}
+		else if(action.equals("addWishList")){
+			String userIDString = req.getParameter("userid");
+			long userID = Long.parseLong(userIDString);
+			
+			String tags = req.getParameter("tags");
+			String[] tagsArray = tags.split(",");
+			List<String> tagsList = Arrays.asList(tagsArray);
+			
+			try {
+				if(service.addToWishList(tagsList, userID)){
+					res.getWriter().write("true");
+				}
+				else{
+					res.getWriter().write("false");
+					
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				res.getWriter().write("error");
+			}
+			
+
 		}
 
 		
