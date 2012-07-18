@@ -24,8 +24,7 @@
 	var headerSearchInput = getUrlVars()["search"];
 	var category = getUrlVars()["category"];
 
-	alert(headerSearchInput);
-	alert(category);
+	
 	$('#example').dataTable();
 
 	$.post("SearchAction", {
@@ -34,7 +33,6 @@
 		"category" : category
 	}, function(data) {
 		if (data != null) {
-			alert(data);
 			//Set the main Pane to datatable as given by SearchAction
 			$("#mainPane").html(data);
 			$('#searchResultTable').dataTable();
