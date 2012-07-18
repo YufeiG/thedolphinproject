@@ -113,15 +113,21 @@ execSql(query);
 
 		return true;
 	}
-
-	public List<Item> getItems() throws SQLException {
-		ResultSet rs = execSql("SELECT * FROM items AND avail_end<='"+getCurDate()+"'");
+	
+	private List<Item> getItems(String query) throws SQLException {
 		List<Item> mylist = new ArrayList<Item>();
+			
+		ResultSet rs = execSql(query);
+			
 		while (rs.next()) {
 			mylist.add(getItemObj(rs));
 		}
-
+		
 		return mylist;
+	}
+
+	public List<Item> getItems() throws SQLException {
+		return getItems("SELECT * FROM items AND avail_end<='"+getCurDate()+"'");
 	}
 
 	public List<Item> getItems(List<Tag> tags) throws SQLException {
@@ -144,14 +150,7 @@ execSql(query);
 				+ "AND t.tag_name IN (" + strTags + ")"
 				+ "AND i.avail_end<='"+getCurDate()+"'";
 
-		ResultSet rs = execSql(query);
-
-		List<Item> mylist = new ArrayList<Item>();
-		if (rs.next()) {
-			mylist.add(getItemObj(rs));
-		}
-
-		return mylist;
+		return getItems(query);
 	}
 	
 	public List<Item> getItemsDetailed(List<String> tokens) throws SQLException {
@@ -181,20 +180,25 @@ execSql(query);
 	public List<Item> getItemsByCategory(List<MarketplaceConfig.Category> cats) throws SQLException {
 		
 		List<Item> mylist = new ArrayList<Item>();
-		if (mylist.size() > 0) {
+		
+		if (cats.size() > 0) {
 			String catIds = cats.get(0).getValue() + "";
-			for (int i=1;i<mylist.size();i++) {
+			for (int i=1;i<cats.size();i++) {
 				catIds += ", " + cats.get(i).getValue();
 			}
 			
-			String query = "SELECT * FROM items WHERE categoryid IN (" + catIds + ")";
-			ResultSet rs = execSql(query);
-			
-			while (rs.next()) {
-				mylist.add(getItemObj(rs));
-			}
+			mylist = getItems("SELECT * FROM items WHERE categoryid IN (" + catIds + ")");
 		}
 		
+		return mylist;
+	}
+	
+	public List<Item> getItemsByUser(long userid) throws SQLException {
+		
+		List<Item> mylist = new ArrayList<Item>();
+		
+		mylist = getItems("SELECT * FROM items WHERE userid=" + userid + "");
+
 		return mylist;
 	}
 }

@@ -7,8 +7,11 @@ import java.util.Date;
 import java.util.List;
 
 import dao.AbstractDAO;
+import dao.AbstractDAOFactory;
+import dao.ItemDAO;
 import dao.UserDAO;
 
+import model.Item;
 import model.User;
 
 public class UserMySQLDAO extends AbstractDAO implements UserDAO{
@@ -120,5 +123,11 @@ public class UserMySQLDAO extends AbstractDAO implements UserDAO{
 		execSql(query);
 		
 		return true;
+	}
+	
+	public List<Item> getWatchlist(long userid) throws SQLException {
+		AbstractDAOFactory fact = new MySQLDAOFactory();
+		ItemDAO itemdao = fact.getItemDAO();
+		return itemdao.getItemsByUser(userid);
 	}
 }

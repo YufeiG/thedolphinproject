@@ -14,4 +14,5 @@ public interface UserDAO {
 	public boolean editUser(User user) throws SQLException;
 	public boolean deleteFromWatchList(long itemid, long userid) throws SQLException;
 	public boolean addToWatchList(long itemid, long userid) throws SQLException;
+	public boolean getWatchlist(long userid) throws SQLException;
 }
