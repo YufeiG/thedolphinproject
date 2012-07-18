@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import model.Item;
@@ -154,15 +155,21 @@ execSql(query);
 	public List<Item> getItemsDetailed(List<String> tokens) throws SQLException {
 
 		List<Item> mylist = new ArrayList<Item>();
+		HashMap<Long,Boolean> map = new HashMap<Long,Boolean>();
 
 		for (int i=0; i<tokens.size(); i++) {
 			String thisToken = tokens.get(i);
 			String query = "SELECT * FROM items i WHERE i.title LIKE '%" 
 					+ thisToken + "%' OR i.description LIKE '%" + thisToken + "%'"
 					+ "OR i.avail_end<='"+getCurDate()+"'";
+			
 			ResultSet rs = execSql(query);
-			if (rs.next()) {
-				mylist.add(getItemObj(rs));
+			
+			while (rs.next()) {
+				if (!map.containsKey(rs.getLong("itemid"))) {
+					mylist.add(getItemObj(rs));
+					map.put(rs.getLong("itemid"), true);
+				}
 			}
 		}
 
