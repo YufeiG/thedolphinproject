@@ -55,10 +55,6 @@ public class ListingServiceImpl implements ListingService{
 		List<Item> result = itemDAO.getItemsDetailed(tokens);
 		
 		processing.process(result);
-				
-	
-		
-		
 		
 		return result;
 	}
