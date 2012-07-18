@@ -13,7 +13,7 @@ public interface ListingService {
 
 	public boolean createItem(Item i, List<String> tags);
 
-	public List<Item> findItems(List<Tag> list,
+	public List<Item> findItems(List<String> tokens,
 			MarketplaceConfig.Category category,
 			MarketplaceConfig.SortType sortBy) throws SQLException;
 
@@ -25,7 +25,7 @@ public interface ListingService {
 
 	public boolean deleteTag(String tagName) throws SQLException;
 
-	public boolean createTag(String tagName) throws SQLException;
+	public long createTag(String tagName) throws SQLException;
 
 	public List<Tag> getAllTags() throws SQLException;
 

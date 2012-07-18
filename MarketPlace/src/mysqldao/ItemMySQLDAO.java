@@ -114,7 +114,7 @@ execSql(query);
 	public List<Item> getItems() throws SQLException {
 		ResultSet rs = execSql("SELECT * FROM items");
 		List<Item> mylist = new ArrayList<Item>();
-		if (rs.next()) {
+		while (rs.next()) {
 			mylist.add(getItemObj(rs));
 		}
 
