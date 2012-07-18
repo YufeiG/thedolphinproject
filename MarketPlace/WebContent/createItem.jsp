@@ -44,7 +44,7 @@
 			}
 		});
 		
-		$( "#date2" ).datepicker('setDate', currentDate.getDate()+14);
+		$( "#date2" ).datepicker('setDate', currentDate.getDate()+5);
 		
 		$("#submit").click(function(){
 			parseTag();
@@ -80,7 +80,8 @@
 				alert("Error: price format not correct");
 				return;
 			}
-			if(price1.indexOf('-') >= 0 || price2.indexOf('-') >= 0){
+			
+			if(price1.indexOf("-") >= 0 || price2.indexOf("-") >= 0){
 				alert("Error: Price cannot be negative.");
 				return;
 			}

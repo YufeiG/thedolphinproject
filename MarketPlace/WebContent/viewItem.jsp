@@ -37,6 +37,17 @@
 
 
 <script type="text/javascript">
+	function getUrlVars() {
+		var vars = {};
+		var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,
+				function(m, key, value) {
+					vars[key] = value;
+				});
+		return vars;
+	}
+	
+	var itemID = getUrlVars()["itemid"];
+	
 	$(document).ready(function() {
 		$("#watch").click(function(){
 			var id = '<%=session.getAttribute("currentSessionID")%>';

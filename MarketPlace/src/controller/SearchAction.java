@@ -37,14 +37,12 @@ public class SearchAction extends HttpServlet {
 		String action = req.getParameter("action");
 		String longTag = req.getParameter("headerSearchInput");
 		String categoryString = req.getParameter("category");
-		SortType sortType = MarketplaceConfig.SortType.NONE;
+
 		String [] tagTemp = longTag.split(" ");
 		List<Tag> tags = new ArrayList<Tag>();
-		
-		for(SortType sortTypeTemp : MarketplaceConfig.SortType.values()){
-			sortTypeTemp.name().equals(categoryString);
-			sortType = sortTypeTemp;
-		}
+
+		SortType sortType =  MarketplaceConfig.SortType.valueOf(categoryString);
+
 		//Possible Search Actions
 		
 		if("searchFromHeader".equals(action)){
@@ -66,7 +64,8 @@ public class SearchAction extends HttpServlet {
 				List<Item> searchResult;
 				
 				searchResult = listingService.findItems(null, null, sortType);
-				
+	
+				System.err.println("items: "+searchResult);
 				res.setContentType("text/html");
 				res.getWriter().write(SearchHtmlGenerator.createItemTableHtml(searchResult));
 			} catch (SQLException e) {
