@@ -14,6 +14,7 @@
 		<div id="mainPane"></div>
 </body>
 <script type="text/javascript" charset="utf-8">
+
 	function getUrlVars() {
 		var vars = {};
 		var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,
@@ -22,17 +23,12 @@
 				});
 		return vars;
 	}
-	var headerSearchInput = getUrlVars()["search"];
-	var category = getUrlVars()["category"];
+	//var userid = getUrlVars()["userid"];
 
-	alert(headerSearchInput);
-	alert(category);
-	$('#example').dataTable();
+	alert("hello");
 
-	$.post("SearchAction", {
-		action : "searchFromHeader",
-		"headerSearchInput" : headerSearchInput,
-		"category" : category
+	$.post("WatchlistAction", {
+		action : "displayWatchlist"
 	}, function(data) {
 		if (data != null) {
 			alert(data);
@@ -41,5 +37,6 @@
 			$('#searchResultTable').dataTable();
 		}
 	});
+
 </script>
 </html>
