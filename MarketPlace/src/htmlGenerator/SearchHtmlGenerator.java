@@ -27,7 +27,7 @@ public class SearchHtmlGenerator {
 		
 		for(int i = 0; i<searchResult.size(); i++){
 			table.append("<tr>");
-			table.append("<td><a href=\"+viewItem.jsp?itemid="+searchResult.get(i).getItemid()+"\">" + searchResult.get(i).getTitle()+"</a></td>");
+			table.append("<td><a href=\"viewItem.jsp?itemid="+searchResult.get(i).getItemid()+"\">" + searchResult.get(i).getTitle()+"</a></td>");
 			table.append("<td>" + searchResult.get(i).getCategoryString()+"</td>");
 			table.append("<td>" + searchResult.get(i).getDescription()+"</td>");
 			table.append("<td>" + searchResult.get(i).getPriceLowString()+"</td>");
