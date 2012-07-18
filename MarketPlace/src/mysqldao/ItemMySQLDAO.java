@@ -1,5 +1,7 @@
 package mysqldao;
 
+import global.MarketplaceConfig;
+
 import java.sql.ResultSet;
 
 import java.sql.SQLException;
@@ -173,6 +175,26 @@ execSql(query);
 			}
 		}
 
+		return mylist;
+	}
+	
+	public List<Item> getItemsByCategory(List<MarketplaceConfig.Category> cats) throws SQLException {
+		
+		List<Item> mylist = new ArrayList<Item>();
+		if (mylist.size() > 0) {
+			String catIds = cats.get(0).getValue() + "";
+			for (int i=1;i<mylist.size();i++) {
+				catIds += ", " + cats.get(i).getValue();
+			}
+			
+			String query = "SELECT * FROM items WHERE categoryid IN (" + catIds + ")";
+			ResultSet rs = execSql(query);
+			
+			while (rs.next()) {
+				mylist.add(getItemObj(rs));
+			}
+		}
+		
 		return mylist;
 	}
 }

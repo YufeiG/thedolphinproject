@@ -1,5 +1,7 @@
 package dao;
 
+import global.MarketplaceConfig;
+
 import java.util.List;
 import model.Item;
 import model.Tag;
@@ -14,4 +16,5 @@ public interface ItemDAO {
 	public boolean createItem(Item item, List<String> tags) throws SQLException;
 	public List<Item> getItems(List<Tag> tags) throws SQLException;
 	public List<Item> getItemsDetailed(List<String> tokens) throws SQLException;
+	public List<Item> getItemsByCategory(List<MarketplaceConfig.Category> cats) throws SQLException;
 }
