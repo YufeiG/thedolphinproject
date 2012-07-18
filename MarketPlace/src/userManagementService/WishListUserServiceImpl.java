@@ -19,6 +19,8 @@ public class WishListUserServiceImpl implements WishListUserService{
 	
 	
 	public Iterator<Tag> getItemsInWishList(long userid) throws SQLException{
+		List<Tag> tag = tagDAO.getTags(userid);
+		
 		return tagDAO.getTags(userid).iterator();
 	}
 	

@@ -8,12 +8,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 
 import listingService.ListingService;
 import listingService.ListingServiceImpl;
@@ -44,16 +46,17 @@ public class WishlistAction extends HttpServlet {
 			
 			
 			try {
-				List<Tag> tags = service.getWishList(userID);
-				System.err.println("Size of wishlist "+tags.size());
+				Iterator<Tag> tags = service.getWishList(userID);
+	
 				String ret = "";
-				for(int i = 0; i < tags.size(); i++)
+				while(tags.hasNext())
 				{
-					System.err.println("tags: "+tags.get(i).getName());
-					if(i == tags.size()-1) ret += tags.get(i).getName();
-					else ret += tags.get(i).getName()+",";
-					
+					Tag t = tags.next();
+					//System.err.println(t.getName());
+					ret += t.getName();
+					if(tags.hasNext()) ret += ",";
 				}
+
 				res.getWriter().write(ret);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
