@@ -1,5 +1,9 @@
 package global;
 
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
+
 public final class MarketplaceConfig {
 	public static String DB_PW = "yufei";
 	public static long WISH_LIST_MATCH_TIME_INTERVAL = 24*60*60*1000; //run match algorithm once per day
@@ -24,6 +28,19 @@ public final class MarketplaceConfig {
 		 public int getValue(){
 			 return value;
 		 }
+		 
+		 private static final Map<Integer,Category> lookup 
+         = new HashMap<Integer,Category>();
+
+	    static {
+	         for(Category s : EnumSet.allOf(Category.class))
+	              lookup.put(s.getValue(), s);
+	    }
+	
+	
+	    public static Category get(int value) { 
+         return lookup.get(value);
+	    }
 	}
 	
 	public static enum RecommendationAlgorithm{

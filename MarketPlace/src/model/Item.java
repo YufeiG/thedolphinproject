@@ -1,6 +1,10 @@
 package model;
 
+import global.MarketplaceConfig;
+
+import java.text.NumberFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class Item {
 	private long itemid;
@@ -48,11 +52,40 @@ public class Item {
 	public void setName(String title) {
 		this.title = title;
 	}
+	
+	// sets the category member using an int
 	public int getCategory() {
 		return category;
 	}
 	public void setCategory(int category) {
 		this.category = category;
+	}
+	
+
+	private String formatPriceString(double price){
+		Double currencyAmount = new Double(price);
+
+	    NumberFormat currencyFormatter = 
+	        NumberFormat.getCurrencyInstance(Locale.CANADA);
+
+	    return currencyFormatter.format(currencyAmount);
+	}
+
+	public String getPriceLowString()
+	{
+		return formatPriceString(this.priceLow);
+	}
+	
+	public String getPriceHighString()
+	{
+		return formatPriceString(this.priceHigh);
+	}
+	// sets the category member using a String.
+	public String getCategoryString(){
+		return MarketplaceConfig.Category.get(this.category).name();
+	}
+	public void setCategoryString(String category){
+		this.category = MarketplaceConfig.Category.valueOf(category).getValue();
 	}
 	public long getUserid() {
 		return userid;
