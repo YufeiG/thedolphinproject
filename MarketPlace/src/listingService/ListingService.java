@@ -3,17 +3,16 @@ package listingService;
 import global.MarketplaceConfig;
 
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.List;
-import global.MarketplaceConfig;
 
 import model.Item;
-import model.Tag;
 
 public interface ListingService {
 
 	public boolean createItem(Item i, List<String> tags);
 
-	public List<Item> findItems(List<String> tokens,
+	public Iterator findItems(List<String> tokens,
 			MarketplaceConfig.Category category,
 			MarketplaceConfig.SortType sortBy) throws SQLException;
 
@@ -27,6 +26,6 @@ public interface ListingService {
 
 	public long createTag(String tagName) throws SQLException;
 
-	public List<Tag> getAllTags() throws SQLException;
+	public Iterator getAllTags() throws SQLException;
 
 }
