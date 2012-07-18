@@ -12,15 +12,14 @@
 </head>
 <body>
 
-<form>
-<table class="input_table">
-<tr><td>itemID:</td><td> <input id="id" type="text" name="id" /><button id = "populate" type="button">Get Item</button></td></tr>
-</table>
-</form>
+
 <table>
 <tr><td>Seller name: </td><td> <input id="username" type="text" name="username" /></td></tr>
 <tr><td>Title: </td><td><input id ="title" type="text" name="title" /></td></tr>
 <tr><td>Description: </td><td><input id ="description" type="text" name="description" /> <br/>
+</td></tr>
+<tr><td>Category: </td><td>
+<input id ="cat" type="text" name="cat" /><br/>
 </td></tr>
 <tr><td>Availability: </td><td><input id ="date" type="text" name="date" /> <br/>
 </td></tr>
@@ -32,6 +31,7 @@
 <tr><td>Email: </td><td>
 <input id ="email" type="text" name="email" /><br/>
 </td></tr>
+
 </table>
 <button id = "watch" type="button">Watch Item</button>
 
@@ -49,6 +49,33 @@
 	var itemID = getUrlVars()["itemid"];
 	
 	$(document).ready(function() {
+		
+		if(itemID != "" && !isNaN(itemID)){
+		
+			$.post("ItemAction",{ action: "get", itemid : itemID },
+					  function(data){
+		
+						if(data != "false" && data != "error"){
+							var dataArray = data.split("|");
+					
+							if(dataArray.length == 10){
+								
+								$("#title").val(dataArray[0]);
+								$("#description").val(dataArray[1]);
+								$("#date").val(dataArray[2] + " to " +dataArray[3]);
+								$("#price").val("$"+dataArray[4] + " to $" + dataArray[5]);
+								$("#username").val(dataArray[6]);
+								if(dataArray[8] != "null")
+									$("#phone").val(dataArray[8]);
+								$("#email").val(dataArray[7]);
+								$("#cat").val(dataArray[9]);
+						
+							}
+						}
+					  }
+					);
+		}
+		
 		$("#watch").click(function(){
 			var id = '<%=session.getAttribute("currentSessionID")%>';
 			if(id != null && !isNaN(id)){
@@ -76,34 +103,7 @@
 			}
 		
 		});
-		$("#populate").click(function(){
-			var id = $("#id").val();
-			if(id != "" && !isNaN(id)){
-		
-				$.post("ItemAction",{ action: "get", itemid : id },
-						  function(data){
-					
-							if(data != "false" && data != "error"){
-								var dataArray = data.split(",");
-								
-								if(dataArray.length == 9){
-		
-									$("#title").val(dataArray[0]);
-									$("#description").val(dataArray[1]);
-									$("#date").val(dataArray[2] + " to " +dataArray[3]);
-									$("#price").val("$"+dataArray[4] + " to $" + dataArray[5]);
-									$("#username").val(dataArray[6]);
-									if(dataArray[8] != "null")
-										$("#phone").val(dataArray[8]);
-									$("#email").val(dataArray[7]);
-							
-								}
-							}
-						  }
-						);
-			}
-		
-		});
+
 	
 	});
 </script> 
