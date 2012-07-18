@@ -52,7 +52,7 @@ public class ListingServiceImpl implements ListingService{
 			processing = new RandomSearchProcessing();
 		}
 		
-		List<Item> result = itemDAO.getItems(tokens);
+		List<Item> result = itemDAO.getItemsDetailed(tokens);
 		
 		processing.process(result);
 				
