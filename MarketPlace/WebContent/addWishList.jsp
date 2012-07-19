@@ -57,7 +57,7 @@ To add new tags, simply enter a tag and save.
 							for(var i = 0; i < existingTags; i++)
 							{
 							
-								$("#tagInputs").append("<li><input id=\"tag"+(i)+"\" disabled=\"disabled\"/></li>");
+								$("#tagInputs").append("<li><input style=\"background-color:#AAAAAA; \" id=\"tag"+(i)+"\" disabled=\"disabled\"/></li>");
 				
 								$("#tag"+i).val(dataArray[i]);
 							}
