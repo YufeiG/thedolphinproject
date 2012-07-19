@@ -915,7 +915,7 @@ nav[role=navigation] .search-container button[type=submit]:active {
 #copyright {
 	background-color: #232323;
 	border-bottom: 1px solid #151515;
-	height: 95px;
+	height: 45px;
 	position: absolute;
 	bottom: 0px;	
 	margin-top: 2px;
@@ -1004,6 +1004,17 @@ body {
 	background-image:
 		url('http://1.envato-static.com/images/common/backgrounds/burst.png?1340936089');
 	background-repeat: no-repeat
+}
+
+.wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -4em;
+}
+
+.push {
+	height: 4em;
 }
 
 #content {
@@ -5498,7 +5509,7 @@ input[type=checkbox].wordy-checkbox {
 }
 
 .item-copyright {
-	margin-top: 20px;
+	margin-top: 100px;
 	padding-top: 20px;
 	background: url(/images/common/backgrounds/indent.gif) repeat-x top left
 }

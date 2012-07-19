@@ -13,43 +13,12 @@
 </head>
 
 <body>
+<p></p>
 
-<p>current session user<%=session.getAttribute("currentSessionUser") %></p>
-
-<p>current session user id<%=session.getAttribute("currentSessionID") %></p>
-
-</body>
-
-<!-- 
-<body>
-
-	<div id="main">
-        <div id="header">
-            <a href="login.jsp">Log In</a>
-            |
-            <a href="createAccount.jsp">Create Account</a>
-            |
-            <a href="createItem.jsp">New Item</a>
-        </div>
-		<div id="search">
-            Search Bar bah
-        </div>
-        <div id="indexLeftColumn">
-             Categories
-        </div>
-
-        <div id="indexRightColumn">
-            Results
-        </div>
-
-        <div id="footer">
-            Copyright(c)2012 UWAvengers
-        </div>
-    </div>
-
+<center><img src="css/headerimage.png"></center>
 
 </body>
- -->
+
 </html>
 
 <%@ include file="footer.jsp" %>

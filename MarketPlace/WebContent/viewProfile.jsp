@@ -11,23 +11,24 @@
 
 </head>
 <body>
-
+<center>
+<h4>- User Profile -</h4>
 
 <table>
-<tr><td>Username:</td><td> <input id="username" type="text" name="username" /></td></tr>
-<tr><td>Password:</td><td><input id ="password" type="password" name="pwd" /></td></tr>
-<tr><td>First Name:</td><td><input id ="first" type="text" name="first" /> <br/>
+<tr><td>Username:</td><td> <input disabled="disabled" id="username" type="text" name="username" /></td></tr>
+<tr><td>Password:</td><td><input disabled="disabled" id ="password" type="password" name="pwd" /></td></tr>
+<tr><td>First Name:</td><td><input disabled="disabled" id ="first" type="text" name="first" /> <br/>
 </td></tr>
-<tr><td>Last Name: </td><td><input id ="last" type="text" name="last" /> <br/>
+<tr><td>Last Name: </td><td><input disabled="disabled" id ="last" type="text" name="last" /> <br/>
 </td></tr>
-<tr><td>Email: </td><td><input id ="email" type="text" name="email" /><br/>
+<tr><td>Email: </td><td><input disabled="disabled" id ="email" type="text" name="email" /><br/>
 </td></tr>
 <tr><td>Phone: </td><td>
-<input id ="phone" type="text" name="phone" /><br/>
+<input disabled="disabled" id ="phone" type="text" name="phone" /><br/>
 
 </td></tr>
 </table>
-
+</center>
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -61,3 +62,5 @@
 </script> 
 </body>
 </html>
+
+<%@ include file="footer.jsp" %>

@@ -11,6 +11,7 @@
 
 </head>
 <body>
+<div class="wrapper">
 <center>
 <h4>- Create an Account -</h4>
 A valid uWaterloo username is required to create an account. Unless otherwise stated, all fields are required.
@@ -37,6 +38,7 @@ A valid uWaterloo username is required to create an account. Unless otherwise st
 <p></p>
 <button id = "submit" type="button">Create Account</button>
 </form>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 	
@@ -107,10 +109,13 @@ A valid uWaterloo username is required to create an account. Unless otherwise st
 		);
 	});
 	});
-</script> 
+</script>
 
 </center>
+</div>
+<div class="push"></div>
 </body>
+
 </html>
 
 <%@ include file="footer.jsp" %>
