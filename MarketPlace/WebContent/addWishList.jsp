@@ -123,5 +123,3 @@ To add new tags, simply enter a tag and save.
 </center>
 </body>
 </html>
-
-<%@ include file="footer.jsp" %>

@@ -41,5 +41,3 @@
 
 </script>
 </html>
-
-<%@ include file="footer.jsp" %>
