@@ -14,6 +14,11 @@
 <title>Wish List</title>
 </head>
 <body>
+<center>
+<h4>- Wish List -</h4>
+Below are the existing tags in your Wish List.<br/>
+To add new tags, simply enter a tag and save.
+
 <script type="text/javascript">
 	//function parseTag(){
 		//var tags = $("#tags").val();
@@ -109,10 +114,14 @@
 		});
 	});
 </script>
-
+<p></p>
 <ul id="tagInputs">
 	
 </ul>
+<p></p>
 <button id = "save" type="button">Save</button>
+</center>
 </body>
 </html>
+
+<%@ include file="footer.jsp" %>

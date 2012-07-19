@@ -10,7 +10,10 @@
 </head>
 
 <body>
+<center>
+<h4>- Listings and Available Items -</h4>
 	<div id="mainPane"></div>
+</center>
 </body>
 <script type="text/javascript" charset="utf-8">
 	function getUrlVars() {
@@ -41,3 +44,4 @@
 </script>
 
 </html>
+<%@ include file="footer.jsp"%>
