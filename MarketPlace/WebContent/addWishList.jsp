@@ -46,12 +46,12 @@
 			$.post("WishlistAction",{ action: "get", userid: id},
 					  function(data){
 						//alert(data);
-						if(data != "false" && data != "error"){
+						if(data != "false" && data != "error" && data != ""){
 							var dataArray = data.split(",");
 							existingTags = dataArray.length;
 							for(var i = 0; i < existingTags; i++)
 							{
-								
+							
 								$("#tagInputs").append("<li><input id=\"tag"+(i)+"\" disabled=\"disabled\"/></li>");
 				
 								$("#tag"+i).val(dataArray[i]);
