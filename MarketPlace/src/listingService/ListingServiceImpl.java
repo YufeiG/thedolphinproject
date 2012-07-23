@@ -60,12 +60,12 @@ public class ListingServiceImpl implements ListingService{
 		return result.iterator();
 	}
 	
-	public boolean editItem(Item i){
-		return false;
+	public boolean editItem(Item i) throws SQLException{
+		return itemDAO.editItem(i);
 	}
 	
-	public boolean deleteItem(Item i){
-		return false;
+	public boolean deleteItem(Item i) throws SQLException{
+		return itemDAO.deleteItem(i);
 	}
 	
 	public Item getItem(long itemID)
