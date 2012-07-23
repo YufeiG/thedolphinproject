@@ -163,9 +163,9 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 
 		for (int i = 0; i < tokens.size(); i++) {
 			String thisToken = tokens.get(i);
-			String query = "SELECT * FROM items i WHERE i.title LIKE '%"
+			String query = "SELECT * FROM items i WHERE (i.title LIKE '%"
 					+ thisToken + "%' OR i.description LIKE '%" + thisToken
-					+ "%'" + "OR i.avail_end<='" + getCurDate() + "'";
+					+ "%'" + ") AND i.avail_end>='" + getCurDate() + "'";
 
 			ResultSet rs = execSql(query);
 
