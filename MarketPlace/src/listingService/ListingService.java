@@ -17,9 +17,9 @@ public interface ListingService {
 			MarketplaceConfig.Category category,
 			MarketplaceConfig.SortType sortBy) throws SQLException;
 
-	public boolean editItem(Item i);
+	public boolean editItem(Item i) throws SQLException;
 
-	public boolean deleteItem(Item i);
+	public boolean deleteItem(Item i) throws SQLException;
 
 	public Item getItem(long itemID);
 
