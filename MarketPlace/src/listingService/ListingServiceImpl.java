@@ -6,6 +6,7 @@ import global.MarketplaceConfig.Category;
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ArrayList;
 
 import model.Item;
 import model.Tag;
@@ -38,23 +39,35 @@ public class ListingServiceImpl implements ListingService{
 	
 
 	public Iterator<Item> findItems(List<String> tokens,  MarketplaceConfig.Category category, MarketplaceConfig.SortType sortBy) throws SQLException{
-
-		SearchProcessing processing;
-
-		if(sortBy == MarketplaceConfig.SortType.POPULARITY){
-			processing = new PopularitySearchProcessing();
-		}
-		else if(sortBy == MarketplaceConfig.SortType.PRICE){
-			processing = new PriceSearchProcessing();
-		}
-		else if(sortBy == MarketplaceConfig.SortType.RECENCY){
-			processing = new RecencySearchProcessing();
-		}
-		else{
-			processing = new RandomSearchProcessing();
-		}
 		
-		List<Item> result = itemDAO.getItemsDetailed(tokens);
+		SearchProcessing processing;
+		List<Item> result;
+		List<MarketplaceConfig.Category> categoryList = new ArrayList<MarketplaceConfig.Category>();
+		
+		if(category != null) {
+			processing = new RecencySearchProcessing();
+			
+			categoryList.add(category);
+			result = itemDAO.getItemsByCategory(categoryList);
+			
+		} else {
+
+			if(sortBy == MarketplaceConfig.SortType.POPULARITY){
+				processing = new PopularitySearchProcessing();
+			}
+			else if(sortBy == MarketplaceConfig.SortType.PRICE){
+				processing = new PriceSearchProcessing();
+			}
+			else if(sortBy == MarketplaceConfig.SortType.RECENCY){
+				processing = new RecencySearchProcessing();
+			}
+			else{
+				processing = new RandomSearchProcessing();
+			}
+		
+			result = itemDAO.getItemsDetailed(tokens);
+		
+		}
 		
 		processing.process(result);
 		
