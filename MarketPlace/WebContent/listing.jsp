@@ -10,7 +10,7 @@
 </head>
 
 <body>
-<button id="email">Send Test Email</button>
+<!-- button id="email">Send Test Email</button> -->
 <center>
 <h4>- Listings and Available Items -</h4>
 	<div id="mainPane"></div>
@@ -39,7 +39,7 @@
 	$.post("SearchAction", {
 		action : "searchFromHeader",
 		"headerSearchInput" : headerSearchInput,
-		"itemType" : itemCategory,
+		"itemType" : itemType,
 		"category" : category
 	}, function(data) {
 		if (data != null) {

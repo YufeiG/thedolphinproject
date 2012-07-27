@@ -55,6 +55,7 @@ public class SearchAction extends HttpServlet {
 			Category itemCategory = null;
 			if(!itemType.equals(null) || !itemType.equals("") ) {
 				itemCategory = MarketplaceConfig.Category.valueOf(itemType);
+				System.out.println(itemCategory);
 			} 
 			
 			// Get sortType
