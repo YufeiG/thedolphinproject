@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page import="java.util.*,java.lang.*,global.MarketplaceConfig,global.MarketplaceConfig.SortType,userManagementService.*,model.*" %> 
 <%@ include file="header.jsp" %>
 <html>
 <head>
@@ -35,7 +36,9 @@
 
 </table>
 <p></p>
-<button id = "watch" type="button">Watch Item</button>
+<div id ="watchArea">
+</div>		 
+		
 
 </center>
 
@@ -51,7 +54,13 @@
 	}
 	
 	var itemID = getUrlVars()["itemid"];
+	var isWatched = getUrlVars()["isWatched"];	
 	
+	if(isWatched == "true"){
+		$("#watchArea").html("<button id = \"unwatch\" type=\"button\">Unwatch Item</button>");
+	}else{
+		$("#watchArea").html("<button id = \"watch\" type=\"button\">Watch Item</button>");
+	}
 	$(document).ready(function() {
 		
 		if(itemID != "" && !isNaN(itemID)){
@@ -93,6 +102,35 @@
 						}
 						else{
 							alert("adding failed");
+						}
+					});
+				}
+				else
+				{
+					alert("invalid item id");
+				}
+				
+			}
+			else{
+				alert("You are not signed in!");
+			}
+		
+		});
+		
+		$("#unwatch").click(function(){
+			var id = '<%=session.getAttribute("currentSessionID")%>';
+			if(id != null && !isNaN(id)){
+				//add to watch list
+				
+				if(itemID != "" && !isNaN(itemID)){
+					$.post("UserAction",{ action: "removeWatchList", userid: id, itemid : itemID },
+							  function(data){
+						if(data == "true"){
+							alert("Item was removed");
+							window.location = "watchlist.jsp";
+						}
+						else{
+							alert("Item remove failed");
 						}
 					});
 				}

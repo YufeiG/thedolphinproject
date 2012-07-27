@@ -3,6 +3,7 @@ package controller;
 import global.MarketplaceConfig;
 import global.MarketplaceConfig.SortType;
 import htmlGenerator.SearchHtmlGenerator;
+import htmlGenerator.WishlistHtmlGenerator;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -47,7 +48,7 @@ public class WatchlistAction extends HttpServlet {
 				System.out.println(watchlist.hasNext());
 
 				res.setContentType("text/html");
-				res.getWriter().write(SearchHtmlGenerator.createItemTableHtml(watchlist));
+				res.getWriter().write(WishlistHtmlGenerator.createItemTableHtml(watchlist));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
