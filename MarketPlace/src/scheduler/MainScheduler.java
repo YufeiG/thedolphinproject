@@ -64,7 +64,7 @@ public class MainScheduler {
 		
 	}
 	
-	private void runWishListAlgorithm(Date date){
+	public void runWishListAlgorithm(Date date){
 		HashMap<User, List<Item>> list = algorithm.match(date);
 		emailToUser(list);
 	}

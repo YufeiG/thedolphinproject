@@ -17,7 +17,8 @@
 <center>
 <h4>- Wish List -</h4>
 Below are the existing tags in your Wish List.<br/>
-To add new tags, simply enter a tag and save.
+To add new tags, simply enter a tag and save.<br/>
+To delete old tags, check the box and save.
 
 <script type="text/javascript">
 	//function parseTag(){
@@ -50,14 +51,14 @@ To add new tags, simply enter a tag and save.
 		
 			$.post("WishlistAction",{ action: "get", userid: id},
 					  function(data){
-						//alert(data);
+			
 						if(data != "false" && data != "error" && data != ""){
 							var dataArray = data.split(",");
 							existingTags = dataArray.length;
 							for(var i = 0; i < existingTags; i++)
 							{
 							
-								$("#tagInputs").append("<li><input style=\"background-color:#AAAAAA; \" id=\"tag"+(i)+"\" disabled=\"disabled\"/></li>");
+								$("#tagInputs").append("<li><input style=\"background-color:#AAAAAA; \" id=\"tag"+(i)+"\" disabled=\"disabled\"/><input id=\"cb"+(i)+"\" type=\"checkbox\"  /></li>");
 				
 								$("#tag"+i).val(dataArray[i]);
 							}
@@ -72,12 +73,28 @@ To add new tags, simply enter a tag and save.
 		$("#save").click(function(){
 			//parseTag();
 			var tags = "";
+			var deleteTags = "";
 
+			for(var i = 0; i < existingTags ; i++){
+				var r = $("#cb"+i).is(':checked');
+				if(r == false) continue;
+				
+				var v = $("#tag"+i).val();
+
+				if(deleteTags == ""){
+					deleteTags += v ;
+				
+				}
+				else{
+					deleteTags += ","+ v;
+				}
+			}
+			
 			for(var i = existingTags; i < $("#tagInputs").children().length ; i++){
 				var r = $("#tag"+i).val();
 				if(r == null || r == "") continue;
 				
-				if(i == existingTags){
+				if(tags == ""){
 					tags += r ;
 				
 				}
@@ -86,29 +103,51 @@ To add new tags, simply enter a tag and save.
 				}
 			}
 			
-			if(tags == ""){
+			if(tags == "" && deleteTags == ""){
 				return;
 			}
-		
+
 			var id = '<%=session.getAttribute("currentSessionID")%>';
 			if(id == "null"){
 				alert("Error! You must be logged in have a wish list!");
 			}
 			else{
-				$.post("UserAction",{ action: "addWishList", userid: id, tags: tags },
-				  function(data){
-				    if(data == "false"){
-				    	alert("Tags were not added.");
-				    }
-				    else if(data == "true"){
-				    	alert("Tags were successfully added.");
-				    	window.location = "addWishList.jsp";
-				    }
-				    else{
-				    	alert("Server error! Try again later.");
-				    }
+				if(tags != ""){
+					$.post("WishlistAction",{ action: "set", userid: id, tags: tags },
+					  function(data){
+					    if(data == "false"){
+					    	alert("Tags were not added.");
+					    }
+					    else if(data == "true"){
+					    	alert("Tags were successfully added.");
+					    	
+					    }
+					    else{
+					    	alert("Server error! Try again later.");
+					    }
 				  }
-				);	
+					);	
+				}
+				
+
+				if(deleteTags!=""){
+				
+					$.post("WishlistAction",{ action: "delete", userid: id, tags: deleteTags },
+							  function(data){
+							    if(data == "false"){
+							    	alert("Tags were not deleted.");
+							    }
+							    else if(data == "true"){
+							    	alert("Tags were successfully deleted.");
+							 
+							    }
+							    else{
+							    	alert("Server error! Try again later.");
+							    }
+							  }
+							);	
+				}
+				window.location = "addWishList.jsp";
 			}
 			
 		});

@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -21,6 +22,7 @@ import listingService.ListingServiceImpl;
 import model.Item;
 import model.Tag;
 import model.User;
+import scheduler.MainScheduler;
 import userManagementService.UserManagementService;
 import userManagementService.UserManagementServiceImpl;
 
@@ -38,12 +40,7 @@ public class SearchAction extends HttpServlet {
 		
 		String action = req.getParameter("action");
 		
-		String categoryString = req.getParameter("category");
-		SortType sortType =  MarketplaceConfig.SortType.valueOf(categoryString);
-		
-		String longTag = req.getParameter("headerSearchInput");
-		
-		List<String> tokens = Arrays.asList(longTag.split(" "));
+
 
 		
 
@@ -51,7 +48,12 @@ public class SearchAction extends HttpServlet {
 		
 	 
 		if("searchFromHeader".equals(action)){
+			String categoryString = req.getParameter("category");
+			SortType sortType =  MarketplaceConfig.SortType.valueOf(categoryString);
 			
+			String longTag = req.getParameter("headerSearchInput");
+			
+			List<String> tokens = Arrays.asList(longTag.split(" "));
 			
 			//String category = req.getParameter("category");
 			//String sortType = req.getParameter("sortType");
@@ -77,6 +79,7 @@ public class SearchAction extends HttpServlet {
 			
 
 		}
+
 				
 			
 

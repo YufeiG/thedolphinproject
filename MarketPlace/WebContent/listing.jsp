@@ -10,6 +10,7 @@
 </head>
 
 <body>
+<button id="email">Send Test Email</button>
 <center>
 <h4>- Listings and Available Items -</h4>
 	<div id="mainPane"></div>
@@ -27,6 +28,10 @@
 	var headerSearchInput = getUrlVars()["search"];
 	var category = getUrlVars()["category"];
 
+	$("#email").click(function(){
+		$.post("SearchAction", {
+			action : "email"});
+	});
 	
 	$('#example').dataTable();
 

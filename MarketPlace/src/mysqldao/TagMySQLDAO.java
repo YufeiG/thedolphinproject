@@ -92,10 +92,10 @@ public class TagMySQLDAO extends AbstractDAO implements TagDAO {
 			if (thisTagid != 0) {
 				execSql(String.format("DELETE FROM wishlist WHERE userid=%d AND tagid=%d", 
 						userid, thisTagid));
-				return true;
+
 			}
 		}
-		return false;
+		return true;
 	}
 
 	public List<Tag> getTags(long userid) throws SQLException {
