@@ -96,14 +96,32 @@ public class UserMySQLDAO extends AbstractDAO implements UserDAO{
 	}
 	
 	public boolean editUser(User user) throws SQLException {
-		execSql("UPDATE users" +
+		String phone = user.getPhoneNumber();
+		String query = "";
+		if(phone == null || phone.equals("")){
+			query = "UPDATE users " +
+					"SET username='" + user.getUsername() +
+					"', password='" + user.getPassword() +
+					"', firstname='" + user.getFirstName() +
+					"', lastname='" + user.getLastName() +
+					"', email='" + user.getEmail() +
+					"' WHERE userid=" + user.getUserid();
+			
+		}
+		else{
+		
+		
+		query = "UPDATE users " +
 				"SET username='" + user.getUsername() +
 				"', password='" + user.getPassword() +
 				"', firstname='" + user.getFirstName() +
 				"', lastname='" + user.getLastName() +
-				"', email" + user.getEmail() +
+				"', email='" + user.getEmail() +
 				"', phone_num=" + strIsNull(user.getPhoneNumber()) +
-				"WHERE username='" + user.getUsername() + "'");
+				" WHERE userid=" + user.getUserid();
+		}
+		System.err.println(query);
+		execSql(query);
 		return true;
 	}
 

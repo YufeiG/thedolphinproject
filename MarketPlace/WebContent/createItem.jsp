@@ -28,6 +28,7 @@
 	var itemid = getUrlVars()["itemid"];
 	
 	$(document).ready(function() {
+		if(itemid == null) alert("NOTHING");
 		 $("#price1").val("1");
 		$("#price2").val("1000");
 		

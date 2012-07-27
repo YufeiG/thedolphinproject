@@ -17,7 +17,7 @@
 		<table>
 			<tr>
 				<td>Username:</td>
-				<td><input id="username" type="text" name="username" /></td>
+				<td><input id="username" type="text" name="username" disabled="disabled"/></td>
 			</tr>
 			<tr>
 				<td>Old Password:</td>
@@ -72,13 +72,13 @@
 							oldPassword = dataArray[1];
 							
 							$("#username").val(dataArray[0]);
-							$("#password").val(dataArray[1]);
 							$("#first").val(dataArray[2]);
 							$("#last").val(dataArray[3]);
 							$("#email").val(dataArray[4]);
 							if (dataArray[5] != "null") {
 								$("#phone").val(dataArray[5]);
 							}
+				
 						}
 					}
 				});
@@ -131,18 +131,23 @@
 						
 						if(password != oldPassword){
 							alert("Error: Invalid old password");
+							return;
 						}
 						
 						if(newPassword1 != newPassword2){
 							alert("Error: New passwords does not match");
+							return;
 						}
 					}
 
+					
+					
+					
 					$.post("UserAction", {
 						action : "editProfile",
 						userid : id,
 						username: username,
-						password: newPassword1,
+						password: newPassword1 == "" ? oldPassword : newPassword1,
 						email: email,
 						phone: phone,
 						firstName: firstName,
