@@ -209,7 +209,7 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 
 	@Override
 	public List<String> getItemTags(long itemid) throws SQLException {
-		String query = "SELECT tag_name FROM items_tags JOIN tags ON (tags.tagid = item_tags.tagid) WHERE itemid = " + itemid;
+		String query = "SELECT tag_name FROM item_tags JOIN tags ON (tags.tagid = item_tags.tagid) WHERE itemid = " + itemid;
 		ResultSet rs = execSql(query);
 		List<String> ret = new ArrayList<String>();
 		while (rs.next()) {

@@ -75,6 +75,7 @@ public class ListingServiceImpl implements ListingService{
 	}
 	
 	public boolean editItem(Item i, List<String> tags) throws SQLException{
+		itemDAO.setItemTags(tags, i.getItemid());
 		return itemDAO.editItem(i);
 	}
 	
@@ -115,5 +116,11 @@ public class ListingServiceImpl implements ListingService{
 	@Override
 	public Iterator<Item> getItemsByCategory(List<Category> cats) throws SQLException {
 		return itemDAO.getItemsByCategory(cats).iterator();
+	}
+
+
+	@Override
+	public Iterator<String> getItemTags(long itemid) throws SQLException {
+		return itemDAO.getItemTags(itemid).iterator();
 	}
 }
