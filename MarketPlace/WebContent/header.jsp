@@ -83,10 +83,10 @@ String currSessionUser = (String)session.getAttribute("currentSessionUser"); %>
     <li><a href="">Categories</a>
       <div class="dropdown">
         <ul>
-          <li><a href="listing.jsp?search=books&category=NONE">Books</a></li>
-          <li><a href="listing.jsp?search=housing&category=NONE">Housing</a></li>
-          <li><a href="listing.jsp?search=services&category=NONE">Services</a></li>
-          <li><a href="listing.jsp?search=furniture&category=NONE">Furniture</a></li>
+          <li><a href="listing.jsp?search=&itemType=BOOKS&category=NONE">Books</a></li>
+          <li><a href="listing.jsp?search=&itemType=HOUSING&category=NONE">Housing</a></li>
+          <li><a href="listing.jsp?search=&itemType=SERVICES&category=NONE">Services</a></li>
+          <li><a href="listing.jsp?search=&itemType=FURNITURE&category=NONE">Furniture</a></li>
         </ul>
       </div>
     </li>
