@@ -69,4 +69,8 @@ public class UserManagementServiceImpl implements UserManagementService {
 	public boolean deleteFromWishList(List<String> tagNames, long userId) throws SQLException{
 		return wishListUserService.deleteFromWishList(tagNames, userId);
 	}
+	
+	public boolean isInWatchList(long itemid, long userid) throws SQLException{
+		return watchListUserService.isInWatchList(itemid, userid);
+	}
 }

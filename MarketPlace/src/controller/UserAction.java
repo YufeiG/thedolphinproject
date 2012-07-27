@@ -127,26 +127,7 @@ public class UserAction extends HttpServlet {
 			
 		}
 		else if(action.equals("removeWatchList")){
-			String userIDString = req.getParameter("userid");
-			long userID = Long.parseLong(userIDString);
 			
-			String itemIDString = req.getParameter("itemid");
-			long itemID = Long.parseLong(itemIDString);
-			
-			System.err.println("UserAction:addWatchList with ids "+userID+" item: "+itemID);
-			try {
-				if(service.deleteFromWatchList(itemID, userID)){
-					res.getWriter().write("true");
-				}
-				else{
-					res.getWriter().write("false");
-					
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				res.getWriter().write("error");
-			}
 			
 		}
 		else if(action.equals("addWishList")){

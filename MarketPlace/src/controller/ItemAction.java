@@ -9,6 +9,7 @@ import java.util.Locale;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import listingService.ListingService;
 import listingService.ListingServiceImpl;
@@ -33,6 +34,10 @@ public class ItemAction extends HttpServlet {
 			throws java.io.IOException {
 		String action = req.getParameter("action");
 		res.setContentType("text/html");
+		
+		HttpSession session = req.getSession(true);
+		long userid = (Long)session.getAttribute("currentSessionID");
+	
 		
 		if(action == null)
 		{
@@ -125,7 +130,7 @@ public class ItemAction extends HttpServlet {
 
 					String data = item.getTitle() + "|" + item.getDescription() + "|" + item.getAvailStart() + "|" + item.getAvailEnd()
 							+ "|" + item.getPriceLowString() + "|" + item.getPriceHighString() + "|" + user.getUsername() + "|"
-							+ user.getEmail() + "|" + user.getPhoneNumber()+"|"+item.getCategoryString();
+							+ user.getEmail() + "|" + user.getPhoneNumber()+"|"+item.getCategoryString() +"|" +(userService.isInWatchList(itemID, userid) ? "true":"false") +"|" + (user.getUserid() == userid ? "true" : "false");
 					res.getWriter().write(data);
 				}
 				else

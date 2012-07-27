@@ -62,6 +62,17 @@ public class WatchListUserServiceImpl implements WatchListUserService{
 		return userDAO.addToWatchList(itemid, userid);
 	}
 	
+	public boolean isInWatchList(long itemid, long userid) throws SQLException{
+		Iterator<Item> items = getWatchListItems(userid);
+		while(items.hasNext())
+		{
+			if(items.next().getItemid() == itemid)
+				return true;
+		}
+				
+		return false;
+	}
+	
 
 	
 }

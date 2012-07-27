@@ -32,13 +32,13 @@ public class WatchlistAction extends HttpServlet {
 		System.out.println("ENTERED WATCHLIST");
 
 		String action = req.getParameter("action");
-		
+		UserManagementService service = new UserManagementServiceImpl();
 		if("displayWatchlist".equals(action)){
 			
 			try {
-				UserManagementService userManagementService = new UserManagementServiceImpl();
+				
 				Iterator<Item> watchlist;
-				watchlist = userManagementService.getWatchList((Long) req.getSession().getAttribute("currentSessionID"));
+				watchlist = service.getWatchList((Long) req.getSession().getAttribute("currentSessionID"));
 				System.out.println(watchlist.hasNext());
 
 				res.setContentType("text/html");
@@ -47,7 +47,29 @@ public class WatchlistAction extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}	
+		}
+		else if("remove".equals(action)){
+			String userIDString = req.getParameter("userid");
+			long userID = Long.parseLong(userIDString);
+			
+			String itemIDString = req.getParameter("itemid");
+			long itemID = Long.parseLong(itemIDString);
+			
+			System.err.println("UserAction:addWatchList with ids "+userID+" item: "+itemID);
+			try {
+				if(service.deleteFromWatchList(itemID, userID)){
+					res.getWriter().write("true");
+				}
+				else{
+					res.getWriter().write("false");
+					
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				res.getWriter().write("error");
+			}
+		}
 	}
 
 	@Override
