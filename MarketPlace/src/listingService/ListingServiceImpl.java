@@ -1,6 +1,7 @@
 package listingService;
 
 import global.MarketplaceConfig;
+import global.MarketplaceConfig.Category;
 
 import java.sql.SQLException;
 import java.util.Iterator;
@@ -95,5 +96,11 @@ public class ListingServiceImpl implements ListingService{
 	@Override
 	public Iterator<Tag> getAllTags() throws SQLException {
 		return tagDAO.getTags().iterator();
+	}
+
+
+	@Override
+	public Iterator<Item> getItemsByCategory(List<Category> cats) throws SQLException {
+		return itemDAO.getItemsByCategory(cats).iterator();
 	}
 }

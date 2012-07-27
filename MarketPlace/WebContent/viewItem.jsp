@@ -97,7 +97,7 @@
 		}
 		
 		$("#edit").live('click', function(){
-			
+			window.location("createItem.ksp?itemid="+itemID);
 		});
 		
 		$("#delete").live('click', function(){
