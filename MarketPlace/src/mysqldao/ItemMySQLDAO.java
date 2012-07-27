@@ -229,6 +229,7 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 		for (int i=0; i<tags.size(); i++) {
 			long tagid = dao.createTag(tags.get(i));
 			query = "INSERT INTO item_tags VALUES (" + itemid + "," + tagid + ")";
+			execSql(query);
 		}
 		return true;
 	}
