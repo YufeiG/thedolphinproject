@@ -33,7 +33,7 @@ public class WishlistAction extends HttpServlet {
 
 		// Track user id session
 		HttpSession session = req.getSession(true);
-		String userIDString = (String)session.getAttribute("currentUserID");
+
 		long userID = Long.parseLong(req.getParameter("userid"));
 		
 		String action = req.getParameter("action");

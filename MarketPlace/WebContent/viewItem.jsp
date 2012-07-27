@@ -15,22 +15,22 @@
 <h4>- View Items -</h4>
 
 <table>
-<tr><td>Seller name: </td><td> <input id="username" type="text" name="username" /></td></tr>
-<tr><td>Title: </td><td><input id ="title" type="text" name="title" /></td></tr>
-<tr><td>Description: </td><td><input id ="description" type="text" name="description" /> <br/>
+<tr><td>Seller name: </td><td> <input id="username" type="text" name="username" disabled="disabled"/></td></tr>
+<tr><td>Title: </td><td><input id ="title" type="text" name="title" disabled="disabled"/></td></tr>
+<tr><td>Description: </td><td><input id ="description" type="text" name="description" disabled="disabled"/> <br/>
 </td></tr>
 <tr><td>Category: </td><td>
-<input id ="cat" type="text" name="cat" /><br/>
+<input id ="cat" type="text" name="cat" disabled="disabled"/><br/>
 </td></tr>
-<tr><td>Availability: </td><td><input id ="date" type="text" name="date" /> <br/>
+<tr><td>Availability: </td><td><input id ="date" type="text" name="date" disabled="disabled"/> <br/>
 </td></tr>
-<tr><td>Price: </td><td><input id ="price" type="text" name="price" /><br/>
+<tr><td>Price: </td><td><input id ="price" type="text" name="price" disabled="disabled"/><br/>
 </td></tr>
 <tr><td>Phone: </td><td>
-<input id ="phone" type="text" name="phone" /><br/>
+<input id ="phone" type="text" name="phone" disabled="disabled"/><br/>
 </td></tr>
 <tr><td>Email: </td><td>
-<input id ="email" type="text" name="email" /><br/>
+<input id ="email" type="text" name="email" disabled="disabled"/><br/>
 </td></tr>
 
 </table>
@@ -73,6 +73,7 @@
 									$("#phone").val(dataArray[8]);
 								$("#email").val(dataArray[7]);
 								$("#cat").val(dataArray[9]);
+					
 						
 							}
 						}

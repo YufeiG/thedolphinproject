@@ -21,12 +21,14 @@ To add new tags, simply enter a tag and save.<br/>
 To delete old tags, check the box and save.
 
 <script type="text/javascript">
-	//function parseTag(){
-		//var tags = $("#tags").val();
-		//var noSpace = tags.split(' ').join('');
-		//var lowerCase = noSpace.toLowerCase();
-		//$("#tags").val(lowerCase);
-	//}
+	function parseTag(n){
+		var tags = $("#tag"+n).val();
+		var noSpace = tags.split(' ').join('');
+		var noComma = noSpace.split(',').join('');
+		var lowerCase = noComma.toLowerCase();
+		$("#tag"+n).val(lowerCase);
+	
+	}
 	jQuery.fn.exists = function(){return this.length>0;};
 	
 	function createInput(n)
@@ -37,6 +39,9 @@ To delete old tags, check the box and save.
 	
 			$("#tagInputs").append("<li><input onkeydown=\"createInput("+k+");\"  id=\"tag"+k+"\"/></li>");
 		}
+		
+			parseTag(n);
+		
 		
 	}
 

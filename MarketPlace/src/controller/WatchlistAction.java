@@ -30,13 +30,7 @@ public class WatchlistAction extends HttpServlet {
 			throws java.io.IOException {
 		System.out.println("ENTERED WATCHLIST");
 
-		// Track user id session
-		HttpSession session = req.getSession(true);
-		String userID = (String)session.getAttribute("currentUserID");
-		
-		
 		String action = req.getParameter("action");
-		SortType sortType = MarketplaceConfig.SortType.NONE;
 		
 		if("displayWatchlist".equals(action)){
 			
