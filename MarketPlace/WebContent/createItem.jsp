@@ -38,7 +38,21 @@
 	
 	
 	$(document).ready(function() {
+		$( "#date1" ).datepicker({
+			onSelect: function( selectedDate ) {
+				$( "#date2" ).datepicker( "option", "minDate", selectedDate );
+			}
+		});
+
+		
+		$( "#date2" ).datepicker({
+			onSelect: function( selectedDate ) {
+				$( "#date1" ).datepicker( "option", "maxDate", selectedDate );
+			}
+		});
+		
 		var type = "create";
+		var date1, date2;
 		if(itemID != null)
 		{
 			$.post("ItemAction",{ action: "get", itemid:itemID },
@@ -47,8 +61,15 @@
 			   		var dataArray = data.split("|");
 			   		$("#title").val(dataArray[0]);
 					$("#description").val(dataArray[1]);
-					$("#date1").val(dataArray[2].split('-').join('/'));
-					$("#date2").val(dataArray[3].split('-').join('/'));
+					
+					var date1Array = dataArray[2].split('-');
+					var date2Array = dataArray[3].split('-');
+					date1 = new Date(date1Array[0], date1Array[1], date1Array[2]);
+					date2 = new Date(date2Array[0], date2Array[1], date2Array[2]);
+					
+					$( "#date1" ).datepicker('setDate', date1);
+					$( "#date2" ).datepicker('setDate', date2);
+
 					$("#price1").val(dataArray[4].split('$').join('').split(',').join(''));
 					$("#price2").val(dataArray[5].split('$').join('').split(',').join(''));
 					$("#username").val(dataArray[6]);
@@ -65,30 +86,17 @@
 			  }
 			);	
 		}
-		
+		else
+		{
+			var currentDate = new Date();
+			$( "#date1" ).datepicker('setDate', currentDate);
+			$( "#date2" ).datepicker('setDate', currentDate.getDate()+5);
+		}
 	
-		 $("#price1").val("1");
+		$("#price1").val("1");
 		$("#price2").val("1000");
 		
-		var currentDate = new Date();
-		
-		$( "#date1" ).datepicker({
-			minDate: 0,
-			onSelect: function( selectedDate ) {
-				$( "#date2" ).datepicker( "option", "minDate", selectedDate );
-			}
-		});
-		
-		$( "#date1" ).datepicker('setDate', currentDate);
-		
-		$( "#date2" ).datepicker({
-			minDate: 0, 
-			onSelect: function( selectedDate ) {
-				$( "#date1" ).datepicker( "option", "maxDate", selectedDate );
-			}
-		});
-		
-		$( "#date2" ).datepicker('setDate', currentDate.getDate()+5);
+
 		
 		$("#submit").click(function(){
 			parseTag();
@@ -109,6 +117,7 @@
 				alert("Error: description cannot be empty");
 				return;
 			}
+			alert(date1 + " " + date2);
 			
 			if(date1 == "" || date2 == ""){
 				alert("Error: Date cannot be empty");
@@ -147,10 +156,10 @@
 					userid: id, category: cat, tags: tags },
 				  function(data){
 				    if(data == "false"){
-				    	alert("Item not created. There was an error.");
+				    	alert("Item not saved. There was an error.");
 				    }
 				    else if(data == "true"){
-				    	alert("Item was successfully created");
+				    	alert("Item was successfully saved");
 				    	window.location = "index.jsp";
 				    }
 				    else{

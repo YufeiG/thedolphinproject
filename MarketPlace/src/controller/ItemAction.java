@@ -91,7 +91,8 @@ public class ItemAction extends HttpServlet {
 			String[] tagsArray = tags.split(",");
 			List<String> tagsList = Arrays.asList(tagsArray);
 			
-			String itemIDString = req.getParameter("itemID");
+			String itemIDString = req.getParameter("itemid");
+			
 			long itemID = 0;
 			if(itemIDString != null){
 				itemID = Long.parseLong(itemIDString);

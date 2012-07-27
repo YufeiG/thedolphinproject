@@ -52,8 +52,9 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 	}
 
 	public boolean editItem(Item item) throws SQLException {
+		System.err.println("Editing Item");
 		Date d = new Date(System.currentTimeMillis());
-		String query = "UPDATE items"
+		String query = "UPDATE items "
 				+ String.format("SET title='%s', " + "categoryid=%d, "
 						+ "description=%s, " + "sold=%d, " + "avail_start='%s', "
 						+ "avail_end='%s', " + "price_low=%f, "
@@ -64,6 +65,7 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 						toSqlDate(item.getAvailEnd()),
 						item.getPriceLow(), item.getPriceHigh(),
 						item.getPopularity(), toSqlDate(d), item.getItemid());
+		System.err.println("QUERY: "+query);
 		execSql(query);
 		return true;
 	}
