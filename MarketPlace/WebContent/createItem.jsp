@@ -18,6 +18,16 @@
 <h4>- Create an Item -</h4>
 
 <script type="text/javascript">
+	function getUrlVars() {
+		var vars = {};
+		var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,
+				function(m, key, value) {
+					vars[key] = value;
+				});
+		return vars;
+	}
+	var itemID = getUrlVars()["itemid"];
+
 	function parseTag(){
 		var tags = $("#tags").val();
 		var noSpace = tags.split(' ').join('');
@@ -25,10 +35,38 @@
 		$("#tags").val(lowerCase);
 	}
 
-	var itemid = getUrlVars()["itemid"];
+	
 	
 	$(document).ready(function() {
-		if(itemid == null) alert("NOTHING");
+		var type = "create";
+		if(itemID != null)
+		{
+			$.post("ItemAction",{ action: "get", itemid:itemID },
+			  function(data){
+			   	if(!(data == "false" || data == "error")){
+			   		var dataArray = data.split("|");
+			   		$("#title").val(dataArray[0]);
+					$("#description").val(dataArray[1]);
+					$("#date1").val(dataArray[2]);
+					$("#date2").val(dataArray[3]);
+					$("#price1").val(dataArray[4]);
+					$("#price2").val(dataArray[5]);
+					$("#username").val(dataArray[6]);
+					if(dataArray[8] != "null")
+						$("#phone").val(dataArray[8]);
+					$("#email").val(dataArray[7]);
+					$("#categoryDropdownMenu").val(dataArray[9]);
+			
+					// populate tags
+					
+			   		type = "edit";
+			   		return;
+			   	}
+			  }
+			);	
+		}
+		
+	
 		 $("#price1").val("1");
 		$("#price2").val("1000");
 		
@@ -102,7 +140,9 @@
 				alert("Error! You must be logged in to create an item");
 			}
 			else{
-				$.post("ItemAction",{ action: "create", title: title, description: description,
+				
+				
+				$.post("ItemAction",{ action: type, title: title, description: description,
 					date1: date1, date2: date2, price1: price1, price2: price2,
 					userid: id, category: cat, tags: tags },
 				  function(data){
@@ -140,7 +180,7 @@
 
 </table>
 <p></p>
-<button id = "submit" type="button">Create Item</button>
+<button id = "submit" type="button">Save Item</button>
 </form>
 
 </center> 

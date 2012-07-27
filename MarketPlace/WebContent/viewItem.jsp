@@ -65,8 +65,7 @@
 						if(data != "false" && data != "error"){
 							var dataArray = data.split("|");
 					
-							if(dataArray.length == 12){
-								
+					
 								$("#title").val(dataArray[0]);
 								$("#description").val(dataArray[1]);
 								$("#date").val(dataArray[2] + " to " +dataArray[3]);
@@ -90,21 +89,21 @@
 								}
 
 						
-							}
+							
 						}
 					  }
 					);
 		}
 		
 		$("#edit").live('click', function(){
-			window.location("createItem.ksp?itemid="+itemID);
+			window.location = "createItem.jsp?itemid="+itemID;
 		});
 		
 		$("#delete").live('click', function(){
 			
 		});
 		$("#watch").live('click', function(){
-			alert("CLICK");
+
 			var id = '<%=session.getAttribute("currentSessionID")%>';
 			if(id != null && !isNaN(id)){
 				//add to watch list
