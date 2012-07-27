@@ -16,7 +16,9 @@ public interface ListingService {
 	public Iterator<Item> findItems(List<String> tokens,
 			MarketplaceConfig.Category category,
 			MarketplaceConfig.SortType sortBy) throws SQLException;
-
+	
+	public Iterator<Item> getItemsByCategory(List<MarketplaceConfig.Category> cats) throws SQLException;
+	
 	public boolean editItem(Item i, List<String> tags) throws SQLException;
 
 	public boolean deleteItem(Item i) throws SQLException;
