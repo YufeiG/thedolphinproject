@@ -46,14 +46,12 @@ public class ItemAction extends HttpServlet {
 		}
 		ListingService service = new ListingServiceImpl();
 		
-		if(action.equals("create"))
+		if(action.equals("create") || action.equals("edit"))
 		{
 			String title = req.getParameter("title");
 			String description = req.getParameter("description");
 			String date1 = req.getParameter("date1");
 			String date2 = req.getParameter("date2");
-			System.err.println("DATE IS "+date1+" "+date2);
-			
 			
 			Date date1Parsed = new Date();
 			Date date2Parsed = new Date();
@@ -96,17 +94,34 @@ public class ItemAction extends HttpServlet {
 			Item item = new Item(0, title, categoryID, userID, description, 0,
 					date1Parsed, date2Parsed, price1Parsed, price2Parsed, 0, new Date(), new Date());
 			
-
-				
-			if(!service.createItem(item, tagsList))
-			{
-				System.err.println("Item not created : " + title);
-				res.getWriter().write("false");
+			try{
+				if(action.equals("create")){
+					if(!service.createItem(item, tagsList))
+					{
+						System.err.println("Item not created : " + title);
+						res.getWriter().write("false");
+					}
+					else
+					{
+						System.err.println("Item created for : " + title);
+						res.getWriter().write("true");
+					}
+				}
+				else if(action.equals("edit")){
+					if(!service.editItem(item, tagsList))
+					{
+						System.err.println("Item not edited : " + title);
+						res.getWriter().write("false");
+					}
+					else
+					{
+						System.err.println("Item edited for : " + title);
+						res.getWriter().write("true");
+					}
+				}
 			}
-			else
-			{
-				System.err.println("Item created for : " + title);
-				res.getWriter().write("true");
+			catch(SQLException e){
+				res.getWriter().write("error");
 			}
 			
 		}

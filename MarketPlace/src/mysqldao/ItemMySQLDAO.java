@@ -53,7 +53,7 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 
 	public boolean editItem(Item item) throws SQLException {
 		Date d = new Date(System.currentTimeMillis());
-		String query = "UPDATE users"
+		String query = "UPDATE items"
 				+ String.format("SET title='%s', " + "categoryid=%d, "
 						+ "description=%s, " + "sold=%d, " + "avail_start=%s, "
 						+ "avail_end=%s, " + "price_low=%f, "

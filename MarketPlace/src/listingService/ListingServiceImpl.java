@@ -60,7 +60,7 @@ public class ListingServiceImpl implements ListingService{
 		return result.iterator();
 	}
 	
-	public boolean editItem(Item i) throws SQLException{
+	public boolean editItem(Item i, List<String> tags) throws SQLException{
 		return itemDAO.editItem(i);
 	}
 	
