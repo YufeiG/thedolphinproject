@@ -20,4 +20,7 @@ public interface ItemDAO {
 	public List<Item> getItemsByCategory(List<MarketplaceConfig.Category> cats) throws SQLException;
 	public List<Item> getItemsByUser(long userid) throws SQLException;
 	public List<Item> getItemsQuery(String query) throws SQLException;
+	public List<String> getItemTags(long itemid) throws SQLException; //returns a list of tag names 
+	public boolean setItemTags(List<String> tags, long itemid) throws SQLException; //takes a list of tags and replace the item's list of tags with the new one
+	
 }
