@@ -1,6 +1,7 @@
 package controller;
 
 import global.MarketplaceConfig;
+import global.MarketplaceConfig.Category;
 import global.MarketplaceConfig.SortType;
 import htmlGenerator.SearchHtmlGenerator;
 
@@ -39,7 +40,6 @@ public class SearchAction extends HttpServlet {
 		
 		
 		String action = req.getParameter("action");
-		
 
 
 		
@@ -48,10 +48,24 @@ public class SearchAction extends HttpServlet {
 		
 	 
 		if("searchFromHeader".equals(action)){
+			
+			// Get item category
+			String itemType = req.getParameter("itemType");
+		
+			Category itemCategory = null;
+			if(!itemType.equals(null) || !itemType.equals("") ) {
+				itemCategory = MarketplaceConfig.Category.valueOf(itemType);
+			} 
+			
+			// Get sortType
 			String categoryString = req.getParameter("category");
 			SortType sortType =  MarketplaceConfig.SortType.valueOf(categoryString);
 			
 			String longTag = req.getParameter("headerSearchInput");
+			
+			if(longTag.equals(null)) {
+			longTag = "";
+			}
 			
 			List<String> tokens = Arrays.asList(longTag.split(" "));
 			
@@ -65,7 +79,7 @@ public class SearchAction extends HttpServlet {
 				ListingService listingService = new ListingServiceImpl();
 				Iterator <Item> searchResult;
 				
-				searchResult = listingService.findItems(tokens, null, sortType);
+				searchResult = listingService.findItems(tokens, itemCategory, sortType);
 	
 				System.err.println("items: "+searchResult);
 				res.setContentType("text/html");

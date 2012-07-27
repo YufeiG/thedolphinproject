@@ -27,6 +27,7 @@
 	}
 	var headerSearchInput = getUrlVars()["search"];
 	var category = getUrlVars()["category"];
+	var itemType = getUrlVars()["itemType"];
 
 	$("#email").click(function(){
 		$.post("SearchAction", {
@@ -38,6 +39,7 @@
 	$.post("SearchAction", {
 		action : "searchFromHeader",
 		"headerSearchInput" : headerSearchInput,
+		"itemType" : itemCategory,
 		"category" : category
 	}, function(data) {
 		if (data != null) {
