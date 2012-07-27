@@ -64,8 +64,8 @@
 					
 					var date1Array = dataArray[2].split('-');
 					var date2Array = dataArray[3].split('-');
-					date1 = new Date(date1Array[0], date1Array[1], date1Array[2]);
-					date2 = new Date(date2Array[0], date2Array[1], date2Array[2]);
+					date1 = new Date(date1Array[0], date1Array[1]-1, date1Array[2]);
+					date2 = new Date(date2Array[0], date2Array[1]-1, date2Array[2]);
 					
 					$( "#date1" ).datepicker('setDate', date1);
 					$( "#date2" ).datepicker('setDate', date2);
@@ -117,7 +117,6 @@
 				alert("Error: description cannot be empty");
 				return;
 			}
-			alert(date1 + " " + date2);
 			
 			if(date1 == "" || date2 == ""){
 				alert("Error: Date cannot be empty");
