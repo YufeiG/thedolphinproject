@@ -58,12 +58,12 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 						+ "description=%s, " + "sold=%d, " + "avail_start=%s, "
 						+ "avail_end=%s, " + "price_low=%f, "
 						+ "price_high=%f, " + "popularity=%d, "
-						+ "time_mod='%s'", item.getTitle(), item.getCategory(),
+						+ "time_mod='%s' WHERE itemid='%d'", item.getTitle(), item.getCategory(),
 						strIsNull(item.getDescription()), item.getSold(),
 						strIsNull(item.getAvailStart().toString()),
 						strIsNull(item.getAvailEnd().toString()),
 						item.getPriceLow(), item.getPriceHigh(),
-						item.getPopularity(), toSqlDate(d));
+						item.getPopularity(), toSqlDate(d), item.getItemid());
 		execSql(query);
 		return true;
 	}
@@ -205,5 +205,31 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 		mylist = getItemsQuery("SELECT * FROM items WHERE userid=" + userid + "");
 
 		return mylist;
+	}
+
+	@Override
+	public List<String> getItemTags(long itemid) throws SQLException {
+		String query = "SELECT tag_name FROM items_tags JOIN tags ON (tags.tagid = item_tags.tagid) WHERE itemid = " + itemid;
+		ResultSet rs = execSql(query);
+		List<String> ret = new ArrayList<String>();
+		while (rs.next()) {
+			ret.add(rs.getString("tag_name"));
+		}
+		return ret;
+	}
+
+	@Override
+	public boolean setItemTags(List<String> tags, long itemid)
+			throws SQLException {
+		String query = "DELETE FROM item_tags WHERE itemid = " + itemid;
+		execSql(query);
+		
+		TagDAO dao = new TagMySQLDAO();
+		
+		for (int i=0; i<tags.size(); i++) {
+			long tagid = dao.createTag(tags.get(i));
+			query = "INSERT INTO item_tags VALUES (" + itemid + "," + tagid + ")";
+		}
+		return true;
 	}
 }
