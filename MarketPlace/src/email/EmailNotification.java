@@ -7,9 +7,6 @@ import java.util.List;
 import model.Item;
 import model.User;
 
-import org.apache.commons.mail.EmailException;
-import org.apache.commons.mail.SimpleEmail;
-
 public class EmailNotification {
 
 	public void sendMessageToUser(HashMap<User, List<Item>> list){
@@ -38,7 +35,7 @@ public class EmailNotification {
 				//email.setAuthenticator(new DefaultAuthenticator("uwaterloo.marketplace@gmail.com", "cs446avenger"));
 				email.send();
 			
-			} catch (EmailException e) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

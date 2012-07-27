@@ -149,7 +149,7 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 		}
 
 		String query = "SELECT * FROM items i, tags t, item_tags r "
-				+ "WHERE i.itemid = r.itemid AND t.tagid = item_tags.tagid "
+				+ "WHERE i.itemid = r.itemid AND t.tagid = r.tagid "
 				+ "AND t.tag_name IN (" + strTags + ")" + "AND i.avail_end<='"
 				+ getCurDate() + "'";
 

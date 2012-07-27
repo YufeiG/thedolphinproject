@@ -25,10 +25,12 @@ public class WishListUserServiceImpl implements WishListUserService{
 	}
 	
 	public boolean addToWishList(List<String> tagNames, long userId) throws SQLException{
+		System.err.println(tagNames);
 		return tagDAO.addTagsToWishlist(userId, tagNames);
 	}
 	
 	public boolean deleteFromWishList(List<String> tagNames, long userId) throws SQLException{
+		System.err.println(tagNames);
 		return tagDAO.removeTagsFromWishlist(userId, tagNames);
 	}
 	

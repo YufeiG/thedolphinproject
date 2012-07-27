@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page import="java.util.*,java.lang.*,global.MarketplaceConfig,global.MarketplaceConfig.SortType,userManagementService.*,model.*" %> 
 <%@ include file="header.jsp" %>
 <html>
 <head>
@@ -15,27 +16,29 @@
 <h4>- View Items -</h4>
 
 <table>
-<tr><td>Seller name: </td><td> <input id="username" type="text" name="username" /></td></tr>
-<tr><td>Title: </td><td><input id ="title" type="text" name="title" /></td></tr>
-<tr><td>Description: </td><td><input id ="description" type="text" name="description" /> <br/>
+<tr><td>Seller name: </td><td> <input id="username" type="text" name="username" disabled="disabled"/></td></tr>
+<tr><td>Title: </td><td><input id ="title" type="text" name="title" disabled="disabled"/></td></tr>
+<tr><td>Description: </td><td><input id ="description" type="text" name="description" disabled="disabled"/> <br/>
 </td></tr>
 <tr><td>Category: </td><td>
-<input id ="cat" type="text" name="cat" /><br/>
+<input id ="cat" type="text" name="cat" disabled="disabled"/><br/>
 </td></tr>
-<tr><td>Availability: </td><td><input id ="date" type="text" name="date" /> <br/>
+<tr><td>Availability: </td><td><input id ="date" type="text" name="date" disabled="disabled"/> <br/>
 </td></tr>
-<tr><td>Price: </td><td><input id ="price" type="text" name="price" /><br/>
+<tr><td>Price: </td><td><input id ="price" type="text" name="price" disabled="disabled"/><br/>
 </td></tr>
 <tr><td>Phone: </td><td>
-<input id ="phone" type="text" name="phone" /><br/>
+<input id ="phone" type="text" name="phone" disabled="disabled"/><br/>
 </td></tr>
 <tr><td>Email: </td><td>
-<input id ="email" type="text" name="email" /><br/>
+<input id ="email" type="text" name="email" disabled="disabled"/><br/>
 </td></tr>
 
 </table>
 <p></p>
-<button id = "watch" type="button">Watch Item</button>
+<div id ="watchArea">
+</div>		 
+		
 
 </center>
 
@@ -51,7 +54,13 @@
 	}
 	
 	var itemID = getUrlVars()["itemid"];
+	var isWatched = getUrlVars()["isWatched"];	
 	
+	if(isWatched == "true"){
+		$("#watchArea").html("<button id = \"unwatch\" type=\"button\">Unwatch Item</button>");
+	}else{
+		$("#watchArea").html("<button id = \"watch\" type=\"button\">Watch Item</button>");
+	}
 	$(document).ready(function() {
 		
 		if(itemID != "" && !isNaN(itemID)){
@@ -73,6 +82,8 @@
 									$("#phone").val(dataArray[8]);
 								$("#email").val(dataArray[7]);
 								$("#cat").val(dataArray[9]);
+								
+					
 						
 							}
 						}
@@ -93,6 +104,35 @@
 						}
 						else{
 							alert("adding failed");
+						}
+					});
+				}
+				else
+				{
+					alert("invalid item id");
+				}
+				
+			}
+			else{
+				alert("You are not signed in!");
+			}
+		
+		});
+		
+		$("#unwatch").click(function(){
+			var id = '<%=session.getAttribute("currentSessionID")%>';
+			if(id != null && !isNaN(id)){
+				//add to watch list
+				
+				if(itemID != "" && !isNaN(itemID)){
+					$.post("UserAction",{ action: "removeWatchList", userid: id, itemid : itemID },
+							  function(data){
+						if(data == "true"){
+							alert("Item was removed");
+							window.location = "watchlist.jsp";
+						}
+						else{
+							alert("Item remove failed");
 						}
 					});
 				}

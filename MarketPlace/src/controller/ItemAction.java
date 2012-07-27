@@ -104,9 +104,6 @@ public class ItemAction extends HttpServlet {
 				res.getWriter().write("true");
 			}
 			
-			
-			
-			
 		}
 		else if(action.equals("get"))
 		{
@@ -140,14 +137,7 @@ public class ItemAction extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				res.getWriter().write("error");
-			}
-			
-
-			
-			
-			
-			
-			
+			}			
 		}
 
 		

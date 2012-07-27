@@ -10,5 +10,6 @@
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.datatools.connectivity.jdt.DRIVERLIBRARY/MySQL JDBC Driver"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Yufei Guo/Documents/apache-tomcat-6.0.35/lib/commons-email-1.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

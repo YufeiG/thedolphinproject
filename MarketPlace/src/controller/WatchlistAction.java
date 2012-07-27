@@ -3,6 +3,7 @@ package controller;
 import global.MarketplaceConfig;
 import global.MarketplaceConfig.SortType;
 import htmlGenerator.SearchHtmlGenerator;
+import htmlGenerator.WishlistHtmlGenerator;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -30,13 +31,7 @@ public class WatchlistAction extends HttpServlet {
 			throws java.io.IOException {
 		System.out.println("ENTERED WATCHLIST");
 
-		// Track user id session
-		HttpSession session = req.getSession(true);
-		String userID = (String)session.getAttribute("currentUserID");
-		
-		
 		String action = req.getParameter("action");
-		SortType sortType = MarketplaceConfig.SortType.NONE;
 		
 		if("displayWatchlist".equals(action)){
 			
@@ -47,7 +42,7 @@ public class WatchlistAction extends HttpServlet {
 				System.out.println(watchlist.hasNext());
 
 				res.setContentType("text/html");
-				res.getWriter().write(SearchHtmlGenerator.createItemTableHtml(watchlist));
+				res.getWriter().write(WishlistHtmlGenerator.createItemTableHtml(watchlist));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

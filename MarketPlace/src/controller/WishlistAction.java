@@ -30,10 +30,10 @@ public class WishlistAction extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws java.io.IOException {
-		
+
 		// Track user id session
 		HttpSession session = req.getSession(true);
-		String userIDString = (String)session.getAttribute("currentUserID");
+
 		long userID = Long.parseLong(req.getParameter("userid"));
 		
 		String action = req.getParameter("action");
@@ -42,8 +42,7 @@ public class WishlistAction extends HttpServlet {
 		UserManagementService service = new UserManagementServiceImpl();
 		
 		
-		if("get".equals(action)){
-			
+		if("get".equals(action)){	
 			
 			try {
 				Iterator<Tag> tags = service.getWishList(userID);
@@ -53,8 +52,13 @@ public class WishlistAction extends HttpServlet {
 				{
 					Tag t = tags.next();
 					//System.err.println(t.getName());
-					ret += t.getName();
-					if(tags.hasNext()) ret += ",";
+					String name = t.getName();
+					if(name != null && !name.equals("")){
+						ret += name;
+						if(tags.hasNext()) ret += ",";
+					}
+					
+					
 				}
 
 				res.getWriter().write(ret);
@@ -62,9 +66,6 @@ public class WishlistAction extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			
-			
 
 		}
 		else if("set".equals(action)){
@@ -73,6 +74,24 @@ public class WishlistAction extends HttpServlet {
 
 			try {
 				if(service.addToWishList(tagsTokens, userID)){
+					res.getWriter().write("true");
+				}
+				else{
+					res.getWriter().write("false");
+					
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				res.getWriter().write("error");
+			}
+		}
+		else if("delete".equals(action)){
+			String tags = req.getParameter("tags");
+			List<String> tagsTokens = Arrays.asList(tags.split(","));
+		
+			try {
+				if(service.deleteFromWishList(tagsTokens, userID)){
 					res.getWriter().write("true");
 				}
 				else{

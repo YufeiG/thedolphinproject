@@ -6,7 +6,10 @@ import global.MarketplaceConfig.SortType;
 import htmlGenerator.SearchHtmlGenerator;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -18,6 +21,11 @@ import javax.servlet.http.HttpSession;
 import listingService.ListingService;
 import listingService.ListingServiceImpl;
 import model.Item;
+import model.Tag;
+import model.User;
+import scheduler.MainScheduler;
+import userManagementService.UserManagementService;
+import userManagementService.UserManagementServiceImpl;
 
 public class SearchAction extends HttpServlet {
 
@@ -32,26 +40,7 @@ public class SearchAction extends HttpServlet {
 		
 		
 		String action = req.getParameter("action");
-		
-		// Get item category
-		String itemType = req.getParameter("itemType");
-		
-		Category itemCategory = null;
-		if(!itemType.equals(null) || !itemType.equals("") ) {
-			itemCategory = MarketplaceConfig.Category.valueOf(itemType);
-		} 
-		
-		// Get sortType
-		String categoryString = req.getParameter("category");
-		SortType sortType =  MarketplaceConfig.SortType.valueOf(categoryString);
-		
-		String longTag = req.getParameter("headerSearchInput");
-		
-		if(longTag.equals(null)) {
-			longTag = "";
-		}
-		
-		List<String> tokens = Arrays.asList(longTag.split(" "));
+
 
 		
 
@@ -60,6 +49,25 @@ public class SearchAction extends HttpServlet {
 	 
 		if("searchFromHeader".equals(action)){
 			
+			// Get item category
+			String itemType = req.getParameter("itemType");
+		
+			Category itemCategory = null;
+			if(!itemType.equals(null) || !itemType.equals("") ) {
+				itemCategory = MarketplaceConfig.Category.valueOf(itemType);
+			} 
+			
+			// Get sortType
+			String categoryString = req.getParameter("category");
+			SortType sortType =  MarketplaceConfig.SortType.valueOf(categoryString);
+			
+			String longTag = req.getParameter("headerSearchInput");
+			
+			if(longTag.equals(null)) {
+			longTag = "";
+			}
+			
+			List<String> tokens = Arrays.asList(longTag.split(" "));
 			
 			//String category = req.getParameter("category");
 			//String sortType = req.getParameter("sortType");
@@ -85,6 +93,7 @@ public class SearchAction extends HttpServlet {
 			
 
 		}
+
 				
 			
 
