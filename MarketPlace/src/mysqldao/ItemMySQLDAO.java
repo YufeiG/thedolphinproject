@@ -60,8 +60,8 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 						+ "price_high=%f, " + "popularity=%d, "
 						+ "time_mod='%s' WHERE itemid='%d'", item.getTitle(), item.getCategory(),
 						strIsNull(item.getDescription()), item.getSold(),
-						strIsNull(item.getAvailStart().toString()),
-						strIsNull(item.getAvailEnd().toString()),
+						toSqlDate(item.getAvailStart()),
+						toSqlDate(item.getAvailEnd()),
 						item.getPriceLow(), item.getPriceHigh(),
 						item.getPopularity(), toSqlDate(d), item.getItemid());
 		execSql(query);
