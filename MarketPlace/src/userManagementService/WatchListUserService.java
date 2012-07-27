@@ -18,5 +18,7 @@ public interface WatchListUserService {
 			throws SQLException;
 
 	public boolean addToWatchList(long itemid, long userid) throws SQLException;
+	
+	public boolean isInWatchList(long itemid, long userid) throws SQLException;
 
 }

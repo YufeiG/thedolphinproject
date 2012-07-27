@@ -54,13 +54,7 @@
 	}
 	
 	var itemID = getUrlVars()["itemid"];
-	var isWatched = getUrlVars()["isWatched"];	
-	
-	if(isWatched == "true"){
-		$("#watchArea").html("<button id = \"unwatch\" type=\"button\">Unwatch Item</button>");
-	}else{
-		$("#watchArea").html("<button id = \"watch\" type=\"button\">Watch Item</button>");
-	}
+
 	$(document).ready(function() {
 		
 		if(itemID != "" && !isNaN(itemID)){
@@ -71,7 +65,7 @@
 						if(data != "false" && data != "error"){
 							var dataArray = data.split("|");
 					
-							if(dataArray.length == 10){
+							if(dataArray.length == 12){
 								
 								$("#title").val(dataArray[0]);
 								$("#description").val(dataArray[1]);
@@ -82,8 +76,19 @@
 									$("#phone").val(dataArray[8]);
 								$("#email").val(dataArray[7]);
 								$("#cat").val(dataArray[9]);
+								var watch = dataArray[10];
+								var edit = dataArray[11];
 								
-					
+								if(edit == "true"){
+									$("#watchArea").html("<button id = \"edit\" type=\"button\">Edit Item</button><button id = \"delete\" type=\"button\">Delete Item</button>");
+								}
+								else if(watch == "true"){
+									$("#watchArea").html("<button id = \"unwatch\" type=\"button\">Unwatch Item</button>");
+								}
+								else{
+									$("#watchArea").html("<button id = \"watch\" type=\"button\">Watch Item</button>");
+								}
+
 						
 							}
 						}
@@ -91,7 +96,15 @@
 					);
 		}
 		
-		$("#watch").click(function(){
+		$("#edit").live('click', function(){
+			
+		});
+		
+		$("#delete").live('click', function(){
+			
+		});
+		$("#watch").live('click', function(){
+			alert("CLICK");
 			var id = '<%=session.getAttribute("currentSessionID")%>';
 			if(id != null && !isNaN(id)){
 				//add to watch list
@@ -119,13 +132,14 @@
 		
 		});
 		
-		$("#unwatch").click(function(){
+		$("#unwatch").live('click', function(){
+			alert("click");
 			var id = '<%=session.getAttribute("currentSessionID")%>';
 			if(id != null && !isNaN(id)){
 				//add to watch list
 				
 				if(itemID != "" && !isNaN(itemID)){
-					$.post("UserAction",{ action: "removeWatchList", userid: id, itemid : itemID },
+					$.post("WatchlistAction",{ action: "remove", userid: id, itemid : itemID },
 							  function(data){
 						if(data == "true"){
 							alert("Item was removed");

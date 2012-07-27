@@ -35,4 +35,6 @@ public interface UserManagementService {
 	public boolean addToWishList(List<String> tagNames, long userId) throws SQLException;
 	
 	public boolean deleteFromWishList(List<String> tagNames, long userId) throws SQLException;
+	
+	public boolean isInWatchList(long itemid, long userid) throws SQLException;
 }
