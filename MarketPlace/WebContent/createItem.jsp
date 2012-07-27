@@ -47,16 +47,16 @@
 			   		var dataArray = data.split("|");
 			   		$("#title").val(dataArray[0]);
 					$("#description").val(dataArray[1]);
-					$("#date1").val(dataArray[2]);
-					$("#date2").val(dataArray[3]);
-					$("#price1").val(dataArray[4]);
-					$("#price2").val(dataArray[5]);
+					$("#date1").val(dataArray[2].split('-').join('/'));
+					$("#date2").val(dataArray[3].split('-').join('/'));
+					$("#price1").val(dataArray[4].split('$').join('').split(',').join(''));
+					$("#price2").val(dataArray[5].split('$').join('').split(',').join(''));
 					$("#username").val(dataArray[6]);
 					if(dataArray[8] != "null")
 						$("#phone").val(dataArray[8]);
 					$("#email").val(dataArray[7]);
 					$("#categoryDropdownMenu").val(dataArray[9]);
-			
+					$("#tags").val(dataArray[12]);
 					// populate tags
 					
 			   		type = "edit";
@@ -142,7 +142,7 @@
 			else{
 				
 				
-				$.post("ItemAction",{ action: type, title: title, description: description,
+				$.post("ItemAction",{ action: type, itemid: itemID, title: title, description: description,
 					date1: date1, date2: date2, price1: price1, price2: price2,
 					userid: id, category: cat, tags: tags },
 				  function(data){
@@ -154,7 +154,7 @@
 				    	window.location = "index.jsp";
 				    }
 				    else{
-				    	alert("Error! You must be logged in to create an item");
+				    	alert("Error! You must be logged in to create/edit an item");
 				    }
 				  }
 				);	

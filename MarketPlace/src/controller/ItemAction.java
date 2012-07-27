@@ -3,6 +3,7 @@ import global.MarketplaceConfig;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -90,8 +91,13 @@ public class ItemAction extends HttpServlet {
 			String[] tagsArray = tags.split(",");
 			List<String> tagsList = Arrays.asList(tagsArray);
 			
+			String itemIDString = req.getParameter("itemID");
+			long itemID = 0;
+			if(itemIDString != null){
+				itemID = Long.parseLong(itemIDString);
+			}
 			
-			Item item = new Item(0, title, categoryID, userID, description, 0,
+			Item item = new Item(itemID, title, categoryID, userID, description, 0,
 					date1Parsed, date2Parsed, price1Parsed, price2Parsed, 0, new Date(), new Date());
 			
 			try{
@@ -121,6 +127,7 @@ public class ItemAction extends HttpServlet {
 				}
 			}
 			catch(SQLException e){
+				e.printStackTrace();
 				res.getWriter().write("error");
 			}
 			
@@ -141,11 +148,23 @@ public class ItemAction extends HttpServlet {
 
 				if(item != null && user != null)
 				{
+					
+					Iterator<String> tags = service.getItemTags(itemID);
+					String tagsString = "";
+					while(tags.hasNext())
+					{
+						String t = tags.next();
+						if(tags.hasNext()) tagsString += t + ",";
+						else tagsString += t;
+					}
+					
+					
 					System.err.println(item.getCategoryString());
 
 					String data = item.getTitle() + "|" + item.getDescription() + "|" + item.getAvailStart() + "|" + item.getAvailEnd()
 							+ "|" + item.getPriceLowString() + "|" + item.getPriceHighString() + "|" + user.getUsername() + "|"
-							+ user.getEmail() + "|" + user.getPhoneNumber()+"|"+item.getCategoryString() +"|" +(userService.isInWatchList(itemID, userid) ? "true":"false") +"|" + (user.getUserid() == userid ? "true" : "false");
+							+ user.getEmail() + "|" + user.getPhoneNumber()+"|"+item.getCategoryString() +"|" +(userService.isInWatchList(itemID, userid) ? "true":"false") +"|" + (user.getUserid() == userid ? "true" : "false")
+							+ "|" + tagsString;
 					res.getWriter().write(data);
 				}
 				else
