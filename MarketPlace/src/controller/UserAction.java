@@ -173,6 +173,39 @@ public class UserAction extends HttpServlet {
 			
 
 		}
+		else if(action.equals("editProfile"))
+			{
+				String username = req.getParameter("username");
+				String password = req.getParameter("password");
+				String firstname = req.getParameter("firstName");
+				String lastname = req.getParameter("lastName");
+				String email = req.getParameter("email");
+				String phone = req.getParameter("phone");
+				String id = req.getParameter("userid");
+				
+				User user = new User(Integer.parseInt(id), username, password,
+						firstname, lastname, email,	phone,  new Date());
+						
+				try {
+					if(!service.editAccount(user))
+					{
+						res.getWriter().write("false");
+						System.err.println("Account not updated for username: " + username);
+					}
+					else
+					{
+						res.getWriter().write("true");
+						System.err.println("Account updated for username: " + username);
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					res.getWriter().write("error");
+					e.printStackTrace();
+				}
+				
+				
+			}
+			
 
 		
 
