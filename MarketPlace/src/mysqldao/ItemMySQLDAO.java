@@ -55,8 +55,8 @@ public class ItemMySQLDAO extends AbstractDAO implements ItemDAO {
 		Date d = new Date(System.currentTimeMillis());
 		String query = "UPDATE items"
 				+ String.format("SET title='%s', " + "categoryid=%d, "
-						+ "description=%s, " + "sold=%d, " + "avail_start=%s, "
-						+ "avail_end=%s, " + "price_low=%f, "
+						+ "description=%s, " + "sold=%d, " + "avail_start='%s', "
+						+ "avail_end='%s', " + "price_low=%f, "
 						+ "price_high=%f, " + "popularity=%d, "
 						+ "time_mod='%s' WHERE itemid='%d'", item.getTitle(), item.getCategory(),
 						strIsNull(item.getDescription()), item.getSold(),
