@@ -51,11 +51,11 @@ public class SearchAction extends HttpServlet {
 			
 			// Get item category
 			String itemType = req.getParameter("itemType");
-		
+			System.out.println("TYPE:"+itemType);
 			Category itemCategory = null;
-			if(!itemType.equals(null) || !itemType.equals("") ) {
+			if(itemType != null && !itemType.equals("null") && !itemType.equals("") ) {
 				itemCategory = MarketplaceConfig.Category.valueOf(itemType);
-				System.out.println(itemCategory);
+				
 			} 
 			
 			// Get sortType

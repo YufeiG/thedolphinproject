@@ -25,6 +25,8 @@
 		$("#tags").val(lowerCase);
 	}
 
+	var itemid = getUrlVars()["itemid"];
+	
 	$(document).ready(function() {
 		 $("#price1").val("1");
 		$("#price2").val("1000");
