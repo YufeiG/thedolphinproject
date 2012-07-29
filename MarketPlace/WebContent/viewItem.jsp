@@ -18,7 +18,7 @@
 <table>
 <tr><td>Seller name: </td><td> <input id="username" type="text" name="username" disabled="disabled"/></td></tr>
 <tr><td>Title: </td><td><input id ="title" type="text" name="title" disabled="disabled"/></td></tr>
-<tr><td>Description: </td><td><input id ="description" type="text" name="description" disabled="disabled"/> <br/>
+<tr><td>Description: </td><td><textarea rows="10" cols="20" id ="description" name="description" disabled="disabled"></textarea><br/>
 </td></tr>
 <tr><td>Category: </td><td>
 <input id ="cat" type="text" name="cat" disabled="disabled"/><br/>
@@ -100,7 +100,20 @@
 		});
 		
 		$("#delete").live('click', function(){
+			var id = '<%=session.getAttribute("currentSessionID")%>';
+			if(id != null && !isNaN(id) && itemID != "" && !isNaN(itemID)){
+				$.post("ItemAction",{ action: "delete", itemid : itemID },
+						  function(data){
+					if(data == "true"){
+						alert("item was deleted");
+						window.location = "index.jsp";
+					}
+					else{
+						alert("deletion failed");
+					}
+				});
 			
+			}
 		});
 		$("#watch").live('click', function(){
 
@@ -132,7 +145,6 @@
 		});
 		
 		$("#unwatch").live('click', function(){
-			alert("click");
 			var id = '<%=session.getAttribute("currentSessionID")%>';
 			if(id != null && !isNaN(id)){
 				//add to watch list
@@ -141,7 +153,7 @@
 					$.post("WatchlistAction",{ action: "remove", userid: id, itemid : itemID },
 							  function(data){
 						if(data == "true"){
-							alert("Item was removed");
+							alert("Item was removed from watchlist");
 							window.location = "watchlist.jsp";
 						}
 						else{

@@ -179,6 +179,26 @@ public class ItemAction extends HttpServlet {
 				res.getWriter().write("error");
 			}			
 		}
+		else if(action.equals("delete")){
+			String itemIDString = req.getParameter("itemid");
+			
+			long itemID = Long.parseLong(itemIDString);
+			System.err.println("Deleting item..."+itemID);
+			
+			Item item = service.getItem(itemID);
+			try{
+				if(service.deleteItem(item)){
+					res.getWriter().write("true");
+				}
+				else{
+					res.getWriter().write("false");
+				}
+				
+			}
+			catch(SQLException e){
+				res.getWriter().write("error");
+			}
+		}
 
 		
 

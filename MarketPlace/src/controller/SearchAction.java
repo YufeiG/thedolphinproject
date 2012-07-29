@@ -34,28 +34,20 @@ public class SearchAction extends HttpServlet {
 			throws java.io.IOException {
 		
 		// Track user id session
-		HttpSession session = req.getSession(true);
-		String userID = (String)session.getAttribute("currentUserID");
-		
-		
+		//HttpSession session = req.getSession(true);
+		//long userID = (Long)session.getAttribute("currentSessionID");
+
 		
 		String action = req.getParameter("action");
-
-
 		
-
 		//Possible Search Actions
-		
-	 
 		if("searchFromHeader".equals(action)){
 			
 			// Get item category
 			String itemType = req.getParameter("itemType");
-			System.out.println("TYPE:"+itemType);
 			Category itemCategory = null;
 			if(itemType != null && !itemType.equals("null") && !itemType.equals("") ) {
 				itemCategory = MarketplaceConfig.Category.valueOf(itemType);
-				
 			} 
 			
 			// Get sortType
@@ -64,23 +56,27 @@ public class SearchAction extends HttpServlet {
 			
 			String longTag = req.getParameter("headerSearchInput");
 			
+			String findItemsForUser = (String)req.getParameter("userid");
+			
 			if(longTag.equals(null)) {
-			longTag = "";
+				longTag = "";
 			}
 			
 			List<String> tokens = Arrays.asList(longTag.split(" "));
-			
-			//String category = req.getParameter("category");
-			//String sortType = req.getParameter("sortType");
-	
-			
 			
 			try {
 				
 				ListingService listingService = new ListingServiceImpl();
 				Iterator <Item> searchResult;
 				
-				searchResult = listingService.findItems(tokens, itemCategory, sortType);
+				if(findItemsForUser == null){
+					searchResult = listingService.findItems(tokens, itemCategory, sortType);
+				}
+				else
+				{
+					searchResult = listingService.getItemsByUser(Long.parseLong(findItemsForUser));
+				}
+				
 	
 				System.err.println("items: "+searchResult);
 				res.setContentType("text/html");
@@ -89,16 +85,7 @@ public class SearchAction extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			
-			
-
 		}
-
-				
-			
-
-		
 
 	}
 

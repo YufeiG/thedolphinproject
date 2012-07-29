@@ -174,7 +174,7 @@
 <form>
 <table class="input_table">
 <tr><td>Title:</td><td><input id="title" type="text" name="title"  size="60" /><br /></td></tr>
-<tr><td>Description:</td><td><input id ="description" type="text" name="description" height=300 size="60"  /><br /></td></tr>
+<tr><td>Description:</td><td><textarea rows="10" cols="60" id ="description" name="description"></textarea><br /></td></tr>
 <tr><td>Available from </td><td><input id ="date1" type="text" name="date1" height=300 /> to <input id ="date2" type="text" name="date2" height=300 /><br /></td></tr>
 <tr><td>Price from $</td><td><input id ="price1" type="text" name="price1" height=300 /> to $<input id ="price2" type="text" name="price2" height=300 /><br /></td></tr>
 <tr><td>Categories:</td><td><select id="categoryDropdownMenu">

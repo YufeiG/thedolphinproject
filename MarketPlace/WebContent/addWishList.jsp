@@ -109,6 +109,7 @@ To delete old tags, check the box and save.
 			}
 			
 			if(tags == "" && deleteTags == ""){
+				alert("Nothing to add or delete");
 				return;
 			}
 
@@ -136,7 +137,7 @@ To delete old tags, check the box and save.
 				
 
 				if(deleteTags!=""){
-				
+		
 					$.post("WishlistAction",{ action: "delete", userid: id, tags: deleteTags },
 							  function(data){
 							    if(data == "false"){

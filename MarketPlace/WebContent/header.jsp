@@ -94,7 +94,7 @@ String currSessionUser = (String)session.getAttribute("currentSessionUser"); %>
       <div class="dropdown">
         <ul>
             <li> <a href="createItem.jsp">Create an Item</a></li>
-            <li> <a href="viewItem.jsp">View an Item</a></li>
+            <li> <a href="listing.jsp?search=&category=NONE&userID=<%= session.getAttribute("currentSessionID") %>">View my Items</a></li>
         </ul>
       </div>
     </li>

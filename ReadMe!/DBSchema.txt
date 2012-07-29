@@ -1,0 +1,108 @@
+﻿CREATE TABLE users
+(
+userid bigint NOT NULL AUTO_INCREMENT,
+username varchar(20) NOT NULL,
+password varchar(20) NOT NULL,
+firstname varchar(20) NOT NULL,
+lastname varchar(20) NOT NULL,
+email varchar(40) NOT NULL,
+phone_num varchar(11),
+date_created date NOT NULL,
+PRIMARY KEY (userid)
+);
+
+
+CREATE TABLE categories
+(
+categoryid bigint NOT NULL AUTO_INCREMENT,
+category_name varchar(20) NOT NULL,
+PRIMARY KEY (categoryid)
+);
+
+
+insert into categories(category_name) values('BOOKS');
+insert into categories(category_name) values('HOUSING'); 
+insert into categories(category_name) values('SERVICES');
+insert into categories(category_name) values('FURNITURE'); 
+insert into categories(category_name) values('OTHERS');
+
+
+CREATE TABLE items
+(
+itemid bigint NOT NULL AUTO_INCREMENT,
+title  tinytext NOT NULL,
+categoryid bigint,
+userid  bigint NOT NULL,
+description text,
+sold  tinyint NOT NULL,
+avail_start date,
+avail_end  date,
+price_low  float(10,2),
+price_high  float(10,2),
+popularity int NOT NULL,
+time_added timestamp NOT NULL,
+time_mod timestamp NOT NULL,
+PRIMARY KEY (itemid),
+FOREIGN KEY (userid) REFERENCES users(userid) ON DELETE CASCADE,
+FOREIGN KEY (categoryid) REFERENCES categories(categoryid) ON DELETE CASCADE
+);
+
+
+CREATE TABLE user_profile_pics
+(
+picid bigint NOT NULL AUTO_INCREMENT,
+file mediumblob NOT NULL,
+userid bigint NOT NULL,
+PRIMARY KEY (picid),
+FOREIGN KEY (userid) REFERENCES users(userid) ON DELETE CASCADE
+);
+
+
+CREATE TABLE attachments
+(
+aid bigint NOT NULL AUTO_INCREMENT,
+file mediumblob NOT NULL, -- 16mb,
+itemid bigint NOT NULL,
+PRIMARY KEY (aid),
+FOREIGN KEY (itemid) REFERENCES items(itemid) ON DELETE CASCADE
+);
+
+
+CREATE TABLE tags
+(
+tagid bigint NOT NULL AUTO_INCREMENT,
+tag_name varchar(20) NOT NULL, -- no whitespace
+PRIMARY KEY (tagid)
+);
+
+
+CREATE TABLE item_tags
+(
+itemid bigint NOT NULL,
+tagid bigint NOT NULL,
+PRIMARY KEY (itemid, tagid),
+FOREIGN KEY (itemid) REFERENCES items(itemid) ON DELETE CASCADE,
+FOREIGN KEY (tagid) REFERENCES tags(tagid) ON DELETE CASCADE
+);
+
+
+CREATE TABLE wishlist
+(
+userid bigint NOT NULL,
+tagid bigint NOT NULL,
+time_added timestamp NOT NULL,
+PRIMARY KEY (userid, tagid),
+FOREIGN KEY (userid) REFERENCES users(userid) ON DELETE CASCADE,
+FOREIGN KEY (tagid) REFERENCES tags(tagid) ON DELETE CASCADE
+);
+
+
+CREATE TABLE watchlist
+(
+userid bigint NOT NULL,
+itemid bigint NOT NULL,
+time_added timestamp NOT NULL,
+PRIMARY KEY (userid, itemid),
+FOREIGN KEY (userid) REFERENCES users(userid) ON DELETE CASCADE,
+FOREIGN KEY (itemid) REFERENCES items(itemid) ON DELETE CASCADE
+);

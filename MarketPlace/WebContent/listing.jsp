@@ -28,19 +28,17 @@
 	var headerSearchInput = getUrlVars()["search"];
 	var category = getUrlVars()["category"];
 	var itemType = getUrlVars()["itemType"];
+	var userID = getUrlVars()["userID"];
 
-	$("#email").click(function(){
-		$.post("SearchAction", {
-			action : "email"});
-	});
-	
+
 	$('#example').dataTable();
 
 	$.post("SearchAction", {
 		action : "searchFromHeader",
 		"headerSearchInput" : headerSearchInput,
 		"itemType" : itemType,
-		"category" : category
+		"category" : category,
+		"userid" : userID
 	}, function(data) {
 		if (data != null) {
 			//Set the main Pane to datatable as given by SearchAction

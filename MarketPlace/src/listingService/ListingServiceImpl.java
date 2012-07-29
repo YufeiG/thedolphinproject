@@ -123,4 +123,8 @@ public class ListingServiceImpl implements ListingService{
 	public Iterator<String> getItemTags(long itemid) throws SQLException {
 		return itemDAO.getItemTags(itemid).iterator();
 	}
+	
+	public Iterator<Item> getItemsByUser(long userid) throws SQLException{
+		return itemDAO.getItemsByUser(userid).iterator();
+	}
 }

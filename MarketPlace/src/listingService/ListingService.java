@@ -30,6 +30,8 @@ public interface ListingService {
 	public long createTag(String tagName) throws SQLException;
 
 	public Iterator<Tag> getAllTags() throws SQLException;
+	
+	public Iterator<Item> getItemsByUser(long userid)throws SQLException;
 
 
 	public Iterator<String> getItemTags(long itemid) throws SQLException; //returns a list of tag names 
